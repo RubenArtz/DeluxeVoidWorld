@@ -1,0 +1,100 @@
+#                    ___
+#      ___          /\  \                     _____
+#     /\  \        /::\  \       ___         /::\  \
+#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
+#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
+#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
+# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
+# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
+#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
+#   \::::/__/      \::/  /        /:/  /     \::/  /
+#    ~~~~           \/__/         \/__/       \/__/
+
+MAIN:
+  TITLE: 'DeluxeVoidWorld &7- &9Editor'
+  ALPHANUMERIC_ITEM:
+    LORE:
+      - ''
+      - '&b&lLEFT CLICK &c| &fTo delete this world. (To remove the tp)'
+      - '&b&lRIGHT CLICK &c| &fEnabled and Disabled (This tp of the world)'
+      - '&b&lMIDDLE CLICK &c| &fChange the coordinate (Y) when the falls.'
+      - '&b&lNUMBER KEY &c| &fTeleportation to this world.'
+      - '&b&lSHIFT + CLICK &c| &fOption to change the icon.'
+      - '&b&lQ &c| &fSet coordinates.'
+      - ''
+      - '&fVoid position: &a{Position}'
+      - '&fAllow TP: {Status}'
+      - '&fCurrent World: {Current World}'
+      - '&fLocation TP: &7(&e{X}&7, &e{Y}&7, &e{Z}&7, &a{Yaw}&7, &a{Pitch}&7)'
+      - ''
+      - '&eChoose an option!'
+  ADD_WORLD:
+    MATERIAL: 'PAPER'
+    SLOT: 52
+    NAME: '&bAdd world &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Have you accidentally &cdeleted &7a map,'
+      - '&7or the &bworld &7is not yet &bgenerated &7in this list?'
+      - '&7Click on this &bitem &7to add the map manually,'
+      - '&7it must be a world already &acreated &7previously'
+      - '&7and it must have the same name for it to work.'
+      - ''
+      - '&eClick here to add a world!'
+  CREATE_WORLD:
+    MATERIAL: 'REPEATER'
+    SLOT: 51
+    NAME: '&bCreating a world empty &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Create a completely empty world!'
+      - ''
+      - '&7Plugin API: &a{Plugin}'
+      - ''
+      - '&eClick to create!'
+  RELOAD:
+    MATERIAL: 'OAK_DOOR'
+    SLOT: 46
+    NAME: '&bReload configurations &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Click on this item to reload'
+      - '&7all plugin configurations!'
+      - ''
+      - '&fYour TPS: &a{getTPS}'
+      - '&fPlayers: &a{Online Players}&7/&c{Max Players}'
+      - '&fUsed RAM: &a{Java Ram}&7/&c{Java Max Ram} &7(&a{Java Free Ram} &7free&7)'
+      - ''
+      - '&eClick to reload!'
+  NEXT:
+    MATERIAL: 'ARROW'
+    SLOT: 53
+    NAME: '&aNext &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Page: &a{Current Page} &7of &a{Max Pages} &7- &e(&a✿&e◠‿◠)'
+  RETURN:
+    MATERIAL: 'ARROW'
+    SLOT: 45
+    NAME: '&aReturn &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Page: &a{Current Page} &7of &a{Max Pages} &7- &eヽ(^◇^*)/'
+  CLOSE:
+    MATERIAL: 'RED_DYE'
+    SLOT: 49
+    NAME: '&cClose &7(Right click)'
+    LORE:
+      - '&7To in-game'
+
+#      ___           ___
+#     /\__\         /\  \         _____
+#    /:/ _/_        \:\  \       /::\  \
+#   /:/ /\__\        \:\  \     /:/\:\  \
+#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
+# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
+# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
+#  \::/_/:/  /   \:\  \        \:\  /:/  /
+#   \:\/:/  /     \:\  \        \:\/:/  /
+#    \::/  /       \:\__\        \::/  /
+#     \/__/         \/__/         \/__/

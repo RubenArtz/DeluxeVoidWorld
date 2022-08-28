@@ -1,0 +1,78 @@
+#                    ___
+#      ___          /\  \                     _____
+#     /\  \        /::\  \       ___         /::\  \
+#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
+#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
+#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
+# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
+# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
+#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
+#   \::::/__/      \::/  /        /:/  /     \::/  /
+#    ~~~~           \/__/         \/__/       \/__/
+
+MAIN:
+  TITLE: 'DeluxeVoidWorld &7- &9Creator'
+  NORMAL:
+    NAME: '&a&lNORMAL &7- &7''&b&l{World}&7'' &7(Right/Left Click)'
+    MATERIAL: 'GRASS_BLOCK'
+    SLOT: 10
+    LORE:
+      - ''
+      - '&7Create this flat world'
+      - '&7without any biomes or structures,'
+      - '&7this is the &anormal/default &7type.'
+      - ''
+      - '&7Plugin API: &a{Plugin}'
+      - ''
+      - '&eClick on this item to create the world!'
+  NETHER:
+    NAME: '&c&lNETHER &7- &7''&b&l{World}&7'' &7(Right/Left Click)'
+    MATERIAL: 'NETHERRACK'
+    SLOT: 13
+    LORE:
+      - ''
+      - '&7Create this flat world'
+      - '&7without any biomes or structures,'
+      - '&7this type of world is from the &cnether.'
+      - ''
+      - '&7Plugin API: &a{Plugin}'
+      - ''
+      - '&eClick on this item to create the world!'
+  THE_END:
+    NAME: '&8&lTHE_END &7- &7''&b&l{World}&7'' &7(Right/Left Click)'
+    MATERIAL: 'END_STONE'
+    SLOT: 16
+    LORE:
+      - ''
+      - '&7Create this flat world'
+      - '&7without any biomes or structures,'
+      - '&7this type of world is &bthe end.'
+      - ''
+      - '&7Plugin API: &a{Plugin}'
+      - ''
+      - '&eClick on this item to create the world!'
+  RETURN:
+    MATERIAL: 'ARROW'
+    SLOT: 27
+    NAME: '&aReturn &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Back to main menu.'
+  CLOSE:
+    MATERIAL: 'RED_DYE'
+    SLOT: 31
+    NAME: '&cClose &7(Right click)'
+    LORE:
+      - '&7To in-game'
+
+#      ___           ___
+#     /\__\         /\  \         _____
+#    /:/ _/_        \:\  \       /::\  \
+#   /:/ /\__\        \:\  \     /:/\:\  \
+#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
+# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
+# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
+#  \::/_/:/  /   \:\  \        \:\  /:/  /
+#   \:\/:/  /     \:\  \        \:\/:/  /
+#    \::/  /       \:\__\        \::/  /
+#     \/__/         \/__/         \/__/

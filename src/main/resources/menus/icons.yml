@@ -1,0 +1,130 @@
+#                    ___
+#      ___          /\  \                     _____
+#     /\  \        /::\  \       ___         /::\  \
+#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
+#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
+#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
+# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
+# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
+#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
+#   \::::/__/      \::/  /        /:/  /     \::/  /
+#    ~~~~           \/__/         \/__/       \/__/
+
+MAIN:
+  TITLE: '{Name World} > Icon'
+  RETURN:
+    MATERIAL: 'ARROW'
+    SLOT: 45
+    NAME: '&aReturn &7(Right Click)'
+    LORE:
+      - ''
+      - '&7Back to main menu.'
+  CLOSE:
+    MATERIAL: 'RED_DYE'
+    SLOT: 49
+    NAME: '&cClose &7(Right click)'
+    LORE:
+      - '&7To in-game'
+MATERIALS:
+  '1':
+    ITEM: 'STONE'
+  '2':
+    ITEM: 'RED_DYE'
+  '3':
+    ITEM: 'DISPENSER'
+  '4':
+    ITEM: 'REDSTONE'
+  '5':
+    ITEM: 'REDSTONE_BLOCK'
+  '6':
+    ITEM: 'DIAMOND_BLOCK'
+  '7':
+    ITEM: 'LADDER'
+  '8':
+    ITEM: 'LEVER'
+  '9':
+    ITEM: 'ENDER_CHEST'
+  '10':
+    ITEM: 'CHEST'
+  '11':
+    ITEM: 'REPEATER'
+  '12':
+    ITEM: 'GRASS'
+  '13':
+    ITEM: 'GRASS_BLOCK'
+  '14':
+    ITEM: 'TNT'
+  '15':
+    ITEM: 'OAK_DOOR'
+  '16':
+    ITEM: 'IRON_DOOR'
+  '17':
+    ITEM: 'PISTON'
+  '18':
+    ITEM: 'CARROT'
+  '19':
+    ITEM: 'RED_WOOL'
+  '20':
+    ITEM: 'IRON_BLOCK'
+  '21':
+    ITEM: 'GOLD_BLOCK'
+  '22':
+    ITEM: 'SADDLE'
+  '23':
+    ITEM: 'CRAFTING_TABLE'
+  '24':
+    ITEM: 'ENCHANTED_BOOK'
+  '25':
+    ITEM: 'ENCHANTING_TABLE'
+  '26':
+    ITEM: 'GLASS'
+  '27':
+    ITEM: 'POPPY'
+  '28':
+    ITEM: 'BOOKSHELF'
+  '29':
+    ITEM: 'ICE'
+  '30':
+    ITEM: 'JUKEBOX'
+  '31':
+    ITEM: 'TRIPWIRE_HOOK'
+  '32':
+    ITEM: 'BEACON'
+  '33':
+    ITEM: 'IRON_SWORD'
+  '34':
+    ITEM: 'GOLDEN_SWORD'
+  '35':
+    ITEM: 'DIAMOND_SWORD'
+  '36':
+    ITEM: 'WOODEN_SWORD'
+  '37':
+    ITEM: 'BOOK'
+  '38':
+    ITEM: 'PUMPKIN'
+  '39':
+    ITEM: 'CACTUS'
+  '40':
+    ITEM: 'APPLE'
+  '41':
+    ITEM: 'BARRIER'
+  '42':
+    ITEM: 'JUNGLE_WOOD'
+  '43':
+    ITEM: 'OAK_SIGN'
+  '44':
+    ITEM: 'ARMOR_STAND'
+  '45':
+    ITEM: 'NAME_TAG'
+
+#      ___           ___
+#     /\__\         /\  \         _____
+#    /:/ _/_        \:\  \       /::\  \
+#   /:/ /\__\        \:\  \     /:/\:\  \
+#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
+# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
+# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
+#  \::/_/:/  /   \:\  \        \:\  /:/  /
+#   \:\/:/  /     \:\  \        \:\/:/  /
+#    \::/  /       \:\__\        \::/  /
+#     \/__/         \/__/         \/__/

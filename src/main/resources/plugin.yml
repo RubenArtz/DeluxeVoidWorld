@@ -1,0 +1,21 @@
+#                                                           Developed by Ruben_Artz
+#
+#                                                     (PLAY.STN-STUDIOS.COM @ (C) 2018-2022)
+
+name: 'DeluxeVoidWorld'
+main: 'ruben_artz.world.main.VOMain'
+version: '${version}'
+authors: ['Ruben_Artz', 'STN Studios']
+load: 'STARTUP'
+softdepend: ['PlaceholderAPI', 'SlimeWorldManager', 'Multiverse-Core', 'BotSentry', 'UltraRegions']
+website: 'https://www.spigotmc.org/resources/86993/'
+api-version: '1.16'
+description: 'Incredible plugin to send your players when they fall into the void!'
+
+commands:
+  deluxevoidworld:
+    description: 'Command where all the main commands of the plugin are executed.'
+    aliases: ['dew', 'deluxevoid']
+  empty:
+    description: 'Command to open the player''s inventory'
+    aliases: ['void']

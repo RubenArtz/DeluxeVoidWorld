@@ -1,0 +1,119 @@
+#                    ___
+#      ___          /\  \                     _____
+#     /\  \        /::\  \       ___         /::\  \
+#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
+#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
+#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
+# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
+# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
+#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
+#   \::::/__/      \::/  /        /:/  /     \::/  /
+#    ~~~~           \/__/         \/__/       \/__/
+
+MAIN:
+  TITLE: 'Option Selector'
+  FILL_EMPTY: true
+  PLAYER:
+    SOUNDS:
+      PERMISSION:
+        ENABLED: true
+        NO-PERMISSION: 'ENDERMAN_TELEPORT, 10.5f, 0.5f'
+  TELEPORTATION:
+    NAME: '&aToggle Teleportation &7(Right click)'
+    VALUE: '4ec1c3f7d09ce6c0cb48ed30b4596a5c14fae79def8bfd14a59fc1935600bc7b'
+    SLOT: 2
+    LORE:
+      - ''
+      - '&7Change this option, when you'
+      - '&7fall into the void you will only'
+      - '&7be teleported to the lobby!'
+      - ''
+      - '&7Requires: &dNone'
+      - ''
+      - '&eClick to select!'
+  JUMP:
+    NAME: '&aToggle Jump &7(Right click)'
+    VALUE: '26aa9301c5887a9474a6a5ade3c17e4e241a68040589addd7aa2ce60080d3774'
+    SLOT: 3
+    LORE:
+      - ''
+      - '&7Change your this option, when you'
+      - '&7fall into the void they will jump so'
+      - '&7high to get to the lobby!'
+      - ''
+      - '&7Requires: &a[VIP]'
+      - ''
+      - '&eClick to select!'
+  LIGHTNING:
+    NAME: '&aToggle Lightning &7(Right click)'
+    VALUE: '227243e743106447b6912dbae81282573db610c403a8aaa540405cb783829f16'
+    SLOT: 5
+    LORE:
+      - ''
+      - '&7Change this option when'
+      - '&7you fall into the void a lightning will be thrown and'
+      - '&7you will be teleported to the lobby!'
+      - ''
+      - '&7Requires: &a[VIP]'
+      - ''
+      - '&eClick to select!'
+  PARTICLES:
+    NAME: '&aToggle Particles &7(Right click)'
+    VALUE: '2e9f592a12f123d6ea13a9e01920079f72e545f310476b019edf80eef809ae55'
+    SLOT: 6
+    LORE:
+      - ''
+      - '&7Change this option'
+      - '&7when you fall into the void it will'
+      - '&7launch fires artifices with incredible particles!'
+      - ''
+      - '&7Requires: &a[VIP]'
+      - ''
+      - '&eClick to modify your settings!'
+  BOOLEAN:
+    MATERIAL_ENABLED: 'GREEN_STAINED_GLASS_PANE'
+    MATERIAL_DISABLED: 'RED_STAINED_GLASS_PANE'
+    OTHER_ENABLED: 'ORANGE_STAINED_GLASS_PANE'
+    OTHER_DISABLED: 'RED_STAINED_GLASS_PANE'
+    NAME_ENABLED: '&aActivated &7(Right Click)'
+    NAME_DISABLED: '&cDisabled &7(Right Click)'
+    SLOTS:
+      TELEPORTATION:
+        BOOLEAN: 11
+      JUMP:
+        BOOLEAN: 12
+      LIGHTNING:
+        BOOLEAN: 14
+      PARTICLES:
+        BOOLEAN: 15
+    LORE_ENABLED:
+      - ''
+      - '&7Click here to change'
+      - '&7your teleportation option!'
+      - ''
+      - '&eClick to confirm!'
+    LORE_DISABLED:
+      - ''
+      - '&7Click here to change'
+      - '&7your teleportation option!'
+      - ''
+      - '&eClick to confirm!'
+  CLOSE:
+    MATERIAL: 'RED_DYE'
+    NAME: '&cClose &7(Right click)'
+    SLOT: 49
+    LORE:
+      - '&7To in-game'
+
+
+#      ___           ___
+#     /\__\         /\  \         _____
+#    /:/ _/_        \:\  \       /::\  \
+#   /:/ /\__\        \:\  \     /:/\:\  \
+#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
+# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
+# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
+#  \::/_/:/  /   \:\  \        \:\  /:/  /
+#   \:\/:/  /     \:\  \        \:\/:/  /
+#    \::/  /       \:\__\        \::/  /
+#     \/__/         \/__/         \/__/

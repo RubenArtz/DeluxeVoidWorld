@@ -1,0 +1,95 @@
+#                    ___
+#      ___          /\  \                     _____
+#     /\  \        /::\  \       ___         /::\  \
+#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
+#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
+#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
+# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
+# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
+#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
+#   \::::/__/      \::/  /        /:/  /     \::/  /
+#    ~~~~           \/__/         \/__/       \/__/
+#//                           MENSAJES TP
+MESSAGE_BOSSBAR_TP_LOBBY: '&a&l¡Has sido teletransportado al lobby, después de caer al vacío!'
+MESSAGE_TITLE_TP_LOBBY:
+  - '1;10;1234;&b&l¡TELETRANSPORTADO!;&f&o(( Ha vuelto al lobby ))'
+MESSAGE_MESSAGES_TP_LOBBY:
+  - ''
+  - '&aTe han teletransportado al lobby principal de nuevo.'
+  - ''
+MESSAGE_ACTIONBAR_TP_LOBBY: '&b&l¡TELETRANSPORTADO!'
+#//                           OTROS MENSAJES
+MESSAGE_NEW_MAP: '&a¡Encontramos un nuevo mapa y se ha agregado automáticamente para configurarlo en el inventario.'
+MESSAGE_DELETE_WORLD: '&cHas eliminado con éxito este mundo (ahora ya no habrá más tp en el mapa)'
+MESSAGE_ADD_WORLD:
+  - '&f'
+  - '&aCoordenadas del mapa agregado correctamente con el nombre &c"{World}"&f &acoordenadas &fX: &c{X} &fY: &c{Y} &fZ: &c{Z} &fYaw: &c{YAW} &fPitch: &c{PITCH}'
+  - '&f'
+MESSAGE_NO_MINECRAFT_VERSION: '&cLo siento, esta opción sólo funciona en las versiones de espigot 1.10-1.18 y estás usando la versión {Version}'
+MESSAGE_NO_WORLD_COMMAND: '&cNo puedes usar este comando porque estás en la consola.'
+MESSAGE_CREATE_WORLD:
+  - '1;10;1234;&bAgregar mundo;&7Nombre exacto del mundo &b(Click izquierdo para cancelar)'
+MESSAGE_EDIT_BLOCK_Y:
+  - '1;10;1234;&bCambiar coordenada;&7Escribe solo la coordenada de (Y). &b(Click izquierdo para cancelar)'
+MESSAGE_LESS_ZERO: '&c¡Debes poner un número menor que 10 para que el evento funcione!'
+MESSAGE_NO_WORDS: "&cDebes poner un número menor que 10 no la palabra '{Word}'"
+MESSAGE_TP_WORLD: '&aHas sido teletransportado al mundo: {World}'
+MESSAGE_CREATE_WORLD_EMPTY:
+  - '1;10;1234;&bCrear un mundo;&fEscriba el nombre que desee.'
+MESSAGE_TP_NEW_MAP: '&eTeletransporte al nuevo mapa en 3 segundos.'
+MESSAGE_MAP_ALREADY_EXISTS: '&cEste mapa ya existe!'
+#//                           OTROS MENSAJES COMANDOS
+MESSAGE_NO_MENU_COMMAND: '&cNo puedo abrir el menú de plugin en la consola.'
+MESSAGE_UNKNOWN_WORLD_COMMAND: '&cNo existe el mundo "{World}" inténtalo de nuevo...'
+MESSAGE_ACTIVATED_WORLD: '&aAhora la teletransportación está permitida en el mundo "{World}"'
+MESSAGE_DISABLED_WORLD: '&cAhora la teletransportación no está permitida en el mundo "{World}'
+MESSAGE_USE_TOGGLE: '&cUsa el comando /dew toggle <mundo> para activar y desactivar la teletransportación del mundo.'
+MESSAGE_NO_PERMISSIONS: '&cNo tiene permiso para ejecutar este comando.'
+MESSAGE_CLICK_COMMAND: '&cEste servidor está usando Deluxe Void World {Version}'
+MESSAGE_CLICK_COMMAND_BOX: "&f &8▪ &fHaga clic para ver los comandos."
+MESSAGE_USE_COMMAND_RELOAD: '&7Recargue la configuración del complemento.'
+MESSAGE_USE_COMMAND_RELOAD_BOX: '&a&lSUGERENCIAS DE SUBCOMANDOS:{line} {line}&f &8▪ &b/dew reload{line}&f &8▪ &b/dew rl{line} {line}&eHaga clicK aquí para ejecutar el comando.'
+MESSAGE_USE_COMMAND_HELP: '&7Ver los comandos disponibles.'
+MESSAGE_USE_COMMAND_HELP_BOX: '&a&lSUGERENCIAS DE SUBCOMANDOS:{line} {line}&f &8▪ &b/dew help{line}&f &8▪ &b/dew helpme{line} {line}&eHaga clicK aquí para ejecutar el comando.'
+MESSAGE_USE_COMMAND_GUI: '&7Modifica las opciones del mapa.'
+MESSAGE_USE_COMMAND_GUI_BOX: '&a&lSUGERENCIAS DE SUBCOMANDOS:{line} {line}&f &8▪ &b/dew editor{line}&f &8▪ &b/dew inventory{line}&f &8▪ &b/dew inv{line} {line}&eHaga clicK aquí para ejecutar el comando.'
+MESSAGE_USE_COMMAND_TOGGLE: '&7Habilita o deshabilita los mundos de &7teletransportación.'
+MESSAGE_USE_COMMAND_TOGGLE_BOX: '&a&lSUGERENCIAS DE SUBCOMANDOS:{line} {line}&f &8▪ &b/dew toggle <args>{line}&f &8▪ &b/dew toggletp <args>{line}&f &8▪ &b/dew toggleworld <args>{line} {line}&e¡Haga clic aquí para pegar el comando en el chat!'
+MESSAGE_USE_COMMAND_SET_WORLD: '&7establece las coordenadas del mapa &7donde aparecen los jugadores.'
+MESSAGE_USE_COMMAND_SET_WORLD_BOX: '&a&lSUGERENCIAS DE SUBCOMANDOS:{line} {line}&f &8▪ &b/dew setworldvoid{line}&f &8▪ &b/dew setspawn{line}&f &8▪ &b/dew spawn{line} {line}&eHaga clicK aquí para ejecutar el comando.'
+MESSAGE_USE_COMMANDS_TIP: '&9TIP&f, Coloque el cursor en el mensaje y haga click para seleccionar.'
+MESSAGE_USE_TELEPORT: '&cUsa el comando /dew teleport <mundo> para ir al mundo.'
+MESSAGE_USE_COMMAND_TELEPORT: '&7Teletransportarse a un mundo.'
+MESSAGE_USE_COMMAND_TELEPORT_BOX: '&a&lSUGERENCIAS DE SUBCOMANDOS:{line} {line}&f &8▪ &b/dew teleport <args>{line}&f &8▪ &b/dew tp <args>{line}&f &8▪ &b/dew tpme <args>{line} {line}&e¡Haga clic aquí para pegar el comando en el chat!'
+MESSAGE_NO_PERMISSIONS_GUI: '&cLo sentimos... Aparentemente no tiene el rango requerido para este comando, puedes comprar una actualización aquí: &bhttps://store.server.com/'
+MESSAGE_COMMAND_RELOAD:
+  - '&aRecargando configuraciones...'
+  - '&a¡Complemento recargado correctamente!'
+#//                           OTROS MENSAJES CONSOLA
+MESSAGE_LOAD_ALL_WORLDS:
+  - '&a¡Todos los mapas han sido cargados correctamente!'
+MESSAGE_NOT_USE_ITEM: '&cNo puedes usar este evento en este mundo, debes ir a este mundo para usar el teclado.'
+MESSAGE_LORE_ICONS:
+  - ''
+  - '&eHaga click aquí para seleccionar este icono.'
+MESSAGE_PLACEHOLDER_WORLD_YES: '&a✔ (Actualmente en este mundo).'
+MESSAGE_PLACEHOLDER_WORLD_NO: '&c✖ (No estás en este mundo).'
+MESSAGE_FILE_UPDATE: '&cTú {Files} archivo se ha actualizado en esta versión.'
+MESSAGES_MYSQL_CONNECTED: '&aLa conexión con MySQL se ha establecido con éxito.'
+MESSAGE_MYSQL_NOT_CONNECTED: '&cNo hemos podido conectarnos a mysql.'
+MESSAGE_USING_SQLITE: '&aUso de SQLite para los datos de los jugadores.'
+MESSAGE_SQLITE_ERROR_FOLDER: '&cNo se ha podido crear la carpeta /cache.'
+MESSAGE_SQLITE_ERROR_CREATE: '&cNo se ha podido crear el archivo /cache/database.db.'
+MESSAGE_SQLITE_ERROR_CONNECTION: '&cImposible comunicarse con SQLite...'
+
+#      ___           ___
+#     /\__\         /\  \         _____
+#    /:/ _/_        \:\  \       /::\  \
+#   /:/ /\__\        \:\  \     /:/\:\  \
+#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
+# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
+# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
+#  \::/_/:/  /   \:\  \        \:\  /:/  /
+#   \:\/:/  /     \:\  \        \:\/:/  /
+#    \::/  /       \:\__\        \::/  /
+#     \/__/         \/__/         \/__/
