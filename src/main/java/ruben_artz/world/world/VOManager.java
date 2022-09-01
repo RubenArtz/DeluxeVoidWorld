@@ -164,7 +164,17 @@ public class VOManager {
         if ((message == null) || (message.isEmpty())) {
             return message;
         }
-        final Runtime runtime = Runtime.getRuntime();
+
+        long maximum = Runtime.getRuntime().maxMemory();
+        long free = Runtime.getRuntime().freeMemory();
+        long total = Runtime.getRuntime().totalMemory();
+
+
+        long used = total - free;
+
+        long mbUsed = used / 1000000;
+        long mbMaximum = maximum / 1000000;
+        long mbFree = free / 1000000;
 
         if (isPluginEnabled("SlimeWorldManager")) {
             message = message.replace("{Plugin}", "Slime World Manager");
@@ -178,9 +188,9 @@ public class VOManager {
         message = message.replace("{getTPS}", String.valueOf(getTPS()))
                 .replace("{Max Players}", String.valueOf(Bukkit.getMaxPlayers()))
                 .replace("{Online Players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                .replace("{Java Ram}", runtime.totalMemory() - runtime.freeMemory() / 1048576L + " MB")
-                .replace("{Java Max Ram}", runtime.maxMemory() / 1048576L + " MB")
-                .replace("{Java Free Ram}", runtime.freeMemory() / 1048576L + " MB");
+                .replace("{Java Ram}", VOManager.addCommas((int) mbUsed) + " MB")
+                .replace("{Java Max Ram}", VOManager.addCommas((int) mbMaximum) + " MB")
+                .replace("{Java Free Ram}", VOManager.addCommas((int) mbFree) + " MB");
         return message;
     }
 
