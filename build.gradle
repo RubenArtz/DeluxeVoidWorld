@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ruben_artz'
-version = '3.5.19'
+version = '3.6.19'
 
 repositories {
     mavenCentral()
@@ -39,11 +39,11 @@ dependencies {
     compileOnly fileTree(dir: 'libs', includes: ['*.jar'])
 
     implementation 'net.kyori:adventure-text-minimessage:4.11.0'
-    implementation 'net.kyori:adventure-platform-bukkit:4.1.1'
+    implementation 'net.kyori:adventure-platform-bukkit:4.1.2'
     implementation 'com.github.cryptomorin:XSeries:9.0.0'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
     implementation 'com.zaxxer:HikariCP:4.0.3'
-    implementation 'org.slf4j:slf4j-simple:1.7.36'
+    implementation 'org.slf4j:slf4j-simple:2.0.0'
 }
 
 java {
