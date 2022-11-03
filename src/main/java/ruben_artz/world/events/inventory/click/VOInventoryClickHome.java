@@ -173,7 +173,7 @@ public class VOInventoryClickHome implements Listener {
                                 }
                             }
                             slot++;
-                            if (slot > 45) {
+                            if (slot > 44) {
                                 break;
                             }
                         }

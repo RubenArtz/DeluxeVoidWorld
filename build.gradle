@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ruben_artz'
-version = '3.7.19'
+version = '3.8.19'
 
 repositories {
     mavenCentral()
@@ -29,6 +29,9 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
     compileOnly 'com.grinderwolf:slimeworldmanager-api:2.2.1'
     compileOnly 'com.onarandombox.multiversecore:Multiverse-Core:4.3.1'
     compileOnly 'me.clip:placeholderapi:2.11.1'
@@ -51,7 +54,7 @@ java {
 }
 
 shadowJar {
-    archiveName("Deluxe Void World.jar")
+    archiveFileName.set("Deluxe Void World.jar")
 
     relocate("net.kyori", "ruben_artz.world.libs.kyori")
     relocate("com.zaxxer.hikari", "ruben_artz.world.libs.hikari")
