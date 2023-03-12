@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ruben_artz'
-version = '3.8.19'
+version = '3.9.19'
 
 repositories {
     mavenCentral()
@@ -42,7 +42,7 @@ dependencies {
 
     implementation 'net.kyori:adventure-text-minimessage:4.11.0'
     implementation 'net.kyori:adventure-platform-bukkit:4.1.2'
-    implementation 'com.github.cryptomorin:XSeries:9.1.0'
+    implementation 'com.github.cryptomorin:XSeries:9.3.0'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
     implementation 'com.zaxxer:HikariCP:4.0.3'
     implementation 'org.slf4j:slf4j-simple:2.0.3'
@@ -62,7 +62,7 @@ shadowJar {
     relocate("com.cryptomorin.xseries", "ruben_artz.world.libs.xseries")
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
