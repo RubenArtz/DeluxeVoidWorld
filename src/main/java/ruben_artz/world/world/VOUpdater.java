@@ -42,8 +42,6 @@ public class VOUpdater {
                 plugin.sendConsole( ""+plugin.prefix+"&fPlease download the latest &e"+plugin.getLatestVersion()+" &fversion.");
                 plugin.sendConsole( "&8--------------------------------------------------------------------------------------");
             }
-        } catch (Exception exception) {
-            plugin.sendConsole(""+plugin.prefix+"&6We have problems establishing connection with spigotmc.org");
-        }
+        } catch (Exception ignored) {}
     }
 }

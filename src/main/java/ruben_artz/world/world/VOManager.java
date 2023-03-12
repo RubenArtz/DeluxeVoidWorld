@@ -107,7 +107,7 @@ public class VOManager {
 
     public static void getSound(Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.SOUNDS.ENABLED")) {
-            XSound.play(player, plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND"));
+            XSound.play(player.getLocation(), plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND"));
         }
     }
 
@@ -252,7 +252,7 @@ public class VOManager {
     }
 
     public static void getMessagesArgs(Player player) {
-        XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP"));
+        XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP"));
         String box = plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND_BOX");
         player.sendMessage(addColor.setColors("&8&m--------------------------------------------------"));
         sendTextComponent(player, plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND").replace("{Version}", plugin.getVersion())
@@ -270,7 +270,7 @@ public class VOManager {
     }
 
     public static void getHelpCommandGame(Player sender) {
-        XSound.play(sender, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS"));
+        XSound.play(sender.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS"));
         sender.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
         sender.sendMessage(addColor.setColors("" + plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP") + ""));
         sender.sendMessage(addColor.setColors("&f"));

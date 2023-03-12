@@ -5,10 +5,10 @@ import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.plugin.PluginManager;
 import ruben_artz.world.commands.RegisterCommand;
 import ruben_artz.world.commands.VOPlayer;
+import ruben_artz.world.configuration.UpdateConfig;
 import ruben_artz.world.database.MySQL;
 import ruben_artz.world.database.SQLite;
 import ruben_artz.world.events.chat.VOEditing;
@@ -20,16 +20,13 @@ import ruben_artz.world.events.inventory.click.VOInventoryClickPlayer;
 import ruben_artz.world.events.world.*;
 import ruben_artz.world.firework.FireworkDamage;
 import ruben_artz.world.firework.FireworkExplode;
-import ruben_artz.world.main.VOConfig;
+import ruben_artz.world.main.LoadWorld;
 import ruben_artz.world.main.VOMain;
 import ruben_artz.world.world.VOManager;
 import ruben_artz.world.world.VOSlime;
 import ruben_artz.world.world.VOUpdater;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -46,16 +43,17 @@ public class Launcher implements Launch {
     public void launch(VOMain plugin) {
         launcher = this;
         plugin.LoadAllFiles();
-        VOConfig.update();
+        UpdateConfig.update();
         getNumbers();
         getCommands();
-        getEvents();
-        setWorlds();
-        ifConfigWorld();
+        registerEvents();
+        LoadWorld.setWorlds();
+        LoadWorld.ifConfigWorld();
         getMetrics();
         setConnection();
         VOUpdater.setEnabled();
-        loadWorld();
+        LoadWorld.loadWorld();
+        LoadWorld.setTime();
         plugin.getMessages();
     }
 
@@ -76,7 +74,7 @@ public class Launcher implements Launch {
     }
 
     @SuppressWarnings("InstantiationOfUtilityClass")
-    public void getEvents() {
+    public void registerEvents() {
         PluginManager event = plugin.getServer().getPluginManager();
         Arrays.asList(new VOWorlds(),
                         new VOEditing(),
@@ -103,105 +101,6 @@ public class Launcher implements Launch {
         Objects.requireNonNull(plugin.getCommand("empty")).setExecutor(new VOPlayer());
     }
 
-    private void setWorlds() {
-        VOManager.syncTaskLater(5, () -> {
-            for (World worlds : Bukkit.getServer().getWorlds()) {
-                final String worldName = worlds.getName();
-                if (plugin.getWorlds().getString("WORLDS." + worldName + ".DEFAULT-WORLD") == null) {
-                    plugin.getWorlds().set("WORLDS." + worldName + ".DEFAULT-WORLD", Boolean.FALSE);
-                    plugin.getWorlds().set("WORLDS." + worldName + ".TP-WHEN-FALLING", Boolean.TRUE);
-                    plugin.getWorlds().set("WORLDS." + worldName + ".VOID-POSITION", -1);
-                    plugin.getWorlds().set("WORLDS." + worldName + ".WORLD", "&a" + worldName + "");
-                    plugin.getWorlds().set("WORLDS." + worldName + ".MATERIAL", "STONE");
-                    plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", VOManager.setLocation(worlds.getSpawnLocation()));
-                    plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");
-                    final List<String> listCommands = plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST");
-                    listCommands.add("tell {Player} &cThe lobby is not over there!");
-                    plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.LIST", listCommands);
-                    plugin.files.saveFile("worlds.yml");
-                }
-            }
-            if (plugin.getConfig().contains("ON_VOID_TP.DO_NOT_TOUCH_WORLDS")) {
-                for (String keys : plugin.getConfig().getStringList("ON_VOID_TP.DO_NOT_TOUCH_WORLDS")) {
-                    final String[] name = keys.split(",");
-                    if (plugin.getGenerated().getString(("WORLDS." + name[0] + ".ENVIROMENT")) == null) {
-                        plugin.getGenerated().set("WORLDS."+name[0]+".ENVIROMENT", name[6]);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".WORLD-TYPE", "FLAT");
-                        plugin.getGenerated().set("WORLDS."+name[0]+".DIFFICULTY", "NORMAL");
-                        plugin.getGenerated().set("WORLDS."+name[0]+".SPAWN-FLAGS", true);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".PVP", true);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".STORM", false);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".THUNDERING", false);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".WEATHER-DURATION", 2147483647);
-                        plugin.getGenerated().set("WORLDS."+name[0]+ ".BORDER-SIZE", 300);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".AUTO-SAVE", false);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".SPAWN", VOManager.setLocation(name[0]));
-                        plugin.files.saveFile("generated.yml");
-                    }
-                }
-            }
-        });
-    }
-
-    private void ifConfigWorld() {
-        VOManager.syncTaskLater(5, () -> {
-            for (String keys : plugin.getConfig().getStringList("ON_VOID_TP.DO_NOT_TOUCH_WORLDS")) {
-                String[] name = keys.split(",");
-                if (plugin.getGenerated().getString(("WORLDS." + name[0] + ".ENVIROMENT")) == null) {
-                    if (plugin.getConfig().contains("ON_VOID_TP.DO_NOT_TOUCH_WORLDS")) {
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".ENVIROMENT", name[6]);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".WORLD-TYPE", "FLAT");
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".DIFFICULTY", "NORMAL");
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".SPAWN-FLAGS", true);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".PVP", true);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".STORM", false);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".THUNDERING", false);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".WEATHER-DURATION", 2147483647);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".BORDER-SIZE", 300);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".AUTO-SAVE", false);
-                        ArrayList<String> gamerules = (ArrayList<String>) plugin.getGenerated().getStringList("WORLDS." + name[0] + ".GAME-RULES");
-                        gamerules.add("doDaylightCycle:false");
-                        gamerules.add("mobGriefing:false");
-                        gamerules.add("doFireTick:false");
-                        gamerules.add("showDeathMessages:false");
-                        gamerules.add("randomTickSpeed:false");
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".GAME-RULES", gamerules);
-                        plugin.getGenerated().set("WORLDS." + name[0] + ".SPAWN", VOManager.setLocation(name[0]));
-                        plugin.files.saveFile("generated.yml");
-                    }
-                }
-            }
-        });
-    }
-
-    private void loadWorld() {
-        VOManager.syncTaskLater(10, () -> {
-            if (plugin.getGenerated().contains("WORLDS")) {
-                for (String key : Objects.requireNonNull(plugin.getGenerated().getConfigurationSection("WORLDS")).getKeys(false)) {
-                    String source = Bukkit.getWorldContainer().getPath();
-                    File src = new File(source);
-                    for (File file : Objects.requireNonNull(src.listFiles())) {
-                        if (file.isDirectory()) {
-                            if (file.getName().equals("cache") || file.getName().equals("plugins") || file.getName().equals("logs")) {
-                                String[] name = Objects.requireNonNull(plugin.getGenerated().getString("WORLDS." + key + ".SPAWN")).split(",");
-                                VOManager.createEmptyWorld(name[0],
-                                        plugin.getGenerated().getString("WORLDS." + key + ".ENVIROMENT", "NORMAL"),
-                                        plugin.getGenerated().getString("WORLDS." + key + ".WORLD-TYPE", "FLAT"),
-                                        plugin.getGenerated().getString("WORLDS." + key + ".DIFFICULTY", "PEACEFUL"),
-                                        plugin.getGenerated().getBoolean("WORLDS." + key + ".SPAWN-FLAGS", true),
-                                        plugin.getGenerated().getBoolean("WORLDS." + key + ".PVP", true),
-                                        plugin.getGenerated().getBoolean("WORLDS." + key + ".STORM", false),
-                                        plugin.getGenerated().getBoolean("WORLDS." + key + ".THUNDERING", false),
-                                        plugin.getGenerated().getInt("WORLDS." + key + ".WEATHER-DURATION", 2147483647),
-                                        plugin.getGenerated().getBoolean("WORLDS." + key + ".AUTO-SAVE", true),
-                                        plugin.getGenerated().getInt("WORLDS."+key+".BORDER-SIZE", 100));
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
     private void getMetrics() {
         VOManager.syncTaskLater(60, () -> {
             final Metrics metrics = new Metrics(plugin, 9736);

@@ -28,7 +28,7 @@ public class Teleport extends SubCommand {
         World world = Bukkit.getWorld(args[1]);
         if (world == null) {
             if (sender instanceof Player) {
-                XSound.play((Player) sender, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.SOUND_THERE_IS_NO_WORLD"));
+                XSound.play(((Player) sender).getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.SOUND_THERE_IS_NO_WORLD"));
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_UNKNOWN_WORLD_COMMAND").replace("{World}", bossbar)));
             } else {
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_UNKNOWN_WORLD_COMMAND").replace("{World}", bossbar)));

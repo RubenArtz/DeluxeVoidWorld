@@ -21,6 +21,7 @@ import ruben_artz.world.world.VOUpdater;
 import javax.annotation.Nullable;
 import java.util.*;
 
+@SuppressWarnings("deprecation")
 public class VOMain extends JavaPlugin {
     private static VOMain plugin;
     public static VOMain getInstance()
@@ -131,7 +132,7 @@ public class VOMain extends JavaPlugin {
             VOUpdater.shutdown();
         }
         HandlerList.unregisterAll(this);
-        Launcher.getInstance().getEvents();
+        Launcher.getInstance().registerEvents();
         LoadAllFiles();
     }
     public Set<UUID> getIgnoreJumping() {
