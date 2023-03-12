@@ -118,15 +118,31 @@ public class VOHome {
 
             final List<String> loreList = plugin.getMenuHome().getStringList("MAIN.ALPHANUMERIC_ITEM.LORE");
             loreList.replaceAll((s) -> {
+                /*
+                Verify teleportation
+                 */
                 if (Objects.equals(plugin.getWorlds().getString("WORLDS." + key + ".TP-WHEN-FALLING"), "true")) {
                     s = VOManager.replacePlaceholder(s, "{Status}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.ENABLED"));
                 } else {
                     s = VOManager.replacePlaceholder(s, "{Status}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.DISABLED"));
                 }
+
+                /*
+                It is in the world
+                 */
                 if (player.getWorld().getName().equalsIgnoreCase(name[0])) {
                     s = VOManager.replacePlaceholder(s, "{Current World}", addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_YES")));
                 } else {
                     s = VOManager.replacePlaceholder(s, "{Current World}", addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_NO")));
+                }
+
+                /*
+                Always daytime?
+                 */
+                if (Objects.equals(plugin.getWorlds().getString("WORLDS." + key + ".ALWAYS-DAY"), "true")) {
+                    s = VOManager.replacePlaceholder(s, "{Status Day}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.ENABLED"));
+                } else {
+                    s = VOManager.replacePlaceholder(s, "{Status Day}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.DISABLED"));
                 }
 
                 s = VOManager.replacePlaceholder(s, "{Position}", plugin.getWorlds().getString("WORLDS." + key + ".VOID-POSITION"));

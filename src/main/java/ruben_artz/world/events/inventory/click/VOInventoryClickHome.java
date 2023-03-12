@@ -139,15 +139,6 @@ public class VOInventoryClickHome implements Listener {
                                             XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP"));
                                         }
                                         player.updateInventory();
-                                    } else if (event.getClick().equals(ClickType.DROP)) {
-                                        if (player.getWorld().equals(world1)) {
-                                            Bukkit.dispatchCommand(player, "dew setworldvoid");
-                                        } else {
-                                            addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NOT_USE_ITEM"));
-                                        }
-                                    } else if (event.getClick().equals(ClickType.NUMBER_KEY)) {
-                                        String[] names = Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN")).split(",");
-                                        Bukkit.dispatchCommand(player, "dew teleport " + names[0] + "");
                                     } else if (event.getClick() == ClickType.MIDDLE) {
                                         if (player.getWorld().equals(world1)) {
                                             plugin.chat_get.add(player.getUniqueId());
@@ -161,9 +152,34 @@ public class VOInventoryClickHome implements Listener {
                                         } else {
                                             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NOT_USE_ITEM"));
                                         }
+                                    } else if (event.getClick().equals(ClickType.NUMBER_KEY)) {
+                                        String[] names = Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN")).split(",");
+                                        Bukkit.dispatchCommand(player, "dew teleport " + names[0] + "");
                                     } else if (event.getClick().equals(ClickType.SHIFT_LEFT) || (event.getClick().equals(ClickType.SHIFT_RIGHT))) {
                                         if (player.getWorld().equals(world1)) {
                                             VOIcon.getInventory(player);
+                                        } else {
+                                            addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NOT_USE_ITEM"));
+                                        }
+                                    } else if (event.getClick().equals(ClickType.CONTROL_DROP)) {
+                                        if (!plugin.getWorlds().getBoolean("WORLDS." + world + ".ALWAYS-DAY")) {
+                                            plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", true);
+                                            XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP"));
+                                        } else {
+                                            plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", false);
+                                            XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP"));
+                                        }
+                                        plugin.files.saveFile("worlds.yml");
+                                        plugin.initiate();
+
+                                        if (VOHome.task != null) {
+                                            VOHome.task.cancel();
+                                        }
+                                        plugin.removeInventory(player.getName());
+                                        VOHome.getInventory(player, 1);
+                                    } else if (event.getClick().equals(ClickType.DROP)) {
+                                        if (player.getWorld().equals(world1)) {
+                                            Bukkit.dispatchCommand(player, "dew setworldvoid");
                                         } else {
                                             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NOT_USE_ITEM"));
                                         }

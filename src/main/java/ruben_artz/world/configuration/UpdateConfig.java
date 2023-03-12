@@ -1,5 +1,6 @@
-package ruben_artz.world.main;
+package ruben_artz.world.configuration;
 
+import ruben_artz.world.main.VOMain;
 import ruben_artz.world.world.VOManager;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
-public class VOConfig {
+public class UpdateConfig {
     private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
 
     public static void update() {
@@ -32,7 +33,7 @@ public class VOConfig {
             /*
             Update config of "worlds.yml"
              */
-            if (!Objects.requireNonNull(plugin.getWorlds().getString("version")).equals("1.4")) {
+            if (!Objects.requireNonNull(plugin.getWorlds().getString("version")).equals("1.5")) {
                 try {
                     Files.copy(Paths.get(plugin.getDataFolder() + "/worlds.yml"), Paths.get(plugin.getDataFolder() + "/old-worlds-" + plugin.getConfig().getString("version") + ".yml"), StandardCopyOption.REPLACE_EXISTING);
                     File file = new File(plugin.getDataFolder(), "worlds.yml");
@@ -44,7 +45,7 @@ public class VOConfig {
                 }
             }
             /*
-            Update config of "generatred.yml"
+            Update config of "generated.yml"
              */
             if (!Objects.requireNonNull(plugin.getGenerated().getString("version")).equals("1.1")) {
                 try {
@@ -77,7 +78,7 @@ public class VOConfig {
             Update config of "menus.file"
              */
             VOManager.syncTaskLater(15L, () -> {
-                if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.5")) {
+                if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.6")) {
                     File f = new File(plugin.getDataFolder(), "/menus/");
                     File[] files = f.listFiles();
                     if (files != null) {
