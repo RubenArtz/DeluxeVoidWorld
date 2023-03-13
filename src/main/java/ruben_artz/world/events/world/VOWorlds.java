@@ -45,26 +45,26 @@ public class VOWorlds implements Listener {
     }
 
     private void getTeleportation(Player player) {
-        if (!plugin.IgnoreTeleportation.contains(player.getUniqueId())) {
+        if (!plugin.getIgnoreTeleportation().contains(player.getUniqueId())) {
             VOManager.getTeleportation(player);
         }
     }
 
     private void getJump(Player player) {
-        if (!plugin.IgnoreJumping.contains(player.getUniqueId())) {
-            plugin.damage.add(player.getUniqueId());
+        if (!plugin.getIgnoreJumping().contains(player.getUniqueId())) {
+            plugin.getDamage().add(player.getUniqueId());
             VOManager.getJumpEffects(player);
         }
     }
 
     private void getLightningEffect(Player player) {
-        if (!plugin.IgnoreLightning.contains(player.getUniqueId())) {
+        if (!plugin.getIgnoreLightning().contains(player.getUniqueId())) {
             VOManager.getLightningEffect(player);
         }
     }
 
     private void getParticles(Player player) {
-        if (!plugin.IgnoreParticles.contains(player.getUniqueId())) {
+        if (!plugin.getIgnoreParticles().contains(player.getUniqueId())) {
             VOManager.getParticles(player);
         }
     }

@@ -18,9 +18,9 @@ public class VOEntity implements Listener {
         if (event.getCause() != EntityDamageEvent.DamageCause.FALL) {
             return;
         }
-        if (plugin.damage.contains(event.getEntity().getUniqueId())) {
+        if (plugin.getDamage().contains(event.getEntity().getUniqueId())) {
             event.setCancelled(true);
-            VOManager.syncTaskLater(200, () -> plugin.damage.clear());
+            VOManager.syncTaskLater(200, () -> plugin.getDamage().clear());
         }
     }
 }

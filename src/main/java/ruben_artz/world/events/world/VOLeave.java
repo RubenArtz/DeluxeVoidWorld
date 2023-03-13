@@ -13,11 +13,11 @@ public class VOLeave implements Listener {
     public void onPlayerQuitEffects(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         for (int i = 0; i < 100; i++) {
-            plugin.damage.remove(event.getPlayer().getUniqueId());
-            plugin.IgnoreJumping.remove(player.getUniqueId());
-            plugin.IgnoreTeleportation.remove(player.getUniqueId());
-            plugin.IgnoreLightning.remove(player.getUniqueId());
-            plugin.IgnoreParticles.remove(player.getUniqueId());
+            plugin.getDamage().remove(event.getPlayer().getUniqueId());
+            plugin.getIgnoreJumping().remove(player.getUniqueId());
+            plugin.getIgnoreTeleportation().remove(player.getUniqueId());
+            plugin.getIgnoreLightning().remove(player.getUniqueId());
+            plugin.getIgnoreParticles().remove(player.getUniqueId());
             event.getPlayer().setAllowFlight(false);
         }
     }

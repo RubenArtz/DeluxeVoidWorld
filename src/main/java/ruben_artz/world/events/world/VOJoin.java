@@ -50,10 +50,10 @@ public class VOJoin implements Listener {
                         ClickEvent.Action.OPEN_URL,
                         "https://api.spigotmc.org/legacy/update.php?resource=86993",
                         HoverEvent.Action.SHOW_TEXT,
-                        "&fÚltima versión del plugin: &a" + plugin.getLatestVersion() + "");
+                        "&fÚltima versión del plugin: &a" + plugin.getLatestversion() + "");
                 player.sendMessage(addColor.setColors("&fAutor: &a" + plugin.getDescription().getAuthors() + ""));
                 player.sendMessage(addColor.setColors("&fMapas: &a" + Launcher.numberWorlds + ""));
-                player.sendMessage(addColor.setColors("&fPlugin: &a" + plugin.prefix + ""));
+                player.sendMessage(addColor.setColors("&fPlugin: &a" + plugin.getPrefix() + ""));
                 player.sendMessage(addColor.setColors("&8================================================="));
             });
         }

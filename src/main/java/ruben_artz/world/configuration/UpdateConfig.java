@@ -25,7 +25,7 @@ public class UpdateConfig {
                     File file = new File(plugin.getDataFolder(), "config.yml");
                     file.delete();
                     plugin.saveDefaultConfig();
-                    plugin.sendConsole(plugin.prefix+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "config.yml"));
+                    plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "config.yml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -39,7 +39,7 @@ public class UpdateConfig {
                     File file = new File(plugin.getDataFolder(), "worlds.yml");
                     file.delete();
                     plugin.initiate();
-                    plugin.sendConsole(plugin.prefix+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "worlds.yml"));
+                    plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "worlds.yml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -53,7 +53,7 @@ public class UpdateConfig {
                     File file = new File(plugin.getDataFolder(), "generated.yml");
                     file.delete();
                     plugin.initiate();
-                    plugin.sendConsole(plugin.prefix+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "generated.yml"));
+                    plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "generated.yml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -71,7 +71,7 @@ public class UpdateConfig {
                         }
                     }
                     plugin.initiate();
-                    plugin.sendConsole(plugin.prefix+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "lang.file"));
+                    plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "lang.file"));
                 }
             });
             /*
@@ -87,7 +87,7 @@ public class UpdateConfig {
                         }
                     }
                     plugin.initiate();
-                    plugin.sendConsole(plugin.prefix+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "menu.file"));
+                    plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "menu.file"));
                 }
             });
         });

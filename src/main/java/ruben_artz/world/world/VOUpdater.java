@@ -38,8 +38,8 @@ public class VOUpdater {
             plugin.latestversion = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
             if ((plugin.latestversion.length() <= 7) && (!plugin.getVersion().equals(plugin.latestversion))) {
                 plugin.sendConsole( "&8--------------------------------------------------------------------------------------");
-                plugin.sendConsole( ""+plugin.prefix+"&fYou have an old version of the &eDeluxe Void World &fplugin.");
-                plugin.sendConsole( ""+plugin.prefix+"&fPlease download the latest &e"+plugin.getLatestVersion()+" &fversion.");
+                plugin.sendConsole( ""+plugin.getPrefix()+"&fYou have an old version of the &eDeluxe Void World &fplugin.");
+                plugin.sendConsole( ""+plugin.getPrefix()+"&fPlease download the latest &e"+plugin.getLatestversion()+" &fversion.");
                 plugin.sendConsole( "&8--------------------------------------------------------------------------------------");
             }
         } catch (Exception ignored) {}

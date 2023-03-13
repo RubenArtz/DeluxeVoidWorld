@@ -32,9 +32,9 @@ public class VOInventoryClose implements Listener {
         /*
         * Cancel events when inventory is opened to create worlds
          */
-        if (plugin.create_world.contains(player.getUniqueId())) {
+        if (plugin.getCreate_world().contains(player.getUniqueId())) {
             plugin.removeMessages();
-            plugin.create_world.remove(player.getUniqueId());
+            plugin.getCreate_world().remove(player.getUniqueId());
             Bukkit.getServer().getScheduler().cancelTask(VOEditing.create);
         }
     }
@@ -57,9 +57,9 @@ public class VOInventoryClose implements Listener {
         /*
          * Cancel events when inventory is opened to create worlds
          */
-        if (plugin.create_world.contains(player.getUniqueId())) {
+        if (plugin.getCreate_world().contains(player.getUniqueId())) {
             plugin.removeMessages();
-            plugin.create_world.remove(player.getUniqueId());
+            plugin.getCreate_world().remove(player.getUniqueId());
             Bukkit.getServer().getScheduler().cancelTask(VOEditing.create);
         }
         plugin.removeMessages();

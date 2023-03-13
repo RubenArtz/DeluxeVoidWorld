@@ -347,7 +347,7 @@ public class VOManager {
     // Use the normal Teleportation option
     public static void getTeleportation(Player player) {
         setTeleportation(player);
-        plugin.damage.add(player.getUniqueId());
+        plugin.getDamage().add(player.getUniqueId());
         geCommands(player);
         getSound(player);
         getBossbar(player);
@@ -359,7 +359,7 @@ public class VOManager {
     // Use the particle option
     public static void getParticles(Player player) {
         setTeleportation(player);
-        plugin.damage.add(player.getUniqueId());
+        plugin.getDamage().add(player.getUniqueId());
         geCommands(player);
         getSound(player);
         getBossbar(player);
@@ -372,7 +372,10 @@ public class VOManager {
 
     // Check if the player deactivated all teleporting options
     public static void isNull(Player player) {
-        if (plugin.IgnoreTeleportation.contains(player.getUniqueId()) && (plugin.IgnoreJumping.contains(player.getUniqueId())) && (plugin.IgnoreParticles.contains(player.getUniqueId())) && (plugin.IgnoreLightning.contains(player.getUniqueId()))) {
+        if (plugin.getIgnoreTeleportation().contains(player.getUniqueId()) &&
+                (plugin.getIgnoreJumping().contains(player.getUniqueId())) &&
+                (plugin.getIgnoreParticles().contains(player.getUniqueId())) &&
+                (plugin.getIgnoreLightning().contains(player.getUniqueId()))) {
             setTeleportation(player);
         }
     }

@@ -43,7 +43,7 @@ public class VOInventoryClickHome implements Listener {
                     VOArrays inventory = plugin.getInventory(player.getName());
                     if (inventory != null) {
                         if (slot == plugin.getMenuHome().getInt("MAIN.ADD_WORLD.SLOT")) {
-                            plugin.chat.add(player.getUniqueId());
+                            plugin.getChat().add(player.getUniqueId());
                             player.closeInventory();
                             VOEditing.announce = Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, () -> new BukkitRunnable() {
                                 @Override
@@ -66,7 +66,7 @@ public class VOInventoryClickHome implements Listener {
                                     sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]);
                                 }
                             }, 0L, 50L);
-                            VOManager.syncTaskLater(5L, () -> plugin.create_world.add(player.getUniqueId()));
+                            VOManager.syncTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.NEXT.SLOT") && event.getCurrentItem().getType().equals(XMaterial.valueOf(plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL")).parseMaterial())) {
                             int currentPage = inventory.getPage();
                             int newPage = currentPage + 1;

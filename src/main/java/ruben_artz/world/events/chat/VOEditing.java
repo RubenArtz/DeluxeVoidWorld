@@ -30,38 +30,38 @@ public class VOEditing implements Listener {
         Player player = event.getPlayer();
         // Remove chat editor
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
-            if (plugin.chat.contains(player.getUniqueId())) {
+            if (plugin.getChat().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
                     VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
                 } else {
                     VOHome.getInventory(player, 1);
                 }
-                plugin.chat.clear();
+                plugin.getChat().clear();
                 Bukkit.getServer().getScheduler().cancelTask(announce);
                 sendTitles.clearTitle(player);
             }
         }
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
-            if (plugin.chat_get.contains(player.getUniqueId())) {
+            if (plugin.getChat_get().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
                     VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
                 } else {
                     VOHome.getInventory(player, 1);
                 }
-                plugin.chat_get.clear();
+                plugin.getChat_get().clear();
                 Bukkit.getServer().getScheduler().cancelTask(getBlockX);
                 sendTitles.clearTitle(player);
             }
         }
         // Remove chat creation of world
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
-            if (plugin.create_world.contains(player.getUniqueId())) {
+            if (plugin.getCreate_world().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
                     VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
                 } else {
                     VOHome.getInventory(player, 1);
                 }
-                plugin.create_world.clear();
+                plugin.getCreate_world().clear();
                 plugin.removeMessages();
                 Bukkit.getServer().getScheduler().cancelTask(create);
                 sendTitles.clearTitle(player);
@@ -73,7 +73,7 @@ public class VOEditing implements Listener {
     public void createNewWorld(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
-        if (plugin.create_world.contains(player.getUniqueId())) {
+        if (plugin.getCreate_world().contains(player.getUniqueId())) {
             event.setCancelled(true);
             plugin.addMessage(new VOString(player.getName(), message));
             if (event.isAsynchronous()) {
@@ -90,10 +90,9 @@ public class VOEditing implements Listener {
     @EventHandler
     public void addWorldInventory(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (plugin.chat.contains(player.getUniqueId())) {
+        if (plugin.getChat().contains(player.getUniqueId())) {
             event.setCancelled(true);
             final String worldName = event.getMessage();
-            plugin.getCreate(player.getUniqueId().toString(), worldName);
             plugin.getWorlds().set("WORLDS." +worldName+ ".ALWAYS-DAY", Boolean.TRUE);
             plugin.getWorlds().set("WORLDS." +worldName+ ".TP-WHEN-FALLING", Boolean.TRUE);
             plugin.getWorlds().set("WORLDS." +worldName+ ".VOID-POSITION", -5);
@@ -116,7 +115,7 @@ public class VOEditing implements Listener {
                 VOHome.getInventory(player, 1);
                 XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU"));
             }
-            plugin.chat.clear();
+            plugin.getChat().clear();
             Bukkit.getServer().getScheduler().cancelTask(announce);
             sendTitles.clearTitle(player);
         }
@@ -131,7 +130,6 @@ public class VOEditing implements Listener {
             try {
                 int number = Integer.parseInt(event.getMessage());
                 if (number < 51) {
-                    plugin.getCreateBlockY(player.getUniqueId().toString(), event.getMessage());
                     plugin.getWorlds().set("WORLDS." +player.getWorld().getName()+ ".VOID-POSITION", Integer.parseInt(event.getMessage()));
                     plugin.files.saveFile("worlds.yml");
                     if (event.isAsynchronous()) {
@@ -156,10 +154,10 @@ public class VOEditing implements Listener {
     @EventHandler
     public void getChatLeave(PlayerQuitEvent event) {
         Bukkit.getServer().getScheduler().cancelTask(getBlockX);
-        plugin.chat_get.clear();
+        plugin.getChat_get().clear();
         Bukkit.getServer().getScheduler().cancelTask(announce);
-        plugin.chat.clear();
+        plugin.getChat().clear();
         Bukkit.getServer().getScheduler().cancelTask(create);
-        plugin.create_world.clear();
+        plugin.getCreate_world().clear();
     }
 }

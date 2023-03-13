@@ -22,8 +22,8 @@ public class LoadWorld {
                 if (world == null) return;
 
                 if (plugin.getWorlds().getBoolean("WORLDS." + key + ".ALWAYS-DAY")) {
-                    world.setTime(1000);
-                    world.setFullTime(1000);
+                    world.setTime(8000);
+                    world.setFullTime(8000);
                     world.setStorm(false);
                     world.setThundering(false);
                     world.setThunderDuration(2147483647);

@@ -48,9 +48,9 @@ public class MySQL {
                     "LIGHTNING VARCHAR(200) NOT NULL, " +
                     "PARTICLES VARCHAR(200) NOT NULL, PRIMARY KEY (UUID))";
             statement.executeUpdate(prepared);
-            plugin.sendConsole(plugin.prefix + plugin.getFileTranslations().getString("MESSAGES_MYSQL_CONNECTED"));
+            plugin.sendConsole(plugin.getPrefix() + plugin.getFileTranslations().getString("MESSAGES_MYSQL_CONNECTED"));
         } catch (SQLException exception) {
-            plugin.sendConsole(plugin.prefix + plugin.getFileTranslations().getString("MESSAGE_MYSQL_NOT_CONNECTED"));
+            plugin.sendConsole(plugin.getPrefix() + plugin.getFileTranslations().getString("MESSAGE_MYSQL_NOT_CONNECTED"));
             Bukkit.getPluginManager().disablePlugin(plugin);
         }
     }

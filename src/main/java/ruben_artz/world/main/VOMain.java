@@ -1,12 +1,12 @@
 package ruben_artz.world.main;
 
+import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import ruben_artz.world.configuration.VOConfig;
 import ruben_artz.world.events.chat.VOString;
@@ -28,25 +28,32 @@ public class VOMain extends JavaPlugin {
     {
         return plugin;
     }
-    PluginDescriptionFile description = getDescription();
-    public String version = this.description.getVersion();
-    public String table = "deluxe_void_v1";
-    public List<String> authors = description.getAuthors();
-    public String prefix = "&8[&9Deluxe Void World&8]&f ";
-    public VOConfig files;
-    public List<UUID> chat = new ArrayList<>();
-    public HashMap<String, String> world = new HashMap<>();
-    public List<UUID> chat_get = new ArrayList<>();
-    public List<UUID> create_world = new ArrayList<>();
-    public List<UUID> damage = new ArrayList<>();
-    public HashMap<String, String> world_get = new HashMap<>();
-    public String latestversion;
-    public Set<UUID> IgnoreTeleportation = new HashSet<>();
-    public Set<UUID> IgnoreJumping = new HashSet<>();
-    public Set<UUID> IgnoreLightning = new HashSet<>();
-    public Set<UUID> IgnoreParticles = new HashSet<>();
-    public ArrayList<VOArrays> inventory;
-    private ArrayList<VOString> message;
+
+    /*
+    normal
+     */
+    @Getter public VOConfig files;
+    @Getter public String latestversion;
+    @Getter private ArrayList<VOString> message;
+    @Getter public ArrayList<VOArrays> inventory;
+    @Getter public String table = "deluxe_void_v1";
+    @Getter public List<UUID> chat = new ArrayList<>();
+    @Getter public List<UUID> damage = new ArrayList<>();
+    @Getter public List<UUID> chat_get = new ArrayList<>();
+    @Getter public List<UUID> create_world = new ArrayList<>();
+    @Getter public String version = getDescription().getVersion();
+    @Getter public String prefix = "&8[&9Deluxe Void World&8]&f ";
+    @Getter public HashMap<String, String> world = new HashMap<>();
+    @Getter public List<String> authors = getDescription().getAuthors();
+
+    /*
+    ignore
+     */
+    @Getter public Set<UUID> IgnoreJumping = new HashSet<>();
+    @Getter public Set<UUID> IgnoreLightning = new HashSet<>();
+    @Getter public Set<UUID> IgnoreParticles = new HashSet<>();
+    @Getter public Set<UUID> IgnoreTeleportation = new HashSet<>();
+
     private Launch launch;
 
     @Override
@@ -83,42 +90,42 @@ public class VOMain extends JavaPlugin {
     public void initiate() {
         files = new VOConfig().initiate(this, "worlds.yml", "generated.yml", "menus/home.yml", "menus/version.yml", "menus/boolean.yml", "menus/create.yml", "menus/icons.yml", "lang/version.yml", "lang/en_US.yml", "lang/es_ES.yml").setLanguageFile("lang/" + getConfig().getString("ADMIN-CONFIG.LANGUAGE") + ".yml");
     }
+
     public VOConfig getFileTranslations() {
-        return files;
+        return getFiles();
     }
     public FileConfiguration getIcons() {
-        return files.getFile("menus/icons.yml");
+        return getFiles().getFile("menus/icons.yml");
     }
     public FileConfiguration getGenerated() {
-        return files.getFile("generated.yml");
+        return getFiles().getFile("generated.yml");
     }
     public FileConfiguration getWorlds() {
-        return files.getFile("worlds.yml");
+        return getFiles().getFile("worlds.yml");
     }
     public FileConfiguration getMenuHome() {
-        return files.getFile("menus/home.yml");
+        return getFiles().getFile("menus/home.yml");
     }
     public FileConfiguration getBoolean() {
-        return files.getFile("menus/boolean.yml");
+        return getFiles().getFile("menus/boolean.yml");
     }
     public FileConfiguration getLagVersion() {
-        return files.getFile("lang/version.yml");
+        return getFiles().getFile("lang/version.yml");
     }
     public FileConfiguration getMenuVersion() {
-        return files.getFile("menus/version.yml");
+        return getFiles().getFile("menus/version.yml");
     }
     public FileConfiguration getInventoryCrating() {
-        return files.getFile("menus/create.yml");
+        return getFiles().getFile("menus/create.yml");
     }
-    public ArrayList<VOString> getMessage() {
-        return this.message;
-    }
+
     public void addMessage(VOString message) {
-        this.message.add(message);
+        this.getMessage().add(message);
     }
     public void removeMessages() {
-        this.message.clear();
+        this.getMessage().clear();
     }
+
     public void LoadAllFiles() {
         initiate();
         saveDefaultConfig();
@@ -135,35 +142,14 @@ public class VOMain extends JavaPlugin {
         Launcher.getInstance().registerEvents();
         LoadAllFiles();
     }
-    public Set<UUID> getIgnoreJumping() {
-        return IgnoreJumping;
-    }
-    public Set<UUID> getIgnoreTeleportation() {
-        return IgnoreTeleportation;
-    }
-    public Set<UUID> getIgnoreLightning() {
-        return IgnoreLightning;
-    }
-    public Set<UUID> getIgnoreParticles() {
-        return IgnoreParticles;
-    }
-    public  void getCreate(String uuid, String name) {
-        world.put(uuid, name);
-    }
-    public  void getCreateBlockY(String uuid, String name) {
-        world_get.put(uuid, name);
-    }
+
+
     public void sendConsole(String s) {
         Bukkit.getConsoleSender().sendMessage(addColor.setColors(s));
     }
-    public String getVersion() {
-        return this.version;
-    }
-    public String getLatestVersion() {
-        return this.latestversion;
-    }
+
     public VOArrays getInventory(String name) {
-        for (VOArrays inv : inventory) {
+        for (VOArrays inv : getInventory()) {
             if (inv.getPlayer().getName().equals(name)) {
                 return inv;
             }
@@ -171,23 +157,23 @@ public class VOMain extends JavaPlugin {
         return null;
     }
     public void addInventory(VOArrays number) {
-        inventory.add(number);
+        getInventory().add(number);
     }
     public void removeInventory(String name) {
-        for (int i = 0; i < inventory.size(); i++) {
-            if (inventory.get(i).getPlayer().getName().equals(name)) {
-                inventory.clear();
+        for (int i = 0; i < getInventory().size(); i++) {
+            if (getInventory().get(i).getPlayer().getName().equals(name)) {
+                getInventory().clear();
             }
         }
     }
     public void getMessages(){
         VOManager.syncTaskLater(16L, () -> {
-            sendConsole("" + prefix + "&aSuccessfully enabled &cv" + version + "");
+            sendConsole("" + plugin.getPrefix() + "&aSuccessfully enabled &cv" + version + "");
             sendConsole("&8--------------------------------------------------------------------------------------");
             sendConsole("&7         Developed by &c"+authors+"");
-            sendConsole("" + prefix + "&aVersion: &c" + version+" &ais loading... &8(&6Current&8)");
-            sendConsole("" + prefix + "&aServer: &c"+Bukkit.getVersion()+"");
-            sendConsole("" + prefix + "&aLoading necessary files...");
+            sendConsole("" + plugin.getPrefix() + "&aVersion: &c" + version+" &ais loading... &8(&6Current&8)");
+            sendConsole("" + plugin.getPrefix() + "&aServer: &c"+Bukkit.getVersion()+"");
+            sendConsole("" + plugin.getPrefix() + "&aLoading necessary files...");
             sendConsole("&f");
             sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a"+Launcher.getNumberWorlds()+"&f'");
             sendConsole("&f");

@@ -17,7 +17,7 @@ public class Module {
     }
 
     public static void addInformation(UUID uuid) {
-        String prepared = "INSERT INTO "+plugin.table+" (UUID, TELEPORT, JUMP, LIGHTNING, PARTICLES) VALUES (?, ?, ?, ?, ?);";
+        String prepared = "INSERT INTO "+plugin.getTable()+" (UUID, TELEPORT, JUMP, LIGHTNING, PARTICLES) VALUES (?, ?, ?, ?, ?);";
         try {
             if (VOManager.isMySQL()) {
                 try (Connection connection = MySQL.getConnection()) {
@@ -82,7 +82,7 @@ public class Module {
     }
 
     public static boolean getVerify(UUID uuid, String column) {
-        String prepared = "SELECT * FROM "+plugin.table+" WHERE (UUID=?)";
+        String prepared = "SELECT * FROM "+plugin.getTable()+" WHERE (UUID=?)";
         try {
             if (VOManager.isMySQL()) {
                 try (Connection connection = MySQL.getConnection()) {
@@ -108,7 +108,7 @@ public class Module {
     }
 
     public static void setUpdate(UUID uuid, String column, boolean bool) {
-        String prepared = "UPDATE "+plugin.table+" SET "+column+"=? WHERE (UUID=?)";
+        String prepared = "UPDATE "+plugin.getTable()+" SET "+column+"=? WHERE (UUID=?)";
         try {
             if (VOManager.isMySQL()) {
                 try (Connection connection = MySQL.getConnection()) {
@@ -133,7 +133,7 @@ public class Module {
     }
 
     public static boolean ifNotExists(UUID uuid) {
-        String prepared = "SELECT* FROM "+plugin.table+" WHERE (UUID=?)";
+        String prepared = "SELECT* FROM "+plugin.getTable()+" WHERE (UUID=?)";
         try {
             if (VOManager.isMySQL()) {
                 try (Connection connection = MySQL.getConnection()) {
