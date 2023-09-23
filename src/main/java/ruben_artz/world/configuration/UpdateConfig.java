@@ -19,7 +19,7 @@ public class UpdateConfig {
             /*
             Update config of "config.yml"
              */
-            if (!Objects.requireNonNull(plugin.getConfig().getString("version")).equals("1.4")) {
+            if (!Objects.requireNonNull(plugin.getConfig().getString("version")).equals("1.5")) {
                 try {
                     Files.copy(Paths.get(plugin.getDataFolder() + "/config.yml"), Paths.get(plugin.getDataFolder() + "/old-config-" + plugin.getConfig().getString("version") + ".yml"), StandardCopyOption.REPLACE_EXISTING);
                     File file = new File(plugin.getDataFolder(), "config.yml");
@@ -27,7 +27,7 @@ public class UpdateConfig {
                     plugin.saveDefaultConfig();
                     plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "config.yml"));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
             /*
@@ -41,7 +41,7 @@ public class UpdateConfig {
                     plugin.initiate();
                     plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "worlds.yml"));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
             /*
@@ -55,7 +55,7 @@ public class UpdateConfig {
                     plugin.initiate();
                     plugin.sendConsole(plugin.getPrefix()+plugin.getFileTranslations().getString("MESSAGE_FILE_UPDATE").replace("{Files}", "generated.yml"));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
             VOManager.syncTaskLater(10L, () -> {

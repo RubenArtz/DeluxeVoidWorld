@@ -3,8 +3,8 @@ package ruben_artz.world.menu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import ruben_artz.world.database.Module;
 import ruben_artz.world.features.addColor;
+import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.main.VOMain;
 import ruben_artz.world.world.VOManager;
 
@@ -20,22 +20,22 @@ public class VOPlayer {
                 VOManager.setGlass(o, inv);
             }
         }
-        if (Module.getVerify(player.getUniqueId(), "TELEPORT")) {
+        if (Launcher.getCache().getVerify(player.getUniqueId(), "TELEPORT")) {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.TELEPORTATION.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_ENABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_ENABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_ENABLED"));
         } else {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.TELEPORTATION.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_DISABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_DISABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_DISABLED"));
         }
-        if (Module.getVerify(player.getUniqueId(), "JUMP")) {
+        if (Launcher.getCache().getVerify(player.getUniqueId(), "JUMP")) {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.JUMP.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_ENABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_ENABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_ENABLED"));
         } else {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.JUMP.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_DISABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_DISABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_DISABLED"));
         }
-        if (Module.getVerify(player.getUniqueId(), "LIGHTNING")) {
+        if (Launcher.getCache().getVerify(player.getUniqueId(), "LIGHTNING")) {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.LIGHTNING.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_ENABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_ENABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_ENABLED"));
         } else {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.LIGHTNING.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_DISABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_DISABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_DISABLED"));
         }
-        if (Module.getVerify(player.getUniqueId(), "PARTICLES")) {
+        if (Launcher.getCache().getVerify(player.getUniqueId(), "PARTICLES")) {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.PARTICLES.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_ENABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_ENABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_ENABLED"));
         } else {
             VOManager.setItem(plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.PARTICLES.BOOLEAN"), inv, plugin.getBoolean().getString("MAIN.BOOLEAN.MATERIAL_DISABLED", "BEDROCK"), plugin.getBoolean().getString("MAIN.BOOLEAN.NAME_DISABLED"), plugin.getBoolean().getStringList("MAIN.BOOLEAN.LORE_DISABLED"));

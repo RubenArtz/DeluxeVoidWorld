@@ -11,16 +11,20 @@
 #    ~~~~           \/__/         \/__/       \/__/
 
 ADMIN-CONFIG:
-  MYSQL:
+  DATABASE:
     ENABLED: false
     HOST: 'localhost'
     USER: 'root'
     PASSWORD: ''
-    DATABASE: 'deluxevoidworld'
-    USE_SSL: true
+    DATABASE: ''
     MIN_CONNECTIONS: 1
     MAX_CONNECTIONS: 10
-    ALLOW_PUBLIC_KEY_RETRIEVAL: false
+    PARAMETERS:
+      - 'useSSL=true'
+      - 'allowPublicKeyRetrieval=false'
+      - 'useUnicode=true'
+      - 'characterEncoding=utf8'
+      - 'autoReconnect=true'
   CHECK_UPDATE: true
   LANGUAGE: 'en_US'
   TYPE_START: 'FIRST-START'
@@ -97,7 +101,7 @@ ON_VOID_TP:
       ENABLED: true
 
 # DO NOT TOUCH!
-version: "1.4"
+version: "1.5"
 
 #      ___           ___
 #     /\__\         /\  \         _____

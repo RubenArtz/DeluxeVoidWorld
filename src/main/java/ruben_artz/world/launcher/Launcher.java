@@ -1,5 +1,6 @@
 package ruben_artz.world.launcher;
 
+import lombok.Getter;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
@@ -9,8 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import ruben_artz.world.commands.RegisterCommand;
 import ruben_artz.world.commands.VOPlayer;
 import ruben_artz.world.configuration.UpdateConfig;
-import ruben_artz.world.database.MySQL;
-import ruben_artz.world.database.SQLite;
+import ruben_artz.world.database.Cache;
 import ruben_artz.world.events.chat.VOEditing;
 import ruben_artz.world.events.inventory.VOInventoryClose;
 import ruben_artz.world.events.inventory.click.VOInventoryClickCreate;
@@ -28,6 +28,9 @@ import ruben_artz.world.world.VOUpdater;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class Launcher implements Launch {
@@ -38,6 +41,7 @@ public class Launcher implements Launch {
     }
     public static int numberWorlds;
     public BukkitAudiences audiences;
+    @Getter public static Cache cache;
 
     @Override
     public void launch(VOMain plugin) {
@@ -66,10 +70,18 @@ public class Launcher implements Launch {
                 Bukkit.getLogger().log(Level.INFO, "[DeluxeVoidWorld] Saving world "+name[0]+"...");
             }
         }
-        if (VOManager.isMySQL()) {
-            MySQL.shutdown();
-        } else {
-            SQLite.shutdown();
+
+        if(getCache() != null) {
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> getCache().getMethod().shutdown());
+
+            executorService.shutdown();
+            try {
+                if (!executorService.awaitTermination(15, TimeUnit.SECONDS)) {
+                    executorService.shutdownNow();
+                    plugin.getLogger().warning("Cache took too long to shut down. Skipping it.");
+                }
+            }catch(InterruptedException ignored){}
         }
     }
 
@@ -116,13 +128,7 @@ public class Launcher implements Launch {
     }
 
     private void  setConnection() {
-        if (VOManager.isMySQL()) {
-            MySQL mySQL = new MySQL();
-            mySQL.init(plugin);
-        } else {
-            SQLite sqlite = new SQLite();
-            sqlite.init();
-        }
+        cache = new Cache();
     }
 
     private void getNumbers() {

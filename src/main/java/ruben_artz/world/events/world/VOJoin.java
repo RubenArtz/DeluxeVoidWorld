@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import ruben_artz.world.database.Module;
 import ruben_artz.world.events.world.antibot.preventAttacks;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.launcher.Launcher;
@@ -26,14 +25,14 @@ public class VOJoin implements Listener {
              * Add data if the player does not exist!
              */
             try {
-                if (Module.ifNotExists(player.getUniqueId())) {
+                if (Launcher.getCache().ifNotExists(player.getUniqueId())) {
                     if (preventAttacks.isAttacking()) return;
-                    Module.addInformation(player.getUniqueId());
+                    Launcher.getCache().addInformation(player.getUniqueId());
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            Module.updatePlayer(player);
+            Launcher.getCache().updatePlayer(player);
         });
     }
 
@@ -46,14 +45,14 @@ public class VOJoin implements Listener {
                 player.sendMessage(addColor.setColors("&8« » =========== &e✯ &9&lDeluxe Void World &e✯ &8=========== « »"));
                 player.sendMessage(addColor.setColors("&f"));
                 VOManager.sendTextComponent(player,
-                        "&fVersion: &av" + plugin.getVersion() + "",
+                        "&fVersion: &av" + plugin.getVersion(),
                         ClickEvent.Action.OPEN_URL,
                         "https://api.spigotmc.org/legacy/update.php?resource=86993",
                         HoverEvent.Action.SHOW_TEXT,
-                        "&fÚltima versión del plugin: &a" + plugin.getLatestversion() + "");
-                player.sendMessage(addColor.setColors("&fAutor: &a" + plugin.getDescription().getAuthors() + ""));
-                player.sendMessage(addColor.setColors("&fMapas: &a" + Launcher.numberWorlds + ""));
-                player.sendMessage(addColor.setColors("&fPlugin: &a" + plugin.getPrefix() + ""));
+                        "&fÚltima versión del plugin: &a" + plugin.getLatestversion());
+                player.sendMessage(addColor.setColors("&fAutor: &a" + plugin.getDescription().getAuthors()));
+                player.sendMessage(addColor.setColors("&fMapas: &a" + Launcher.getNumberWorlds()));
+                player.sendMessage(addColor.setColors("&fPlugin: &a" + plugin.getPrefix()));
                 player.sendMessage(addColor.setColors("&8================================================="));
             });
         }

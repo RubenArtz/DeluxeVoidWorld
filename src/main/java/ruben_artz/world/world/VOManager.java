@@ -272,7 +272,7 @@ public class VOManager {
     public static void getHelpCommandGame(Player sender) {
         XSound.play(sender.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS"));
         sender.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
-        sender.sendMessage(addColor.setColors("" + plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP") + ""));
+        sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP")));
         sender.sendMessage(addColor.setColors("&f"));
         sendTextComponent(sender, " &8▪ &f/dew reload &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_RELOAD")
                 , ClickEvent.Action.RUN_COMMAND
@@ -311,9 +311,9 @@ public class VOManager {
     public static void getHelpCommandConsole(CommandSender player) {
         player.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
         player.sendMessage(addColor.setColors("&f"));
-        player.sendMessage(addColor.setColors(" &8▪ &f/dew reload &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_RELOAD") + ""));
-        player.sendMessage(addColor.setColors(" &8▪ &f/dew help &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_HELP") + ""));
-        player.sendMessage(addColor.setColors(" &8▪ &f/dew toggle <world> &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_TOGGLE") + ""));
+        player.sendMessage(addColor.setColors(" &8▪ &f/dew reload &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_RELOAD")));
+        player.sendMessage(addColor.setColors(" &8▪ &f/dew help &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_HELP")));
+        player.sendMessage(addColor.setColors(" &8▪ &f/dew toggle <world> &7» " + plugin.getFileTranslations().getString("MESSAGE_USE_COMMAND_TOGGLE")));
         player.sendMessage(addColor.setColors(""));
         player.sendMessage(addColor.setColors("&8================================================="));
     }
@@ -650,7 +650,7 @@ public class VOManager {
     }
 
     public static boolean isMySQL() {
-        return Objects.equals(plugin.getConfig().getString("ADMIN-CONFIG.MYSQL.ENABLED"), "true");
+        return Objects.equals(plugin.getConfig().getString("ADMIN-CONFIG.DATABASE.ENABLED"), "true");
     }
 
     public static void syncRunTask(Runnable runnable) {

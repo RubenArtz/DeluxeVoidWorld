@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import ruben_artz.world.database.Module;
+import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.main.VOMain;
 import ruben_artz.world.menu.VOPlayer;
 import ruben_artz.world.world.VOManager;
@@ -33,11 +33,11 @@ public class VOInventoryClickPlayer implements Listener {
                             if (plugin.getIgnoreTeleportation().contains(player.getUniqueId())) {
                                 plugin.getIgnoreTeleportation().remove(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_ITEM"));
-                                Module.updateBool(player, true, false, false, false);
+                                Launcher.getCache().updateBool(player, true, false, false, false);
                             } else {
                                 plugin.getIgnoreTeleportation().add(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM"));
-                                Module.setUpdate(player.getUniqueId(), "TELEPORT", false);
+                                Launcher.getCache().setUpdate(player.getUniqueId(), "TELEPORT", false);
                             }
                             VOManager.syncDelayedTask(3L, () -> VOPlayer.getInventory(player));
                         } else {
@@ -50,11 +50,11 @@ public class VOInventoryClickPlayer implements Listener {
                             if (plugin.getIgnoreJumping().contains(player.getUniqueId())) {
                                 plugin.getIgnoreJumping().remove(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_ITEM"));
-                                Module.updateBool(player, false, true, false, false);
+                                Launcher.getCache().updateBool(player, false, true, false, false);
                             } else {
                                 plugin.getIgnoreJumping().add(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM"));
-                                Module.setUpdate(player.getUniqueId(), "JUMP", false);
+                                Launcher.getCache().setUpdate(player.getUniqueId(), "JUMP", false);
                             }
                            VOManager.syncDelayedTask(3L, () -> VOPlayer.getInventory(player));
                         } else {
@@ -67,11 +67,11 @@ public class VOInventoryClickPlayer implements Listener {
                             if (plugin.getIgnoreLightning().contains(player.getUniqueId())) {
                                 plugin.getIgnoreLightning().remove(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_ITEM"));
-                                Module.updateBool(player, false, false, true, false);
+                                Launcher.getCache().updateBool(player, false, false, true, false);
                             } else {
                                 plugin.getIgnoreLightning().add(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM"));
-                                Module.setUpdate(player.getUniqueId(), "LIGHTNING", false);
+                                Launcher.getCache().setUpdate(player.getUniqueId(), "LIGHTNING", false);
                             }
                            VOManager.syncDelayedTask(3L, () -> VOPlayer.getInventory(player));
                         } else {
@@ -84,11 +84,11 @@ public class VOInventoryClickPlayer implements Listener {
                             if (plugin.getIgnoreParticles().contains(player.getUniqueId())) {
                                 plugin.getIgnoreParticles().remove(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_ITEM"));
-                                Module.updateBool(player, false, false, false, true);
+                                Launcher.getCache().updateBool(player, false, false, false, true);
                             } else {
                                 plugin.getIgnoreParticles().add(player.getUniqueId());
                                 XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM"));
-                                Module.setUpdate(player.getUniqueId(), "PARTICLES", false);
+                                Launcher.getCache().setUpdate(player.getUniqueId(), "PARTICLES", false);
                             }
                             VOManager.syncDelayedTask(3L, () -> VOPlayer.getInventory(player));
                         } else {

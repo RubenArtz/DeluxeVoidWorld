@@ -1,5 +1,7 @@
 package ruben_artz.world.main;
 
+import io.github.slimjar.app.builder.ApplicationBuilder;
+import io.github.slimjar.resolver.data.Repository;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Bukkit;
@@ -19,6 +21,13 @@ import ruben_artz.world.world.VOManager;
 import ruben_artz.world.world.VOUpdater;
 
 import javax.annotation.Nullable;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @SuppressWarnings("deprecation")
@@ -57,6 +66,26 @@ public class VOMain extends JavaPlugin {
     private Launch launch;
 
     @Override
+    public void onLoad() {
+
+        getLogger().info("Verifying the dependencies...");
+
+        try {
+            Path downloadPath = Paths.get(getDataFolder().getPath() + File.separator + "cache" + File.separator + "libs");
+            ApplicationBuilder.appending("DeluxeVoidWorld")
+                    //.logger(new SlimJarLogger(this))
+                    .downloadDirectoryPath(downloadPath)
+                    .mirrorSelector((a, b) -> a)
+                    .internalRepositories(Collections.singleton(new Repository(new URL("https://repo1.maven.org/maven2/"))))
+                    .build();
+
+            getLogger().info("Dependencies successfully loaded!");
+        } catch (ReflectiveOperationException | IOException | URISyntaxException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void onEnable() {
         plugin = this;
         try {
@@ -67,7 +96,7 @@ public class VOMain extends JavaPlugin {
                 message = new ArrayList<>();
             });
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     @Override
@@ -168,12 +197,12 @@ public class VOMain extends JavaPlugin {
     }
     public void getMessages(){
         VOManager.syncTaskLater(16L, () -> {
-            sendConsole("" + plugin.getPrefix() + "&aSuccessfully enabled &cv" + version + "");
+            sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + version);
             sendConsole("&8--------------------------------------------------------------------------------------");
-            sendConsole("&7         Developed by &c"+authors+"");
-            sendConsole("" + plugin.getPrefix() + "&aVersion: &c" + version+" &ais loading... &8(&6Current&8)");
-            sendConsole("" + plugin.getPrefix() + "&aServer: &c"+Bukkit.getVersion()+"");
-            sendConsole("" + plugin.getPrefix() + "&aLoading necessary files...");
+            sendConsole("&7         Developed by &c"+authors);
+            sendConsole(plugin.getPrefix() + "&aVersion: &c" + version+" &ais loading... &8(&6Current&8)");
+            sendConsole(plugin.getPrefix() + "&aServer: &c"+Bukkit.getVersion());
+            sendConsole(plugin.getPrefix() + "&aLoading necessary files...");
             sendConsole("&f");
             sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a"+Launcher.getNumberWorlds()+"&f'");
             sendConsole("&f");
