@@ -1,6 +1,7 @@
 package ruben_artz.world.menu;
 
 import com.cryptomorin.xseries.XMaterial;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -20,14 +21,10 @@ import java.util.Objects;
 public class VOHome {
     private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
     public static BukkitTask task;
-    public static Inventory inventory;
+    @Getter public static Inventory inventory;
     public static final List<ItemStack> itemStacks = new ArrayList<>();
     public static final String title = addColor.setColors(plugin.getMenuHome().getString("MAIN.TITLE"));
 
-
-    public static Inventory getInventory() {
-        return inventory;
-    }
 
     /*
     This method creates the inventory
@@ -106,7 +103,7 @@ public class VOHome {
             if (world == null) {
                 itemName = "???";
             } else {
-                if (world.getPlayers().size() == 0) {
+                if (world.getPlayers().isEmpty()) {
                     itemName = "0";
                 } else {
                     itemName = VOManager.addCommas(world.getPlayers().size());
