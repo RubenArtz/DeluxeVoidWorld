@@ -1,5 +1,6 @@
 package ruben_artz.world.main;
 
+import developer.voidw.activate;
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.github.slimjar.resolver.data.Repository;
 import lombok.Getter;
@@ -209,6 +210,8 @@ public class VOMain extends JavaPlugin {
             sendConsole("&fDeluxeVoidWorld &aStarting plugin...");
             sendConsole("&f");
             sendConsole("&8--------------------------------------------------------------------------------------");
+
+            activate.setPolymart();
         });
     }
 }

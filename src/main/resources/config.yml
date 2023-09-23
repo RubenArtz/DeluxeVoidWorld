@@ -11,6 +11,8 @@
 #    ~~~~           \/__/         \/__/       \/__/
 
 ADMIN-CONFIG:
+  # Polymart buyers only...
+  RATE_LIMIT: 'ENTER-THE-CERTIFICATE'
   DATABASE:
     ENABLED: false
     HOST: 'localhost'

@@ -1,5 +1,6 @@
 package ruben_artz.world.launcher;
 
+import developer.voidw.strings;
 import lombok.Getter;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
@@ -48,6 +49,7 @@ public class Launcher implements Launch {
         launcher = this;
         plugin.LoadAllFiles();
         UpdateConfig.update();
+        setRateLimit();
         getNumbers();
         getCommands();
         registerEvents();
@@ -83,6 +85,10 @@ public class Launcher implements Launch {
                 }
             }catch(InterruptedException ignored){}
         }
+    }
+
+    private void setRateLimit() {
+        strings.setFalse(plugin.getConfig().getString("ADMIN-CONFIG.RATE_LIMIT"));
     }
 
     @SuppressWarnings("InstantiationOfUtilityClass")
