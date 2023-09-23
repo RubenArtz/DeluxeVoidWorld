@@ -40,7 +40,7 @@ public class LoadWorld {
                     plugin.getWorlds().set("WORLDS." + worldName + ".ALWAYS-DAY", Boolean.TRUE);
                     plugin.getWorlds().set("WORLDS." + worldName + ".TP-WHEN-FALLING", Boolean.TRUE);
                     plugin.getWorlds().set("WORLDS." + worldName + ".VOID-POSITION", -1);
-                    plugin.getWorlds().set("WORLDS." + worldName + ".WORLD", "&a" + worldName + "");
+                    plugin.getWorlds().set("WORLDS." + worldName + ".WORLD", "&a" + worldName);
                     plugin.getWorlds().set("WORLDS." + worldName + ".MATERIAL", "STONE");
                     plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", VOManager.setLocation(worlds.getSpawnLocation()));
                     plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");

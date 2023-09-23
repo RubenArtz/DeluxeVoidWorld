@@ -1,10 +1,11 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'io.github.slimjar' version '1.3.0'
 }
 
 group = 'ruben_artz'
-version = '3.9.19'
+version = '4.0.20'
 
 repositories {
     mavenCentral()
@@ -25,9 +26,13 @@ repositories {
     maven {
         url "https://repo.glaremasters.me/repository/concuncan/"
     }
+    maven {
+        url = 'https://repo.alessiodp.com/releases/'
+    }
 }
 
 dependencies {
+
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -35,16 +40,22 @@ dependencies {
     compileOnly 'com.onarandombox.multiversecore:Multiverse-Core:4.3.1'
     compileOnly 'me.clip:placeholderapi:2.11.1'
     compileOnly 'org.jetbrains:annotations:23.0.0'
-    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+    compileOnly "org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT"
 
     compileOnly fileTree(dir: 'libs', includes: ['*.jar'])
 
-    implementation 'net.kyori:adventure-text-minimessage:4.11.0'
-    implementation 'net.kyori:adventure-platform-bukkit:4.1.2'
-    implementation 'com.github.cryptomorin:XSeries:9.3.0'
+    implementation 'io.github.slimjar:slimjar:1.2.7'
+    implementation 'net.kyori:adventure-text-minimessage:4.14.0'
+    implementation 'net.kyori:adventure-platform-bukkit:4.3.0'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
-    implementation 'com.zaxxer:HikariCP:4.0.3'
-    implementation 'org.slf4j:slf4j-simple:2.0.3'
+
+    slim 'com.zaxxer:HikariCP:4.0.3'
+    slim 'com.h2database:h2:2.1.214'
+    slim 'org.slf4j:slf4j-simple:2.0.3'
+    slim 'com.github.cryptomorin:XSeries:9.5.0'
+    slim 'com.squareup.okhttp3:okhttp:4.9.3'
+    slim 'junit:junit:4.13.1'
+    slim 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
 java {
@@ -55,10 +66,16 @@ java {
 shadowJar {
     archiveFileName.set("Deluxe Void World.jar")
 
+    relocate("io.github.slimjar", "ruben_artz.world.libs.slimjar")
     relocate("net.kyori", "ruben_artz.world.libs.kyori")
-    relocate("com.zaxxer.hikari", "ruben_artz.world.libs.hikari")
     relocate("org.bstats", "ruben_artz.world.libs.bstats")
+}
+
+slimJar {
     relocate("com.cryptomorin.xseries", "ruben_artz.world.libs.xseries")
+    relocate("com.zaxxer.hikari", "ruben_artz.world.libs.hikari")
+    relocate("org.h2", "ruben_artz.world.libs.h2")
+    relocate("okhttp3", "ruben_artz.world.libs.okhttp3")
 }
 
 tasks.withType(JavaCompile).configureEach {
