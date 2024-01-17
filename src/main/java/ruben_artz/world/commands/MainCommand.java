@@ -1,6 +1,7 @@
 package ruben_artz.world.commands;
 
 import com.google.common.collect.ImmutableList;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -21,7 +22,8 @@ import java.util.List;
 
 public class MainCommand implements CommandExecutor, TabCompleter {
     private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
-    private final String permission;
+
+    @Getter private final String permission;
     private final int reqArgs;
     private final List<SubCommand> subCommands = new ArrayList<>();
 
@@ -68,8 +70,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         List<String> completions = new ArrayList<>();
         List<String> commands = new ArrayList<>();
@@ -82,32 +83,11 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             General
              */
             commands.add("help");
-            commands.add("helpme");
             commands.add("reload");
-            /*
-            Inventory
-             */
             commands.add("editor");
-            commands.add("inventory");
-            commands.add("inv");
-            /*
-            Toggle
-             */
             commands.add("toggle");
-            commands.add("toggletp");
-            commands.add("toggleworld");
-            /*
-            Spawn
-             */
-            commands.add("setspawn");
-            commands.add("spawn");
             commands.add("setworldvoid");
-            /*
-            Teleport
-             */
             commands.add("teleport");
-            commands.add("tp");
-            commands.add("tpme");
             StringUtil.copyPartialMatches(partialCommand, commands, completions);
         } else if (args.length == 2) {
             String partialCommand = args[1];
@@ -152,10 +132,5 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         return completions;
     }
 
-    private void onCommand(CommandSender sender, String[] array) {
-    }
-
-    public String getPermission() {
-        return permission;
-    }
+    private void onCommand(CommandSender sender, String[] array) {}
 }
