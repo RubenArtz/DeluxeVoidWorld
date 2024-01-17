@@ -1,6 +1,5 @@
 package ruben_artz.world.events.chat;
 
-import com.cryptomorin.xseries.XSound;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +16,7 @@ import ruben_artz.world.menu.VOHome;
 import ruben_artz.world.world.VOManager;
 
 import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings("IfStatementWithIdenticalBranches")
 public class VOEditing implements Listener {
@@ -96,7 +96,7 @@ public class VOEditing implements Listener {
             plugin.getWorlds().set("WORLDS." +worldName+ ".ALWAYS-DAY", Boolean.TRUE);
             plugin.getWorlds().set("WORLDS." +worldName+ ".TP-WHEN-FALLING", Boolean.TRUE);
             plugin.getWorlds().set("WORLDS." +worldName+ ".VOID-POSITION", -5);
-            plugin.getWorlds().set("WORLDS." +worldName+ ".WORLD", "&a"+worldName+"");
+            plugin.getWorlds().set("WORLDS." +worldName+ ".WORLD", "&a"+worldName);
             plugin.getWorlds().set("WORLDS." +worldName+ ".MATERIAL", "STONE");
             plugin.getWorlds().set("WORLDS." +worldName + ".SPAWN", VOManager.setLocation(worldName));
             plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");
@@ -109,11 +109,11 @@ public class VOEditing implements Listener {
             if (event.isAsynchronous()) {
                 VOManager.syncRunTask(() -> {
                     VOHome.getInventory(player, 1);
-                    XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU"));
+                    VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
                 });
             } else {
                 VOHome.getInventory(player, 1);
-                XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU"));
+                VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
             }
             plugin.getChat().clear();
             Bukkit.getServer().getScheduler().cancelTask(announce);
@@ -141,11 +141,11 @@ public class VOEditing implements Listener {
                     plugin.chat_get.clear();
                     sendTitles.clearTitle(player);
                 } else {
-                    XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_LESS_ZERO"));
+                    VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_LESS_ZERO")), player);
                     addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_LESS_ZERO"));
                 }
             } catch (NumberFormatException e) {
-                XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_NO_WORDS"));
+                VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_NO_WORDS")), player);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NO_WORDS").replace("{Word}", event.getMessage()));
             }
         }

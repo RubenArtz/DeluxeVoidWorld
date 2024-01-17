@@ -1,6 +1,5 @@
 package ruben_artz.world.commands.SubCommands;
 
-import com.cryptomorin.xseries.XSound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ruben_artz.world.features.addColor;
@@ -29,7 +28,7 @@ public class SetVoid extends SubCommand {
                 message = VOManager.replacePlaceholder(message, "{PITCH}", String.valueOf(((Player) sender).getLocation().getPitch()));
                 sender.sendMessage(addColor.setColors(VOManager.setPlaceholders((Player) sender, message)));
             }
-            XSound.play((Player) sender, "LEVEL_UP, 1.0f, 1.0f");
+            VOManager.executeSound("LEVEL_UP, 1.0f, 1.0f", (Player) sender);
         } else {
             sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_NO_WORLD_COMMAND")));
         }

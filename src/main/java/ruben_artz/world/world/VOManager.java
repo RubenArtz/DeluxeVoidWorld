@@ -33,6 +33,7 @@ import ruben_artz.world.firework.FireworkManager;
 import ruben_artz.world.main.VOMain;
 import ruben_artz.world.menu.VOHome;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class VOManager {
 
     public static void getSound(Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.SOUNDS.ENABLED")) {
-            XSound.play(player.getLocation(), plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND"));
+            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
         }
     }
 
@@ -252,7 +253,7 @@ public class VOManager {
     }
 
     public static void getMessagesArgs(Player player) {
-        XSound.play(player.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP"));
+        VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
         String box = plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND_BOX");
         player.sendMessage(addColor.setColors("&8&m--------------------------------------------------"));
         sendTextComponent(player, plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND").replace("{Version}", plugin.getVersion())
@@ -270,7 +271,7 @@ public class VOManager {
     }
 
     public static void getHelpCommandGame(Player sender) {
-        XSound.play(sender.getLocation(), plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS"));
+        VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
         sender.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
         sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP")));
         sender.sendMessage(addColor.setColors("&f"));
@@ -680,5 +681,21 @@ public class VOManager {
 
     public static void syncDelayedTask(long time, Runnable runnable) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, runnable, time);
+    }
+
+    public static void executeSound(@Nonnull String path, final Player player) {
+        final String string = "ItemsAdder_Sound: ";
+        if (path.startsWith(string)) {
+            if (path.contains(", ")) {
+                final String[] line = path.replace(string, "").split(", ");
+                player.playSound(player.getLocation(), line[0], Float.parseFloat(line[1]), Float.parseFloat(line[2]));
+                return;
+            }
+            final String line = path.replace(string, "");
+
+            XSound.play(line, soundPlayer -> soundPlayer.forPlayers(player));
+        } else {
+            XSound.play(path, soundPlayer -> soundPlayer.forPlayers(player));
+        }
     }
 }

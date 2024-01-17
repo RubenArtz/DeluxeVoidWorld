@@ -1,7 +1,6 @@
 package ruben_artz.world.events.inventory.click;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.cryptomorin.xseries.XSound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -119,7 +118,7 @@ public class VOInventoryClickHome implements Listener {
                                         plugin.getWorlds().set("WORLDS." + world, null);
                                         plugin.files.saveFile("worlds.yml");
                                         plugin.initiate();
-                                        XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DELETED_WORLD_MENU"));
+                                        VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DELETED_WORLD_MENU")), player);
                                         addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_DELETE_WORLD"));
                                         if (VOHome.task != null) {
                                             VOHome.task.cancel();
@@ -131,14 +130,15 @@ public class VOInventoryClickHome implements Listener {
                                             plugin.getWorlds().set("WORLDS." + world + ".TP-WHEN-FALLING", true);
                                             plugin.files.saveFile("worlds.yml");
                                             plugin.initiate();
-                                            XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP"));
+                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
                                         } else {
                                             plugin.getWorlds().set("WORLDS." + world + ".TP-WHEN-FALLING", false);
                                             plugin.files.saveFile("worlds.yml");
                                             plugin.initiate();
-                                            XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP"));
+                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
                                         }
-                                        player.updateInventory();
+                                        plugin.removeInventory(player.getName());
+                                        VOHome.getInventory(player, 1);
                                     } else if (event.getClick() == ClickType.MIDDLE) {
                                         if (player.getWorld().equals(world1)) {
                                             plugin.chat_get.add(player.getUniqueId());
@@ -154,7 +154,7 @@ public class VOInventoryClickHome implements Listener {
                                         }
                                     } else if (event.getClick().equals(ClickType.NUMBER_KEY)) {
                                         String[] names = Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN")).split(",");
-                                        Bukkit.dispatchCommand(player, "dew teleport " + names[0] + "");
+                                        Bukkit.dispatchCommand(player, "dew teleport " + names[0]);
                                     } else if (event.getClick().equals(ClickType.SHIFT_LEFT) || (event.getClick().equals(ClickType.SHIFT_RIGHT))) {
                                         if (player.getWorld().equals(world1)) {
                                             VOIcon.getInventory(player);
@@ -164,10 +164,10 @@ public class VOInventoryClickHome implements Listener {
                                     } else if (event.getClick().equals(ClickType.CONTROL_DROP)) {
                                         if (!plugin.getWorlds().getBoolean("WORLDS." + world + ".ALWAYS-DAY")) {
                                             plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", true);
-                                            XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP"));
+                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
                                         } else {
                                             plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", false);
-                                            XSound.play(player, plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP"));
+                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
                                         }
                                         plugin.files.saveFile("worlds.yml");
                                         plugin.initiate();
