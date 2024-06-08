@@ -1,6 +1,6 @@
 package ruben_artz.world.events.chat;
 
-import org.bukkit.Bukkit;
+import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,9 +21,9 @@ import java.util.Objects;
 @SuppressWarnings("IfStatementWithIdenticalBranches")
 public class VOEditing implements Listener {
     private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
-    public static int getBlockX;
-    public static int announce;
-    public static int create;
+    public static MyScheduledTask getBlockX;
+    public static MyScheduledTask announce;
+    public static MyScheduledTask create;
 
     @EventHandler
     public void getCancelEdition(PlayerInteractEvent event) {
@@ -37,7 +37,7 @@ public class VOEditing implements Listener {
                     VOHome.getInventory(player, 1);
                 }
                 plugin.getChat().clear();
-                Bukkit.getServer().getScheduler().cancelTask(announce);
+                announce.cancel();
                 sendTitles.clearTitle(player);
             }
         }
@@ -49,7 +49,7 @@ public class VOEditing implements Listener {
                     VOHome.getInventory(player, 1);
                 }
                 plugin.getChat_get().clear();
-                Bukkit.getServer().getScheduler().cancelTask(getBlockX);
+                getBlockX.cancel();
                 sendTitles.clearTitle(player);
             }
         }
@@ -63,7 +63,7 @@ public class VOEditing implements Listener {
                 }
                 plugin.getCreate_world().clear();
                 plugin.removeMessages();
-                Bukkit.getServer().getScheduler().cancelTask(create);
+                create.cancel();
                 sendTitles.clearTitle(player);
             }
         }
@@ -81,7 +81,7 @@ public class VOEditing implements Listener {
             } else {
                 VOManager.syncRunTask(() -> VOCreate.openInventory(player));
             }
-            Bukkit.getServer().getScheduler().cancelTask(create);
+            create.cancel();
             sendTitles.clearTitle(player);
         }
     }
@@ -116,7 +116,7 @@ public class VOEditing implements Listener {
                 VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
             }
             plugin.getChat().clear();
-            Bukkit.getServer().getScheduler().cancelTask(announce);
+            announce.cancel();
             sendTitles.clearTitle(player);
         }
     }
@@ -137,7 +137,7 @@ public class VOEditing implements Listener {
                     } else {
                         VOHome.getInventory(player, 1);
                     }
-                    Bukkit.getServer().getScheduler().cancelTask(getBlockX);
+                    getBlockX.cancel();
                     plugin.chat_get.clear();
                     sendTitles.clearTitle(player);
                 } else {
@@ -153,11 +153,19 @@ public class VOEditing implements Listener {
 
     @EventHandler
     public void getChatLeave(PlayerQuitEvent event) {
-        Bukkit.getServer().getScheduler().cancelTask(getBlockX);
+        if (getBlockX != null) {
+            getBlockX.cancel();
+        }
         plugin.getChat_get().clear();
-        Bukkit.getServer().getScheduler().cancelTask(announce);
+
+        if (announce != null) {
+            announce.cancel();
+        }
         plugin.getChat().clear();
-        Bukkit.getServer().getScheduler().cancelTask(create);
+
+        if (create != null) {
+            create.cancel();
+        }
         plugin.getCreate_world().clear();
     }
 }

@@ -1,6 +1,5 @@
 package ruben_artz.world.events.inventory;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,23 +29,23 @@ public class VOInventoryClose implements Listener {
             VOHome.itemStacks.clear();
         }
         /*
-        * Cancel events when inventory is opened to create worlds
+         * Cancel events when inventory is opened to create worlds
          */
         if (plugin.getCreate_world().contains(player.getUniqueId())) {
             plugin.removeMessages();
             plugin.getCreate_world().remove(player.getUniqueId());
-            Bukkit.getServer().getScheduler().cancelTask(VOEditing.create);
+            VOEditing.create.cancel();
         }
     }
 
     /*
-    * Remove the player's actions again
+     * Remove the player's actions again
      */
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         /*
-        * Cancel main menu events
+         * Cancel main menu events
          */
         if (VOHome.task != null) {
             VOHome.task.cancel();
@@ -60,7 +59,7 @@ public class VOInventoryClose implements Listener {
         if (plugin.getCreate_world().contains(player.getUniqueId())) {
             plugin.removeMessages();
             plugin.getCreate_world().remove(player.getUniqueId());
-            Bukkit.getServer().getScheduler().cancelTask(VOEditing.create);
+            VOEditing.create.cancel();
         }
         plugin.removeMessages();
     }

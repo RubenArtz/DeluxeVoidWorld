@@ -3,8 +3,10 @@ package ruben_artz.world.world;
 import com.cryptomorin.xseries.SkullUtils;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
+import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
+import io.papermc.lib.PaperLib;
 import me.TechsCode.UltraRegions.UltraRegions;
 import me.TechsCode.UltraRegions.UltraRegionsAPI;
 import me.TechsCode.UltraRegions.storage.EnvironmentalSettings;
@@ -25,7 +27,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import ruben_artz.world.features.*;
 import ruben_artz.world.firework.ColorUtils;
@@ -137,11 +138,13 @@ public class VOManager {
 
     public static void getActionbar(Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.ACTIONBAR.ENABLED")) {
-            String message = plugin.getFileTranslations().getString("MESSAGE_ACTIONBAR_TP_LOBBY");
-            message = replacePlaceholder(message, "{Player}", player.getName());
+            String originalMessage = plugin.getFileTranslations().getString("MESSAGE_ACTIONBAR_TP_LOBBY");
+            String message = replacePlaceholder(originalMessage, "{Player}", player.getName());
             message = replacePlaceholder(message, "{Uuid}", player.getUniqueId().toString());
             message = replacePlaceholder(message, "{Address}", Objects.requireNonNull(player.getAddress()).toString());
-            sendActionbar.sendActionBar(player, message, 120);
+            final String finalMessage = message;
+            VOMain.getFoliaLib().getImpl().runAtLocation(player.getLocation(), wrappedTask ->
+                    sendActionbar.sendActionBar(player, finalMessage));
         }
     }
 
@@ -322,7 +325,7 @@ public class VOManager {
     // Teleporting the player into a world
     public static void setTeleportation(Player player) {
         Location location = returnLocation(Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + player.getWorld().getName() + ".SPAWN")));
-        player.teleport(location);
+        PaperLib.teleportAsync(player, location);
     }
 
     // Use the jump option
@@ -382,7 +385,7 @@ public class VOManager {
     }
 
     /*
-    * Creating worlds with the Multiverse Core API
+     * Creating worlds with the Multiverse Core API
      */
     public static void createWorldWithMultiverse(Player player, String name, String type) {
         MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
@@ -399,7 +402,7 @@ public class VOManager {
     }
 
     /*
-    * Create an empty world from the player's gui
+     * Create an empty world from the player's gui
      */
     public static void createWorldsDeluxe(Player player, String name, String type) {
         syncRunTask(() -> {
@@ -494,9 +497,12 @@ public class VOManager {
     private static void teleportPlayer(Player player, String name) {
         syncTaskLater(60L, () -> {
             Location location = returnLocation(Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + name + ".SPAWN")));
-            player.teleport(location);
-            player.setAllowFlight(true);
-            player.setFlying(true);
+            PaperLib.teleportAsync(player, location).thenAccept(result -> {
+                if (result) {
+                    player.setAllowFlight(true);
+                    player.setFlying(true);
+                }
+            });
         });
     }
 
@@ -588,7 +594,7 @@ public class VOManager {
     }
 
     /*
-    * Add obscure effect
+     * Add obscure effect
      */
     public static void sendBackGround(String type,Player player) {
         if (type.equalsIgnoreCase("ADD")) {
@@ -640,14 +646,16 @@ public class VOManager {
                 || (Bukkit.getVersion().contains("1.16"))
                 || (Bukkit.getVersion().contains("1.17"))
                 || (Bukkit.getVersion().contains("1.18"))
-                || (Bukkit.getVersion().contains("1.19"));
+                || (Bukkit.getVersion().contains("1.19"))
+                || (Bukkit.getVersion().contains("1.20"));
     }
 
     public static boolean isVersion_1_16_To_1_19() {
         return (Bukkit.getVersion().contains("1.16"))
                 || (Bukkit.getVersion().contains("1.17"))
                 || (Bukkit.getVersion().contains("1.18"))
-                || (Bukkit.getVersion().contains("1.19"));
+                || (Bukkit.getVersion().contains("1.19"))
+                || (Bukkit.getVersion().contains("1.20"));
     }
 
     public static boolean isMySQL() {
@@ -655,32 +663,31 @@ public class VOManager {
     }
 
     public static void syncRunTask(Runnable runnable) {
-        Bukkit.getScheduler().runTask(plugin, runnable);
+        VOMain.getScheduler().runTask(runnable);
     }
 
     public static void syncTaskLater(long delay, Runnable runnable) {
-        Bukkit.getScheduler().runTaskLater(plugin, runnable, delay);
+        VOMain.getScheduler().runTaskLater(runnable, delay);
     }
 
     public static void synTaskAsynchronously(Runnable runnable) {
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, runnable);
+        VOMain.getScheduler().runTaskAsynchronously(runnable);
     }
 
-    @SuppressWarnings("deprecation")
-    public static Integer syncRepeatingTask(long time, Runnable runnable) {
-        return Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, runnable, 0L, time);
+    public static MyScheduledTask syncRepeatingTask(long time, Runnable runnable) {
+        return VOMain.getScheduler().runTaskTimer(runnable, 0L, time);
     }
 
-    public static BukkitTask syncRunTaskTimer(long time, Runnable runnable) {
-        return Bukkit.getScheduler().runTaskTimer(plugin, runnable, 0, time);
+    public static MyScheduledTask syncRunTaskTimer(long time, Runnable runnable) {
+        return VOMain.getScheduler().runTaskTimer(runnable, 0, time);
     }
 
     public static void syncDelayedTask(int delay, Runnable runnable) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, runnable, delay);
+        VOMain.getScheduler().runTaskLater(runnable, delay);
     }
 
     public static void syncDelayedTask(long time, Runnable runnable) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, runnable, time);
+        VOMain.getScheduler().runTaskLater(runnable, time);
     }
 
     public static void executeSound(@Nonnull String path, final Player player) {

@@ -83,17 +83,19 @@ public class VOWorlds implements Listener {
         final String worldName = player.getWorld().getName();
         if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "CONSOLE")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
-                command = VOManager.replacePlaceholder(command, "{Player}", player.getName());
-                command = VOManager.replacePlaceholder(command, "{Uuid}", player.getUniqueId().toString());
-                command = VOManager.replacePlaceholder(command, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(command));
+                String tempCommand = VOManager.replacePlaceholder(command, "{Player}", player.getName());
+                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
+                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
+                final String finalCommand = tempCommand;
+                VOMain.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand)));
             }
         } else if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "PLAYER")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
-                command = VOManager.replacePlaceholder(command, "{Player}", player.getName());
-                command = VOManager.replacePlaceholder(command, "{Uuid}", player.getUniqueId().toString());
-                command = VOManager.replacePlaceholder(command, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
-                Bukkit.dispatchCommand(player, addColor.setColors(command));
+                String tempCommand = VOManager.replacePlaceholder(command, "{Player}", player.getName());
+                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
+                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
+                final String finalCommand = tempCommand;
+                VOMain.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(player, addColor.setColors(finalCommand)));
             }
         }
     }

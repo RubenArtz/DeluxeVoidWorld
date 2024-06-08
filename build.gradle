@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ruben_artz'
-version = '4.3.20'
+version = '4.4.20'
 
 repositories {
     mavenCentral()
@@ -29,6 +29,17 @@ repositories {
     maven {
         url = 'https://repo.alessiodp.com/releases/'
     }
+    maven {
+        name = "papermc"
+        url = "https://papermc.io/repo/repository/maven-public/"
+    }
+    maven {
+        name = "devmart-other"
+        url = "https://nexuslite.gcnt.net/repos/other/"
+    }
+    maven {
+        url = 'https://jitpack.io'
+    }
 }
 
 dependencies {
@@ -50,8 +61,19 @@ dependencies {
 
     implementation 'io.github.slimjar:slimjar:1.2.7'
     implementation 'net.kyori:adventure-text-minimessage:4.17.0'
-    implementation 'net.kyori:adventure-platform-bukkit:4.3.2'
+    implementation 'net.kyori:adventure-platform-bukkit:4.3.3'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
+    /*
+    Keep up to date
+    Url: https://github.com/Anon8281/UniversalScheduler
+     */
+    implementation 'com.github.Anon8281:UniversalScheduler:0.1.6'
+    implementation "io.papermc:paperlib:1.0.7"
+    /*
+    Keep up to date
+    Url: https://github.com/TechnicallyCoded/FoliaLib
+     */
+    implementation "com.tcoded:FoliaLib:0.3.1"
 
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:2.1.214'
@@ -60,7 +82,7 @@ dependencies {
     Keep up to date
     Url: https://github.com/CryptoMorin/XSeries/releases
      */
-    slim 'com.github.cryptomorin:XSeries:9.8.1'
+    slim 'com.github.cryptomorin:XSeries:10.0.0'
     slim 'com.squareup.okhttp3:okhttp:4.12.0'
     slim 'junit:junit:4.13.1'
     slim 'com.googlecode.json-simple:json-simple:1.1.1'
@@ -77,6 +99,9 @@ shadowJar {
     relocate("io.github.slimjar", "ruben_artz.world.libs.slimjar")
     relocate("net.kyori", "ruben_artz.world.libs.kyori")
     relocate("org.bstats", "ruben_artz.world.libs.bstats")
+    relocate('com.github.Anon8281.universalScheduler', 'ruben_artz.world.libs.universalScheduler')
+    relocate('io.papermc.lib', 'ruben_artz.world.libs.paperlib')
+    relocate('com.tcoded.folialib', 'ruben_artz.world.libs.folialib')
 }
 
 slimJar {

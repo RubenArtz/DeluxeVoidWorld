@@ -1,6 +1,7 @@
 package ruben_artz.world.menu;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -8,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scheduler.BukkitTask;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.main.VOMain;
 import ruben_artz.world.world.VOArrays;
@@ -20,11 +20,12 @@ import java.util.Objects;
 
 public class VOHome {
     private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
-    public static BukkitTask task;
+    public static MyScheduledTask task;
+
     @Getter public static Inventory inventory;
+
     public static final List<ItemStack> itemStacks = new ArrayList<>();
     public static final String title = addColor.setColors(plugin.getMenuHome().getString("MAIN.TITLE"));
-
 
     /*
     This method creates the inventory
@@ -35,7 +36,7 @@ public class VOHome {
            /*
            This method updates the item, lore and name
            */
-            task = VOManager.syncRunTaskTimer(0, () -> {
+            task = VOManager.syncRunTaskTimer(20, () -> {
                 /*
                  * Adding crystals
                  */

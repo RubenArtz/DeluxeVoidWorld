@@ -1,8 +1,12 @@
 package ruben_artz.world.main;
 
+import com.github.Anon8281.universalScheduler.UniversalScheduler;
+import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
+import com.tcoded.folialib.FoliaLib;
 import developer.voidw.activate;
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.github.slimjar.resolver.data.Repository;
+import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Bukkit;
@@ -34,10 +38,12 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class VOMain extends JavaPlugin {
     private static VOMain plugin;
-    public static VOMain getInstance()
-    {
+    public static VOMain getInstance() {
         return plugin;
     }
+
+    @Getter private static TaskScheduler scheduler;
+    @Getter private static FoliaLib foliaLib;
 
     /*
     normal
@@ -88,6 +94,11 @@ public class VOMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        scheduler = UniversalScheduler.getScheduler(this);
+        foliaLib = new FoliaLib(this);
+        PaperLib.suggestPaper(this);
+
         plugin = this;
         try {
             this.launch = Class.forName("ruben_artz.world.launcher.Launcher").asSubclass(Launch.class).newInstance();
@@ -164,7 +175,7 @@ public class VOMain extends JavaPlugin {
     public void getReloadPlugin() {
         if (Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.CHECK_UPDATE")).contains("true")) {
             VOUpdater.shutdown();
-            Bukkit.getScheduler().scheduleSyncDelayedTask(this, VOUpdater::setEnabled, 20L);
+            VOMain.getScheduler().scheduleSyncDelayedTask(VOUpdater::setEnabled, 20L);
         } else {
             VOUpdater.shutdown();
         }

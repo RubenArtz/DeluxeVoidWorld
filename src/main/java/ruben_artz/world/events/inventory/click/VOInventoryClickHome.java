@@ -9,7 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import ruben_artz.world.events.chat.VOEditing;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.features.sendTitles;
@@ -21,7 +20,6 @@ import ruben_artz.world.world.VOManager;
 
 import java.util.Objects;
 
-@SuppressWarnings("deprecation")
 public class VOInventoryClickHome implements Listener {
     private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
 
@@ -44,25 +42,24 @@ public class VOInventoryClickHome implements Listener {
                         if (slot == plugin.getMenuHome().getInt("MAIN.ADD_WORLD.SLOT")) {
                             plugin.getChat().add(player.getUniqueId());
                             player.closeInventory();
-                            VOEditing.announce = Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, () -> new BukkitRunnable() {
-                                @Override
-                                public void run() {
-                                    for (String Titlelist : plugin.getFileTranslations().getStringList("MESSAGE_CREATE_WORLD")) {
-                                        String[] Title = Titlelist.split(";");
-                                        sendTitles.sendTitle(player, Integer.parseInt(Title[0]), Integer.parseInt(Title[1]), Integer.parseInt(Title[2]), Title[3], Title[4]);
-                                    }
+                            VOEditing.announce = VOMain.getScheduler().runTaskTimerAsynchronously(() -> {
+                                for (String Titlelist : plugin.getFileTranslations().getStringList("MESSAGE_CREATE_WORLD")) {
+                                    String[] Title = Titlelist.split(";");
+                                    VOMain.getScheduler().runTaskAsynchronously(() ->
+                                            sendTitles.sendTitle(player, Integer.parseInt(Title[0]), Integer.parseInt(Title[1]), Integer.parseInt(Title[2]), Title[3], Title[4]));
                                 }
-                            }.runTaskAsynchronously(plugin), 0L, 50L);
+                            }, 0L, 50L);
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.CLOSE.SLOT")) {
                             player.closeInventory();
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.RELOAD.SLOT")) {
                             Bukkit.dispatchCommand(player, "dew reload");
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.CREATE_WORLD.SLOT")) {
                             player.closeInventory();
-                            VOEditing.create = Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, () -> {
+                            VOEditing.create = VOMain.getScheduler().runTaskTimerAsynchronously(() -> {
                                 for (String title : plugin.getFileTranslations().getStringList("MESSAGE_CREATE_WORLD_EMPTY")) {
                                     String[] list = title.split(";");
-                                    sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]);
+                                    VOMain.getScheduler().runTaskAsynchronously(() ->
+                                            sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]));
                                 }
                             }, 0L, 50L);
                             VOManager.syncTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
