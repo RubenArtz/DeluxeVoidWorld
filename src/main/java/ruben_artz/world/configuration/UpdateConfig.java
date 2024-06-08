@@ -78,7 +78,7 @@ public class UpdateConfig {
             Update config of "menus.file"
              */
             VOManager.syncTaskLater(15L, () -> {
-                if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.6")) {
+                if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.7")) {
                     File f = new File(plugin.getDataFolder(), "/menus/");
                     File[] files = f.listFiles();
                     if (files != null) {
