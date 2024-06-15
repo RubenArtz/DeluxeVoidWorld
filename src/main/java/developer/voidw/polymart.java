@@ -2,7 +2,7 @@ package developer.voidw;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 public class polymart {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);

@@ -1,4 +1,4 @@
-package ruben_artz.world.world;
+package ruben_artz.world.utils;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSkull;
@@ -31,8 +31,8 @@ import org.bukkit.util.Vector;
 import ruben_artz.world.features.*;
 import ruben_artz.world.firework.ColorUtils;
 import ruben_artz.world.firework.FireworkManager;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.menu.VOHome;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.menu.Home;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
@@ -44,7 +44,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class VOManager {
+public class ProjectUtils {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static String setPlaceholders(Player player, String text) {
@@ -109,7 +109,7 @@ public class VOManager {
 
     public static void getSound(Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.SOUNDS.ENABLED")) {
-            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
+            ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
         }
     }
 
@@ -192,9 +192,9 @@ public class VOManager {
         message = message.replace("{getTPS}", String.valueOf(getTPS()))
                 .replace("{Max Players}", String.valueOf(Bukkit.getMaxPlayers()))
                 .replace("{Online Players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                .replace("{Java Ram}", VOManager.addCommas((int) mbUsed) + " MB")
-                .replace("{Java Max Ram}", VOManager.addCommas((int) mbMaximum) + " MB")
-                .replace("{Java Free Ram}", VOManager.addCommas((int) mbFree) + " MB");
+                .replace("{Java Ram}", ProjectUtils.addCommas((int) mbUsed) + " MB")
+                .replace("{Java Max Ram}", ProjectUtils.addCommas((int) mbMaximum) + " MB")
+                .replace("{Java Free Ram}", ProjectUtils.addCommas((int) mbFree) + " MB");
         return message;
     }
 
@@ -256,7 +256,7 @@ public class VOManager {
     }
 
     public static void getMessagesArgs(Player player) {
-        VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
+        ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
         String box = plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND_BOX");
         player.sendMessage(addColor.setColors("&8&m--------------------------------------------------"));
         sendTextComponent(player, plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND").replace("{Version}", plugin.getVersion())
@@ -274,7 +274,7 @@ public class VOManager {
     }
 
     public static void getHelpCommandGame(Player sender) {
-        VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
+        ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
         sender.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
         sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP")));
         sender.sendMessage(addColor.setColors("&f"));
@@ -336,9 +336,9 @@ public class VOManager {
     }
 
     public static void getJumpEffects(Player player) {
-        VOManager.getJump(player);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> VOManager.getJump(player), 10L);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> VOManager.getJump(player), 20L);
+        ProjectUtils.getJump(player);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> ProjectUtils.getJump(player), 10L);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> ProjectUtils.getJump(player), 20L);
     }
 
     // Use the Lightning option
@@ -396,7 +396,7 @@ public class VOManager {
             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
             teleportPlayer(player , name);
         } else {
-            VOHome.getInventory(player, 1);
+            Home.getInventory(player, 1);
             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_MAP_ALREADY_EXISTS"));
         }
     }
@@ -435,7 +435,7 @@ public class VOManager {
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
                 teleportPlayer(player , name);
             } else {
-                VOHome.getInventory(player, 1);
+                Home.getInventory(player, 1);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_MAP_ALREADY_EXISTS"));
             }
         });
@@ -447,7 +447,7 @@ public class VOManager {
         WorldCreator creator = new WorldCreator(name);
         creator.environment(World.Environment.valueOf(type));
         creator.type(WorldType.valueOf(worldtype));
-        creator.generator(new VOGenerator());
+        creator.generator(new Generator());
         World world = creator.createWorld();
         assert world != null;
         WorldBorder worldBorder = world.getWorldBorder();

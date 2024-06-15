@@ -4,7 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
 import ruben_artz.world.database.utils.CacheMethod;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.sql.Connection;
 import java.sql.SQLException;

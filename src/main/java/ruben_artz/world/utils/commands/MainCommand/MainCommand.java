@@ -1,4 +1,4 @@
-package ruben_artz.world.commands;
+package ruben_artz.world.utils.commands.MainCommand;
 
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
@@ -13,8 +13,8 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,9 +53,9 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     }
                 }
                 if (sender instanceof Player) {
-                    VOManager.getMessagesArgs((Player) sender);
+                    ProjectUtils.getMessagesArgs((Player) sender);
                 } else {
-                    VOManager.getMessagesArgsConsole(sender);
+                    ProjectUtils.getMessagesArgsConsole(sender);
                 }
             } catch (NullPointerException exception) {
                 onCommand(sender, array);
@@ -63,9 +63,9 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             return false;
         }
         if (sender instanceof Player) {
-            VOManager.getMessagesArgs((Player) sender);
+            ProjectUtils.getMessagesArgs((Player) sender);
         } else {
-            VOManager.getMessagesArgsConsole(sender);
+            ProjectUtils.getMessagesArgsConsole(sender);
         }
         return false;
     }

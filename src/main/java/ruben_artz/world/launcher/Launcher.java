@@ -9,7 +9,7 @@ import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import ruben_artz.world.commands.RegisterCommand;
-import ruben_artz.world.commands.VOPlayer;
+import ruben_artz.world.utils.commands.PlayerCommand.MainCommand;
 import ruben_artz.world.configuration.UpdateConfig;
 import ruben_artz.world.database.Cache;
 import ruben_artz.world.events.chat.VOEditing;
@@ -21,11 +21,11 @@ import ruben_artz.world.events.inventory.click.VOInventoryClickPlayer;
 import ruben_artz.world.events.world.*;
 import ruben_artz.world.firework.FireworkDamage;
 import ruben_artz.world.firework.FireworkExplode;
-import ruben_artz.world.world.LoadWorld;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
-import ruben_artz.world.world.VOSlime;
-import ruben_artz.world.world.VOUpdater;
+import ruben_artz.world.utils.LoadWorld;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.Slime;
+import ruben_artz.world.utils.Updater;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -57,7 +57,7 @@ public class Launcher implements Launch {
         LoadWorld.ifConfigWorld();
         getMetrics();
         setConnection();
-        VOUpdater.setEnabled();
+        Updater.setEnabled();
         LoadWorld.loadWorld();
         LoadWorld.setTime();
         plugin.getMessages();
@@ -68,7 +68,7 @@ public class Launcher implements Launch {
         if (plugin.getGenerated().contains("WORLDS")) {
             for (String key : Objects.requireNonNull(plugin.getGenerated().getConfigurationSection("WORLDS")).getKeys(false)) {
                 String[] name = Objects.requireNonNull(plugin.getGenerated().getString("WORLDS." + key + ".SPAWN")).split(",");
-                VOManager.saveWorlds(name[0]);
+                ProjectUtils.saveWorlds(name[0]);
                 Bukkit.getLogger().log(Level.INFO, "[DeluxeVoidWorld] Saving world "+name[0]+"...");
             }
         }
@@ -108,19 +108,19 @@ public class Launcher implements Launch {
                         new VOInventoryClickPlayer(),
                         new VOInventoryClickIcon())
                 .forEach(listener -> event.registerEvents(listener, plugin));
-        if (VOManager.isPluginEnabled("SlimeWorldManager")) {
-            new VOSlime();
+        if (ProjectUtils.isPluginEnabled("SlimeWorldManager")) {
+            new Slime();
         }
         audiences = BukkitAudiences.create(plugin);
     }
 
     private void getCommands() {
         Objects.requireNonNull(plugin.getCommand("deluxevoidworld")).setExecutor(new RegisterCommand());
-        Objects.requireNonNull(plugin.getCommand("empty")).setExecutor(new VOPlayer());
+        Objects.requireNonNull(plugin.getCommand("empty")).setExecutor(new MainCommand());
     }
 
     private void getMetrics() {
-        VOManager.syncTaskLater(60, () -> {
+        ProjectUtils.syncTaskLater(60, () -> {
             final Metrics metrics = new Metrics(plugin, 9736);
             for (String key : Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false)) {
                 if (plugin.getWorlds().getString("WORLDS."+key+".TP-WHEN-FALLING") == null) {
@@ -138,7 +138,7 @@ public class Launcher implements Launch {
     }
 
     private void getNumbers() {
-        VOManager.syncTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
+        ProjectUtils.syncTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
     }
 
     public static int getNumberWorlds() {

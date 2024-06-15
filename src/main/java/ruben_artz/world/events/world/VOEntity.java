@@ -4,8 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 public class VOEntity implements Listener {
     public final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
@@ -20,7 +20,7 @@ public class VOEntity implements Listener {
         }
         if (plugin.getDamage().contains(event.getEntity().getUniqueId())) {
             event.setCancelled(true);
-            VOManager.syncTaskLater(200, () -> plugin.getDamage().clear());
+            ProjectUtils.syncTaskLater(200, () -> plugin.getDamage().clear());
         }
     }
 }

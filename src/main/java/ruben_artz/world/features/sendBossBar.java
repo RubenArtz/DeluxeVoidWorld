@@ -5,8 +5,8 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.Objects;
 
@@ -28,7 +28,7 @@ public class sendBossBar {
         audience.showBossBar(bossColor);
 
         for (int i = 1; i <= 6; i++) {
-            VOManager.syncDelayedTask(20 * i, () -> {
+            ProjectUtils.syncDelayedTask(20 * i, () -> {
                 if (bossColor.progress() >= 0.2f) {
                     bossColor.progress(bossColor.progress() - 0.2f);
                 } else {

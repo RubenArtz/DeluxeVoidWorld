@@ -1,4 +1,4 @@
-package ruben_artz.world.world;
+package ruben_artz.world.utils;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,7 +9,7 @@ import org.bukkit.generator.ChunkGenerator;
 import java.util.*;
 
 @SuppressWarnings({"NullableProblems", "SpellCheckingInspection", "deprecation"})
-public class VOGenerator  extends ChunkGenerator {
+public class Generator extends ChunkGenerator {
 
     public Location getFixedSpawnLocation(World world, Random random) {
         return new Location(world, 0.0D, 80.0D, 0.0D);

@@ -8,7 +8,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.util.ArrayList;
 

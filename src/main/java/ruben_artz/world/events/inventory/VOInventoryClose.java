@@ -6,8 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ruben_artz.world.events.chat.VOEditing;
-import ruben_artz.world.menu.VOHome;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.menu.Home;
+import ruben_artz.world.DeluxeVoidWorld;
 
 public class VOInventoryClose implements Listener {
     private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
@@ -21,12 +21,12 @@ public class VOInventoryClose implements Listener {
         /*
          * Cancel main menu events
          */
-        if (event.getInventory().equals(VOHome.getInventory())) {
-            if (VOHome.task != null) {
-                VOHome.task.cancel();
+        if (event.getInventory().equals(Home.getInventory())) {
+            if (Home.task != null) {
+                Home.task.cancel();
             }
             plugin.removeInventory(player.getName());
-            VOHome.itemStacks.clear();
+            Home.itemStacks.clear();
         }
         /*
          * Cancel events when inventory is opened to create worlds
@@ -47,11 +47,11 @@ public class VOInventoryClose implements Listener {
         /*
          * Cancel main menu events
          */
-        if (VOHome.task != null) {
-            VOHome.task.cancel();
+        if (Home.task != null) {
+            Home.task.cancel();
         }
         plugin.removeInventory(player.getName());
-        VOHome.itemStacks.clear();
+        Home.itemStacks.clear();
 
         /*
          * Cancel events when inventory is opened to create worlds

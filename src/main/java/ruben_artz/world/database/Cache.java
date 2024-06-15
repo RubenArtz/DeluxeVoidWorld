@@ -3,8 +3,8 @@ package ruben_artz.world.database;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import ruben_artz.world.database.utils.CacheMethod;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,7 +38,7 @@ public class Cache {
     }
 
     public Cache() {
-        if (VOManager.isMySQL()) {
+        if (ProjectUtils.isMySQL()) {
             method = new MysqlMethod();
         } else {
             method = new H2Method();
@@ -55,7 +55,7 @@ public class Cache {
 
         try {
             connection = method.getConnection();
-            ps = connection.prepareStatement(VOManager.isMySQL() ? CREATE_TABLE_MYSQL : CREATE_TABLE_H2);
+            ps = connection.prepareStatement(ProjectUtils.isMySQL() ? CREATE_TABLE_MYSQL : CREATE_TABLE_H2);
 
             ps.executeUpdate();
         } catch (SQLException e) {

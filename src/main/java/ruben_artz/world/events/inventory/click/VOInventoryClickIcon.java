@@ -5,9 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import ruben_artz.world.menu.VOHome;
-import ruben_artz.world.menu.VOIcon;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.menu.Home;
+import ruben_artz.world.menu.Icon;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.util.Objects;
 
@@ -20,7 +20,7 @@ public class VOInventoryClickIcon implements Listener {
     @EventHandler
     public void getInventory(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        String name = ChatColor.stripColor(VOIcon.title.replace("{Name World}", player.getWorld().getName()));
+        String name = ChatColor.stripColor(Icon.title.replace("{Name World}", player.getWorld().getName()));
         if (ChatColor.stripColor(event.getView().getTitle()).equals(name)) {
             if (event.getCurrentItem() == null) {
                 event.setCancelled(true);
@@ -33,7 +33,7 @@ public class VOInventoryClickIcon implements Listener {
                             if (event.getSlot() == slot) {
                                 plugin.getWorlds().set("WORLDS."+player.getWorld().getName()+".MATERIAL", plugin.getIcons().getString("MATERIALS."+world+".ITEM"));
                                 plugin.files.saveFile("worlds.yml");
-                                VOHome.getInventory(player, 1);
+                                Home.getInventory(player, 1);
                             } else {
                                 event.setCancelled(true);
                             }
@@ -46,7 +46,7 @@ public class VOInventoryClickIcon implements Listener {
                     if (event.getSlot() == plugin.getIcons().getInt("MAIN.CLOSE.SLOT")) {
                         player.closeInventory();
                     } else if (event.getSlot() == plugin.getIcons().getInt("MAIN.RETURN.SLOT")) {
-                        VOHome.getInventory(player, 1);
+                        Home.getInventory(player, 1);
                     } else {
                         event.setCancelled(true);
                     }

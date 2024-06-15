@@ -1,6 +1,7 @@
-package ruben_artz.world.main;
+package ruben_artz.world.utils;
 
 import io.github.slimjar.logging.ProcessLogger;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.text.MessageFormat;
 

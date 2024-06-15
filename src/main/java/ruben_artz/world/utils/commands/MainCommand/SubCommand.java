@@ -1,4 +1,4 @@
-package ruben_artz.world.commands;
+package ruben_artz.world.utils.commands.MainCommand;
 
 import org.bukkit.command.CommandSender;
 

@@ -3,7 +3,7 @@ package ruben_artz.world.features;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.util.Objects;
 

@@ -5,8 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class VODetect implements Listener {
                     plugin.getWorlds().set("WORLDS." + worldName + ".VOID-POSITION", -1);
                     plugin.getWorlds().set("WORLDS." + worldName + ".WORLD", "&a"+worldName);
                     plugin.getWorlds().set("WORLDS." + worldName + ".MATERIAL", "STONE");
-                    plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", VOManager.setLocation(worldName));
+                    plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", ProjectUtils.setLocation(worldName));
                     plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");
 
                     final List<String> listCommands = plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST");

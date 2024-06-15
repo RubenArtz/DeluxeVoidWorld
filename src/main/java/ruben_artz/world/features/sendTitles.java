@@ -4,7 +4,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.time.Duration;
 import java.util.Objects;

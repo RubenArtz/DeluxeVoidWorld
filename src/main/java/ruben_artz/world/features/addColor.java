@@ -7,8 +7,8 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class addColor {
     }
 
     public static @NotNull Component addColors(Player player, String input) {
-        return VOManager.setPlaceholders(player, MiniMessage.miniMessage().deserialize(color(input)));
+        return ProjectUtils.setPlaceholders(player, MiniMessage.miniMessage().deserialize(color(input)));
     }
     public static @NotNull Component addColors(String input) {
         return MiniMessage.miniMessage().deserialize(color(input));

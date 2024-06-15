@@ -12,11 +12,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import ruben_artz.world.events.chat.VOEditing;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.features.sendTitles;
-import ruben_artz.world.menu.VOHome;
-import ruben_artz.world.menu.VOIcon;
-import ruben_artz.world.world.VOArrays;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.menu.Home;
+import ruben_artz.world.menu.Icon;
+import ruben_artz.world.menu.utils.playerPageInfo;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.Objects;
 
@@ -28,7 +28,7 @@ public class VOInventoryClickHome implements Listener {
      */
     @EventHandler
     public void getCreate(InventoryClickEvent event) {
-        String name = ChatColor.stripColor(VOHome.title);
+        String name = ChatColor.stripColor(Home.title);
         if (ChatColor.stripColor(event.getView().getTitle()).equals(name)) {
             if (event.getCurrentItem() == null) {
                 event.setCancelled(true);
@@ -37,7 +37,7 @@ public class VOInventoryClickHome implements Listener {
                     event.setCancelled(true);
                     Player player = (Player) event.getWhoClicked();
                     int slot = event.getSlot();
-                    VOArrays inventory = plugin.getInventory(player.getName());
+                    playerPageInfo inventory = plugin.getInventory(player.getName());
                     if (inventory != null) {
                         if (slot == plugin.getMenuHome().getInt("MAIN.ADD_WORLD.SLOT")) {
                             plugin.getChat().add(player.getUniqueId());
@@ -62,23 +62,23 @@ public class VOInventoryClickHome implements Listener {
                                             sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]));
                                 }
                             }, 0L, 50L);
-                            VOManager.syncTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
+                            ProjectUtils.syncTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.NEXT.SLOT") && event.getCurrentItem().getType().equals(XMaterial.valueOf(plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL")).parseMaterial())) {
                             int currentPage = inventory.getPage();
                             int newPage = currentPage + 1;
-                            if (VOHome.task != null) {
-                                VOHome.task.cancel();
+                            if (Home.task != null) {
+                                Home.task.cancel();
                             }
                             plugin.removeInventory(player.getName());
-                            VOHome.getInventory(player, newPage);
+                            Home.getInventory(player, newPage);
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.RETURN.SLOT") && event.getCurrentItem().getType().equals(XMaterial.valueOf(plugin.getMenuHome().getString("MAIN.RETURN.MATERIAL")).parseMaterial())) {
                             int currentPage = inventory.getPage();
                             int newPage = currentPage - 1;
-                            if (VOHome.task != null) {
-                                VOHome.task.cancel();
+                            if (Home.task != null) {
+                                Home.task.cancel();
                             }
                             plugin.removeInventory(player.getName());
-                            VOHome.getInventory(player, newPage);
+                            Home.getInventory(player, newPage);
                         } else {
                             event.setCancelled(true);
                         }
@@ -95,7 +95,7 @@ public class VOInventoryClickHome implements Listener {
      */
     @EventHandler
     public void getInventory(InventoryClickEvent event) {
-        String name = ChatColor.stripColor(VOHome.title);
+        String name = ChatColor.stripColor(Home.title);
         if (ChatColor.stripColor(event.getView().getTitle()).equals(name)) {
             if (event.getCurrentItem() == null) {
                 event.setCancelled(true);
@@ -104,7 +104,7 @@ public class VOInventoryClickHome implements Listener {
                     event.setCancelled(true);
                     Player player = (Player) event.getWhoClicked();
                     int slot = 0;
-                    VOArrays inventory = plugin.getInventory(player.getName());
+                    playerPageInfo inventory = plugin.getInventory(player.getName());
                     if (inventory != null) {
                         for (String world : Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false)) {
                             if (event.getInventory().equals(player.getOpenInventory().getTopInventory())) {
@@ -115,32 +115,32 @@ public class VOInventoryClickHome implements Listener {
                                         plugin.getWorlds().set("WORLDS." + world, null);
                                         plugin.files.saveFile("worlds.yml");
                                         plugin.initiate();
-                                        VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DELETED_WORLD_MENU")), player);
+                                        ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DELETED_WORLD_MENU")), player);
                                         addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_DELETE_WORLD"));
-                                        if (VOHome.task != null) {
-                                            VOHome.task.cancel();
+                                        if (Home.task != null) {
+                                            Home.task.cancel();
                                         }
                                         plugin.removeInventory(player.getName());
-                                        VOHome.getInventory(player, 1);
+                                        Home.getInventory(player, 1);
                                     } else if (event.getClick().equals(ClickType.RIGHT)) {
                                         if (!plugin.getWorlds().getBoolean("WORLDS." + world + ".TP-WHEN-FALLING")) {
                                             plugin.getWorlds().set("WORLDS." + world + ".TP-WHEN-FALLING", true);
                                             plugin.files.saveFile("worlds.yml");
                                             plugin.initiate();
-                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
+                                            ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
                                         } else {
                                             plugin.getWorlds().set("WORLDS." + world + ".TP-WHEN-FALLING", false);
                                             plugin.files.saveFile("worlds.yml");
                                             plugin.initiate();
-                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
+                                            ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
                                         }
                                         plugin.removeInventory(player.getName());
-                                        VOHome.getInventory(player, 1);
+                                        Home.getInventory(player, 1);
                                     } else if (event.getClick() == ClickType.MIDDLE) {
                                         if (player.getWorld().equals(world1)) {
                                             plugin.chat_get.add(player.getUniqueId());
                                             player.closeInventory();
-                                            VOEditing.getBlockX = VOManager.syncRepeatingTask(50L, () -> VOManager.synTaskAsynchronously(() -> {
+                                            VOEditing.getBlockX = ProjectUtils.syncRepeatingTask(50L, () -> ProjectUtils.synTaskAsynchronously(() -> {
                                                 for (String Titlelist : plugin.getFileTranslations().getStringList("MESSAGE_EDIT_BLOCK_Y")) {
                                                     String[] Title = Titlelist.split(";");
                                                     sendTitles.sendTitle(player, Integer.parseInt(Title[0]), Integer.parseInt(Title[1]), Integer.parseInt(Title[2]), Title[3], Title[4]);
@@ -154,26 +154,26 @@ public class VOInventoryClickHome implements Listener {
                                         Bukkit.dispatchCommand(player, "dew teleport " + names[0]);
                                     } else if (event.getClick().equals(ClickType.SHIFT_LEFT) || (event.getClick().equals(ClickType.SHIFT_RIGHT))) {
                                         if (player.getWorld().equals(world1)) {
-                                            VOIcon.getInventory(player);
+                                            Icon.getInventory(player);
                                         } else {
                                             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NOT_USE_ITEM"));
                                         }
                                     } else if (event.getClick().equals(ClickType.CONTROL_DROP)) {
                                         if (!plugin.getWorlds().getBoolean("WORLDS." + world + ".ALWAYS-DAY")) {
                                             plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", true);
-                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
+                                            ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
                                         } else {
                                             plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", false);
-                                            VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
+                                            ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
                                         }
                                         plugin.files.saveFile("worlds.yml");
                                         plugin.initiate();
 
-                                        if (VOHome.task != null) {
-                                            VOHome.task.cancel();
+                                        if (Home.task != null) {
+                                            Home.task.cancel();
                                         }
                                         plugin.removeInventory(player.getName());
-                                        VOHome.getInventory(player, 1);
+                                        Home.getInventory(player, 1);
                                     } else if (event.getClick().equals(ClickType.DROP)) {
                                         if (player.getWorld().equals(world1)) {
                                             Bukkit.dispatchCommand(player, "dew setworldvoid");

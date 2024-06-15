@@ -7,8 +7,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.Objects;
 
@@ -41,40 +41,40 @@ public class VOWorlds implements Listener {
     }
 
     private void getNull(Player player) {
-        VOManager.isNull(player);
+        ProjectUtils.isNull(player);
     }
 
     private void getTeleportation(Player player) {
         if (!plugin.getIgnoreTeleportation().contains(player.getUniqueId())) {
-            VOManager.getTeleportation(player);
+            ProjectUtils.getTeleportation(player);
         }
     }
 
     private void getJump(Player player) {
         if (!plugin.getIgnoreJumping().contains(player.getUniqueId())) {
             plugin.getDamage().add(player.getUniqueId());
-            VOManager.getJumpEffects(player);
+            ProjectUtils.getJumpEffects(player);
         }
     }
 
     private void getLightningEffect(Player player) {
         if (!plugin.getIgnoreLightning().contains(player.getUniqueId())) {
-            VOManager.getLightningEffect(player);
+            ProjectUtils.getLightningEffect(player);
         }
     }
 
     private void getParticles(Player player) {
         if (!plugin.getIgnoreParticles().contains(player.getUniqueId())) {
-            VOManager.getParticles(player);
+            ProjectUtils.getParticles(player);
         }
     }
 
     private void setEffect(String type, Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.BACKGROUND_EFFECT.ENABLED")) {
             if (type.contains("ADD")) {
-                VOManager.sendBackGround("ADD", player);
+                ProjectUtils.sendBackGround("ADD", player);
             } else if (type.contains("REMOVE")) {
-                VOManager.sendBackGround("REMOVE", player);
+                ProjectUtils.sendBackGround("REMOVE", player);
             }
         }
     }
@@ -83,17 +83,17 @@ public class VOWorlds implements Listener {
         final String worldName = player.getWorld().getName();
         if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "CONSOLE")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
-                String tempCommand = VOManager.replacePlaceholder(command, "{Player}", player.getName());
-                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
-                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
+                String tempCommand = ProjectUtils.replacePlaceholder(command, "{Player}", player.getName());
+                tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
+                tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
                 DeluxeVoidWorld.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand)));
             }
         } else if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "PLAYER")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
-                String tempCommand = VOManager.replacePlaceholder(command, "{Player}", player.getName());
-                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
-                tempCommand = VOManager.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
+                String tempCommand = ProjectUtils.replacePlaceholder(command, "{Player}", player.getName());
+                tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
+                tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
                 DeluxeVoidWorld.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(player, addColor.setColors(finalCommand)));
             }

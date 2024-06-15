@@ -1,7 +1,7 @@
 package ruben_artz.world.database.utils;
 
 import ruben_artz.world.database.Cache;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.sql.Connection;
 import java.sql.SQLException;

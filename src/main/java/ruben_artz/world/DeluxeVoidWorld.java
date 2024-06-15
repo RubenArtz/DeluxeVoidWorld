@@ -1,4 +1,4 @@
-package ruben_artz.world.main;
+package ruben_artz.world;
 
 import com.github.Anon8281.universalScheduler.UniversalScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
@@ -15,15 +15,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
-import ruben_artz.world.configuration.VOConfig;
+import ruben_artz.world.configuration.configurationGenerator;
 import ruben_artz.world.events.chat.VOString;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.launcher.Launch;
 import ruben_artz.world.launcher.Launcher;
-import ruben_artz.world.world.VOArrays;
-import ruben_artz.world.world.VOGenerator;
-import ruben_artz.world.world.VOManager;
-import ruben_artz.world.world.VOUpdater;
+import ruben_artz.world.utils.SlimJarLogger;
+import ruben_artz.world.menu.utils.playerPageInfo;
+import ruben_artz.world.utils.Generator;
+import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.Updater;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -48,10 +49,10 @@ public class DeluxeVoidWorld extends JavaPlugin {
     /*
     normal
      */
-    @Getter public VOConfig files;
+    @Getter public configurationGenerator files;
     @Getter public String latestversion;
     @Getter private ArrayList<VOString> message;
-    @Getter public ArrayList<VOArrays> inventory;
+    @Getter public ArrayList<playerPageInfo> inventory;
     @Getter public String table = "deluxe_void_v1";
     @Getter public List<UUID> chat = new ArrayList<>();
     @Getter public List<UUID> damage = new ArrayList<>();
@@ -102,7 +103,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
         plugin = this;
         try {
             this.launch = Class.forName("ruben_artz.world.launcher.Launcher").asSubclass(Launch.class).newInstance();
-            VOManager.syncRunTask(() -> {
+            ProjectUtils.syncRunTask(() -> {
                 DeluxeVoidWorld.this.launch.launch(DeluxeVoidWorld.this);
                 inventory = new ArrayList<>();
                 message = new ArrayList<>();
@@ -125,14 +126,14 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
 
     public ChunkGenerator getDefaultWorldGenerator(@Nullable String worldName, String uid) {
-        return new VOGenerator();
+        return new Generator();
     }
 
     public void initiate() {
-        files = new VOConfig().initiate(this, "worlds.yml", "generated.yml", "menus/home.yml", "menus/version.yml", "menus/boolean.yml", "menus/create.yml", "menus/icons.yml", "lang/version.yml", "lang/en_US.yml", "lang/es_ES.yml").setLanguageFile("lang/" + getConfig().getString("ADMIN-CONFIG.LANGUAGE") + ".yml");
+        files = new configurationGenerator().initiate(this, "worlds.yml", "generated.yml", "menus/home.yml", "menus/version.yml", "menus/boolean.yml", "menus/create.yml", "menus/icons.yml", "lang/version.yml", "lang/en_US.yml", "lang/es_ES.yml").setLanguageFile("lang/" + getConfig().getString("ADMIN-CONFIG.LANGUAGE") + ".yml");
     }
 
-    public VOConfig getFileTranslations() {
+    public configurationGenerator getFileTranslations() {
         return getFiles();
     }
     public FileConfiguration getIcons() {
@@ -174,10 +175,10 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
     public void getReloadPlugin() {
         if (Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.CHECK_UPDATE")).contains("true")) {
-            VOUpdater.shutdown();
-            DeluxeVoidWorld.getScheduler().scheduleSyncDelayedTask(VOUpdater::setEnabled, 20L);
+            Updater.shutdown();
+            DeluxeVoidWorld.getScheduler().scheduleSyncDelayedTask(Updater::setEnabled, 20L);
         } else {
-            VOUpdater.shutdown();
+            Updater.shutdown();
         }
         HandlerList.unregisterAll(this);
         Launcher.getInstance().registerEvents();
@@ -189,15 +190,15 @@ public class DeluxeVoidWorld extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(addColor.setColors(s));
     }
 
-    public VOArrays getInventory(String name) {
-        for (VOArrays inv : getInventory()) {
+    public playerPageInfo getInventory(String name) {
+        for (playerPageInfo inv : getInventory()) {
             if (inv.getPlayer().getName().equals(name)) {
                 return inv;
             }
         }
         return null;
     }
-    public void addInventory(VOArrays number) {
+    public void addInventory(playerPageInfo number) {
         getInventory().add(number);
     }
     public void removeInventory(String name) {
@@ -208,7 +209,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
         }
     }
     public void getMessages(){
-        VOManager.syncTaskLater(16L, () -> {
+        ProjectUtils.syncTaskLater(16L, () -> {
             sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + version);
             sendConsole("&8--------------------------------------------------------------------------------------");
             sendConsole("&7         Developed by &c"+authors);

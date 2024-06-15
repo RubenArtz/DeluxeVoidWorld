@@ -4,7 +4,7 @@ import org.h2.jdbc.JdbcConnection;
 import org.h2.message.DbException;
 import ruben_artz.world.database.utils.CacheMethod;
 import ruben_artz.world.database.utils.UnClosableConnection;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package ruben_artz.world.configuration;
 
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class UpdateConfig {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void update() {
-        VOManager.syncRunTask(() -> {
+        ProjectUtils.syncRunTask(() -> {
             /*
             Update config of "config.yml"
              */
@@ -58,7 +58,7 @@ public class UpdateConfig {
                     throw new RuntimeException(e);
                 }
             }
-            VOManager.syncTaskLater(10L, () -> {
+            ProjectUtils.syncTaskLater(10L, () -> {
                 /*
                 Update config of "lang.file"
                  */
@@ -77,7 +77,7 @@ public class UpdateConfig {
             /*
             Update config of "menus.file"
              */
-            VOManager.syncTaskLater(15L, () -> {
+            ProjectUtils.syncTaskLater(15L, () -> {
                 if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.7")) {
                     File f = new File(plugin.getDataFolder(), "/menus/");
                     File[] files = f.listFiles();

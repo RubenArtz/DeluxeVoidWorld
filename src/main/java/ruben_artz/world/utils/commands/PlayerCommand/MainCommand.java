@@ -1,4 +1,4 @@
-package ruben_artz.world.commands;
+package ruben_artz.world.utils.commands.PlayerCommand;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,9 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
-public class VOPlayer implements CommandExecutor {
+public class MainCommand implements CommandExecutor {
     private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     @Override
@@ -18,7 +18,7 @@ public class VOPlayer implements CommandExecutor {
             return true;
         }
         if (sender instanceof Player) {
-            ruben_artz.world.menu.VOPlayer.getInventory((Player) sender);
+            ruben_artz.world.menu.Player.getInventory((Player) sender);
         } else {
             sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_NO_MENU_COMMAND")));
         }

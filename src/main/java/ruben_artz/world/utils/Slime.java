@@ -1,4 +1,4 @@
-package ruben_artz.world.world;
+package ruben_artz.world.utils;
 
 import com.grinderwolf.swm.api.SlimePlugin;
 import com.grinderwolf.swm.api.exceptions.WorldAlreadyExistsException;
@@ -11,19 +11,19 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.menu.VOHome;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.menu.Home;
 
 import java.io.File;
 import java.io.IOException;
 
 @SuppressWarnings("ConstantConditions")
-public class VOSlime {
+public class Slime {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
     private static SlimePlugin slime;
 
-    public VOSlime() {
-        VOSlime.slime = (SlimePlugin) Bukkit.getPluginManager().getPlugin("SlimeWorldManager");
+    public Slime() {
+        Slime.slime = (SlimePlugin) Bukkit.getPluginManager().getPlugin("SlimeWorldManager");
     }
 
     public static void createWorldWithSlime(Player player, String world, String type) {
@@ -40,7 +40,7 @@ public class VOSlime {
         propertyMap.setString(SlimeProperties.ENVIRONMENT, type);
         try {
             if (slimeLoader.worldExists(world)) {
-                VOHome.getInventory(player, 1);
+                Home.getInventory(player, 1);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_MAP_ALREADY_EXISTS"));
             } else {
                 slime.createEmptyWorld(slimeLoader, world, false, propertyMap);
@@ -59,8 +59,8 @@ public class VOSlime {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm reload");
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm load "+world);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
-                VOManager.syncTaskLater(60L, () -> {
-                    Location location = VOManager.returnLocation(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN"));
+                ProjectUtils.syncTaskLater(60L, () -> {
+                    Location location = ProjectUtils.returnLocation(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN"));
                     player.teleport(location);
                     player.setAllowFlight(true);
                     player.setFlying(true);

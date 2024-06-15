@@ -2,8 +2,8 @@ package ruben_artz.world.commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ruben_artz.world.commands.SubCommand;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.utils.commands.MainCommand.SubCommand;
+import ruben_artz.world.utils.ProjectUtils;
 
 public class Help extends SubCommand {
     public Help() {
@@ -13,9 +13,9 @@ public class Help extends SubCommand {
     @Override
     public void onCommands(CommandSender sender, String[] args) {
         if (sender instanceof Player) {
-            VOManager.getHelpCommandGame((Player) sender);
+            ProjectUtils.getHelpCommandGame((Player) sender);
         } else {
-            VOManager.getHelpCommandConsole(sender);
+            ProjectUtils.getHelpCommandConsole(sender);
         }
     }
 }

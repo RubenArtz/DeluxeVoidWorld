@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FireworkExplodeEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 public class FireworkExplode implements Listener {
     @EventHandler

@@ -10,10 +10,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.features.sendTitles;
-import ruben_artz.world.main.DeluxeVoidWorld;
-import ruben_artz.world.menu.VOCreate;
-import ruben_artz.world.menu.VOHome;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.menu.Create;
+import ruben_artz.world.menu.Home;
+import ruben_artz.world.utils.ProjectUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,9 +32,9 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getChat().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
+                    ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
                 } else {
-                    VOHome.getInventory(player, 1);
+                    Home.getInventory(player, 1);
                 }
                 plugin.getChat().clear();
                 announce.cancel();
@@ -44,9 +44,9 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getChat_get().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
+                    ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
                 } else {
-                    VOHome.getInventory(player, 1);
+                    Home.getInventory(player, 1);
                 }
                 plugin.getChat_get().clear();
                 getBlockX.cancel();
@@ -57,9 +57,9 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getCreate_world().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
+                    ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
                 } else {
-                    VOHome.getInventory(player, 1);
+                    Home.getInventory(player, 1);
                 }
                 plugin.getCreate_world().clear();
                 plugin.removeMessages();
@@ -77,9 +77,9 @@ public class VOEditing implements Listener {
             event.setCancelled(true);
             plugin.addMessage(new VOString(player.getName(), message));
             if (event.isAsynchronous()) {
-                VOManager.syncRunTask(() -> VOCreate.openInventory(player));
+                ProjectUtils.syncRunTask(() -> Create.openInventory(player));
             } else {
-                VOManager.syncRunTask(() -> VOCreate.openInventory(player));
+                ProjectUtils.syncRunTask(() -> Create.openInventory(player));
             }
             create.cancel();
             sendTitles.clearTitle(player);
@@ -98,7 +98,7 @@ public class VOEditing implements Listener {
             plugin.getWorlds().set("WORLDS." +worldName+ ".VOID-POSITION", -5);
             plugin.getWorlds().set("WORLDS." +worldName+ ".WORLD", "&a"+worldName);
             plugin.getWorlds().set("WORLDS." +worldName+ ".MATERIAL", "STONE");
-            plugin.getWorlds().set("WORLDS." +worldName + ".SPAWN", VOManager.setLocation(worldName));
+            plugin.getWorlds().set("WORLDS." +worldName + ".SPAWN", ProjectUtils.setLocation(worldName));
             plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");
 
             final List<String> listCommands = plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST");
@@ -107,13 +107,13 @@ public class VOEditing implements Listener {
 
             plugin.files.saveFile("worlds.yml");
             if (event.isAsynchronous()) {
-                VOManager.syncRunTask(() -> {
-                    VOHome.getInventory(player, 1);
-                    VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
+                ProjectUtils.syncRunTask(() -> {
+                    Home.getInventory(player, 1);
+                    ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
                 });
             } else {
-                VOHome.getInventory(player, 1);
-                VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
+                Home.getInventory(player, 1);
+                ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
             }
             plugin.getChat().clear();
             announce.cancel();
@@ -133,19 +133,19 @@ public class VOEditing implements Listener {
                     plugin.getWorlds().set("WORLDS." +player.getWorld().getName()+ ".VOID-POSITION", Integer.parseInt(event.getMessage()));
                     plugin.files.saveFile("worlds.yml");
                     if (event.isAsynchronous()) {
-                        VOManager.syncRunTask(() -> VOHome.getInventory(player, 1));
+                        ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
                     } else {
-                        VOHome.getInventory(player, 1);
+                        Home.getInventory(player, 1);
                     }
                     getBlockX.cancel();
                     plugin.chat_get.clear();
                     sendTitles.clearTitle(player);
                 } else {
-                    VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_LESS_ZERO")), player);
+                    ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_LESS_ZERO")), player);
                     addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_LESS_ZERO"));
                 }
             } catch (NumberFormatException e) {
-                VOManager.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_NO_WORDS")), player);
+                ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_NO_WORDS")), player);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NO_WORDS").replace("{Word}", event.getMessage()));
             }
         }

@@ -1,7 +1,7 @@
-package ruben_artz.world.world;
+package ruben_artz.world.utils;
 
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
-import ruben_artz.world.main.DeluxeVoidWorld;
+import ruben_artz.world.DeluxeVoidWorld;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 @SuppressWarnings({"ConstantConditions"})
-public class VOUpdater {
+public class Updater {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static MyScheduledTask updater;
@@ -23,7 +23,7 @@ public class VOUpdater {
     }
 
     public static void launch() {
-        updater = DeluxeVoidWorld.getScheduler().runTaskTimerAsynchronously(VOUpdater::getUpdater, 0L, 20L * 18000);
+        updater = DeluxeVoidWorld.getScheduler().runTaskTimerAsynchronously(Updater::getUpdater, 0L, 20L * 18000);
     }
     public static void shutdown() {
         updater.cancel();
