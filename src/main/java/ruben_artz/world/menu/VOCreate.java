@@ -5,14 +5,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import ruben_artz.world.events.chat.VOString;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class VOCreate {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
     public static String title = addColor.setColors(Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.TITLE")));
 
     /*

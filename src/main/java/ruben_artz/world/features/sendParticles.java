@@ -2,11 +2,11 @@ package ruben_artz.world.features;
 
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 public class sendParticles {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void sendParticle(Player player) {
         if (VOManager.isVersion_1_10_To_1_19()) {

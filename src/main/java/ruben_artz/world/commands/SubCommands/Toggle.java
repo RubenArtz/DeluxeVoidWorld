@@ -5,14 +5,14 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.commands.SubCommand;
 import ruben_artz.world.world.VOManager;
 
 import java.util.Objects;
 
 public class Toggle extends SubCommand {
-    private final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public Toggle() {
         super("toggle;toggletp;toggleworld", "DeluxeVoidWorld.Admin");

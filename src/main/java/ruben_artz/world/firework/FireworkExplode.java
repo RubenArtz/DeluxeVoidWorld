@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FireworkExplodeEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 public class FireworkExplode implements Listener {
     @EventHandler
@@ -16,7 +16,7 @@ public class FireworkExplode implements Listener {
                 public void run() {
                     FireworkManager.removeFirework(firework);
                 }
-            }.runTaskLater(VOMain.getInstance(), 5L);
+            }.runTaskLater(DeluxeVoidWorld.getInstance(), 5L);
         }
     }
 }

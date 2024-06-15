@@ -8,14 +8,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import ruben_artz.world.events.chat.VOString;
 import ruben_artz.world.menu.VOCreate;
 import ruben_artz.world.menu.VOHome;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 import ruben_artz.world.world.VOSlime;
 
 import java.util.ArrayList;
 
 public class VOInventoryClickCreate implements Listener {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     /*
      * Event when the player creates a world

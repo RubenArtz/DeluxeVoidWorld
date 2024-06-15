@@ -13,7 +13,7 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class MainCommand implements CommandExecutor, TabCompleter {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     @Getter private final String permission;
     private final int reqArgs;

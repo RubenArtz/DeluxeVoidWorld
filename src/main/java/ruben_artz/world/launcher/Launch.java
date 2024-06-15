@@ -1,8 +1,8 @@
 package ruben_artz.world.launcher;
 
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 public interface Launch {
-    void launch(VOMain plugin);
+    void launch(DeluxeVoidWorld plugin);
     void shutdown();
 }

@@ -3,7 +3,7 @@ package ruben_artz.world.database;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import ruben_artz.world.database.utils.CacheMethod;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class Cache {
-    private final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     @Getter CacheMethod method;
 

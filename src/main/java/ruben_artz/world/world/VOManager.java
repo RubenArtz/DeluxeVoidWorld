@@ -1,7 +1,7 @@
 package ruben_artz.world.world;
 
-import com.cryptomorin.xseries.SkullUtils;
 import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.XSkull;
 import com.cryptomorin.xseries.XSound;
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import com.onarandombox.MultiverseCore.MultiverseCore;
@@ -31,7 +31,7 @@ import org.bukkit.util.Vector;
 import ruben_artz.world.features.*;
 import ruben_artz.world.firework.ColorUtils;
 import ruben_artz.world.firework.FireworkManager;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.menu.VOHome;
 
 import javax.annotation.Nonnull;
@@ -45,7 +45,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VOManager {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static String setPlaceholders(Player player, String text) {
         if (isPluginEnabled("PlaceholderAPI")) {
@@ -143,7 +143,7 @@ public class VOManager {
             message = replacePlaceholder(message, "{Uuid}", player.getUniqueId().toString());
             message = replacePlaceholder(message, "{Address}", Objects.requireNonNull(player.getAddress()).toString());
             final String finalMessage = message;
-            VOMain.getFoliaLib().getImpl().runAtLocation(player.getLocation(), wrappedTask ->
+            DeluxeVoidWorld.getFoliaLib().getImpl().runAtLocation(player.getLocation(), wrappedTask ->
                     sendActionbar.sendActionBar(player, finalMessage));
         }
     }
@@ -219,7 +219,7 @@ public class VOManager {
         lore.replaceAll(s -> addColor.setColors(setPlaceholders(s)));
         if (skullMeta != null) skullMeta.setLore(lore);
 
-        if (item != null && skullMeta != null) item.setItemMeta(SkullUtils.applySkin(skullMeta, texture));
+        if (item != null && skullMeta != null) item.setItemMeta(XSkull.of(skullMeta).profile(XSkull.SkullInputType.TEXTURE_HASH, texture).apply());
 
         inventory.setItem(slot, item);
     }
@@ -663,31 +663,31 @@ public class VOManager {
     }
 
     public static void syncRunTask(Runnable runnable) {
-        VOMain.getScheduler().runTask(runnable);
+        DeluxeVoidWorld.getScheduler().runTask(runnable);
     }
 
     public static void syncTaskLater(long delay, Runnable runnable) {
-        VOMain.getScheduler().runTaskLater(runnable, delay);
+        DeluxeVoidWorld.getScheduler().runTaskLater(runnable, delay);
     }
 
     public static void synTaskAsynchronously(Runnable runnable) {
-        VOMain.getScheduler().runTaskAsynchronously(runnable);
+        DeluxeVoidWorld.getScheduler().runTaskAsynchronously(runnable);
     }
 
     public static MyScheduledTask syncRepeatingTask(long time, Runnable runnable) {
-        return VOMain.getScheduler().runTaskTimer(runnable, 0L, time);
+        return DeluxeVoidWorld.getScheduler().runTaskTimer(runnable, 0L, time);
     }
 
     public static MyScheduledTask syncRunTaskTimer(long time, Runnable runnable) {
-        return VOMain.getScheduler().runTaskTimer(runnable, 0, time);
+        return DeluxeVoidWorld.getScheduler().runTaskTimer(runnable, 0, time);
     }
 
     public static void syncDelayedTask(int delay, Runnable runnable) {
-        VOMain.getScheduler().runTaskLater(runnable, delay);
+        DeluxeVoidWorld.getScheduler().runTaskLater(runnable, delay);
     }
 
     public static void syncDelayedTask(long time, Runnable runnable) {
-        VOMain.getScheduler().runTaskLater(runnable, time);
+        DeluxeVoidWorld.getScheduler().runTaskLater(runnable, time);
     }
 
     public static void executeSound(@Nonnull String path, final Player player) {

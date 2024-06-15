@@ -4,7 +4,7 @@ import org.h2.jdbc.JdbcConnection;
 import org.h2.message.DbException;
 import ruben_artz.world.database.utils.CacheMethod;
 import ruben_artz.world.database.utils.UnClosableConnection;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.logging.Level;
 
 public class H2Method implements CacheMethod {
     private Connection conn;
-    private VOMain plugin;
+    private DeluxeVoidWorld plugin;
     private Cache cacheInstance;
 
     @Override
@@ -34,7 +34,7 @@ public class H2Method implements CacheMethod {
     }
 
     @Override
-    public void init(VOMain plugin, Cache cacheInstance) {
+    public void init(DeluxeVoidWorld plugin, Cache cacheInstance) {
         this.plugin = plugin;
         this.cacheInstance = cacheInstance;
 

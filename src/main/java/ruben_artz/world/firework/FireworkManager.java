@@ -8,13 +8,13 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 import java.util.ArrayList;
 
 @SuppressWarnings({"ConstantConditions", "RedundantCollectionOperation"})
 public class FireworkManager {
-    private static ArrayList<Entity> fireworks = new ArrayList<>();
+    private static final ArrayList<Entity> fireworks = new ArrayList<>();
 
     public static ArrayList<Entity> getFireworks()
     {
@@ -36,7 +36,7 @@ public class FireworkManager {
 
     public static void launchFirework(final Location location, final ArrayList<Color> colors)
     {
-        String types = VOMain.getInstance().getConfig().getString("ON_VOID_TP.SETTINGS.FIREWORK.TYPE");
+        String types = DeluxeVoidWorld.getInstance().getConfig().getString("ON_VOID_TP.SETTINGS.FIREWORK.TYPE");
         Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
         FireworkMeta fireworkMeta = firework.getFireworkMeta();
         fireworkMeta.addEffects(FireworkEffect.builder().with(FireworkEffect.Type.valueOf(types)).withColor(colors).trail(false).flicker(false).build());
@@ -49,6 +49,6 @@ public class FireworkManager {
             {
                 firework.detonate();
             }
-        }.runTaskLater(VOMain.getInstance(), 2L);
+        }.runTaskLater(DeluxeVoidWorld.getInstance(), 2L);
     }
 }

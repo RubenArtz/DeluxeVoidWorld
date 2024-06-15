@@ -1,6 +1,6 @@
 package ruben_artz.world.configuration;
 
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class UpdateConfig {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void update() {
         VOManager.syncRunTask(() -> {

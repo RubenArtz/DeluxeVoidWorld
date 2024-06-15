@@ -6,14 +6,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import ruben_artz.world.launcher.Launcher;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.menu.VOPlayer;
 import ruben_artz.world.world.VOManager;
 
 import java.util.Objects;
 
 public class VOInventoryClickPlayer implements Listener {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     /*
      * Listener of the VOPlayer class

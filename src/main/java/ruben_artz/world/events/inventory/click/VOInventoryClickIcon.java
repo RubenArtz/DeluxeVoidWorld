@@ -7,12 +7,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import ruben_artz.world.menu.VOHome;
 import ruben_artz.world.menu.VOIcon;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 import java.util.Objects;
 
 public class VOInventoryClickIcon implements Listener {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     /*
     * Event when clicking on the icon inventory.

@@ -3,7 +3,7 @@
 #                                                     (PLAY.STN-STUDIOS.COM @ (C) 2018-2022)
 
 name: 'DeluxeVoidWorld'
-main: 'ruben_artz.world.main.VOMain'
+main: 'ruben_artz.world.main.DeluxeVoidWorld'
 version: '${version}'
 authors: ['Ruben_Artz', 'STN Studios']
 load: 'STARTUP'

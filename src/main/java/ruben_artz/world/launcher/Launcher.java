@@ -21,8 +21,8 @@ import ruben_artz.world.events.inventory.click.VOInventoryClickPlayer;
 import ruben_artz.world.events.world.*;
 import ruben_artz.world.firework.FireworkDamage;
 import ruben_artz.world.firework.FireworkExplode;
-import ruben_artz.world.main.LoadWorld;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.world.LoadWorld;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 import ruben_artz.world.world.VOSlime;
 import ruben_artz.world.world.VOUpdater;
@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class Launcher implements Launch {
-    public VOMain plugin = VOMain.getPlugin(VOMain.class);
+    public DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
     private static Launcher launcher;
     public static Launcher getInstance() {
         return launcher;
@@ -45,7 +45,7 @@ public class Launcher implements Launch {
     @Getter public static Cache cache;
 
     @Override
-    public void launch(VOMain plugin) {
+    public void launch(DeluxeVoidWorld plugin) {
         launcher = this;
         plugin.LoadAllFiles();
         UpdateConfig.update();

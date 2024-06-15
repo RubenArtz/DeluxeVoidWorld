@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.features.sendTitles;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.menu.VOCreate;
 import ruben_artz.world.menu.VOHome;
 import ruben_artz.world.world.VOManager;
@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @SuppressWarnings("IfStatementWithIdenticalBranches")
 public class VOEditing implements Listener {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
     public static MyScheduledTask getBlockX;
     public static MyScheduledTask announce;
     public static MyScheduledTask create;

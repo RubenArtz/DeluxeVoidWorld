@@ -11,7 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.menu.VOHome;
 
 import java.io.File;
@@ -19,7 +19,7 @@ import java.io.IOException;
 
 @SuppressWarnings("ConstantConditions")
 public class VOSlime {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
     private static SlimePlugin slime;
 
     public VOSlime() {
@@ -57,7 +57,7 @@ public class VOSlime {
                 config.set("worlds."+world+".readOnly", false);
                 config.save(configFile);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm reload");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm load "+world+"");
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm load "+world);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
                 VOManager.syncTaskLater(60L, () -> {
                     Location location = VOManager.returnLocation(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN"));
@@ -67,7 +67,7 @@ public class VOSlime {
                 });
             }
         } catch (IOException | WorldAlreadyExistsException exception) {
-            exception.printStackTrace();
+            throw new RuntimeException();
         }
     }
 }

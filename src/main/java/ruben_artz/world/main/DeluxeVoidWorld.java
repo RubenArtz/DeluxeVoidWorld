@@ -36,9 +36,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @SuppressWarnings("deprecation")
-public class VOMain extends JavaPlugin {
-    private static VOMain plugin;
-    public static VOMain getInstance() {
+public class DeluxeVoidWorld extends JavaPlugin {
+    private static DeluxeVoidWorld plugin;
+    public static DeluxeVoidWorld getInstance() {
         return plugin;
     }
 
@@ -80,7 +80,7 @@ public class VOMain extends JavaPlugin {
         try {
             Path downloadPath = Paths.get(getDataFolder().getPath() + File.separator + "cache" + File.separator + "libs");
             ApplicationBuilder.appending("DeluxeVoidWorld")
-                    //.logger(new SlimJarLogger(this))
+                    .logger(new SlimJarLogger(this))
                     .downloadDirectoryPath(downloadPath)
                     .mirrorSelector((a, b) -> a)
                     .internalRepositories(Collections.singleton(new Repository(new URL("https://repo1.maven.org/maven2/"))))
@@ -103,7 +103,7 @@ public class VOMain extends JavaPlugin {
         try {
             this.launch = Class.forName("ruben_artz.world.launcher.Launcher").asSubclass(Launch.class).newInstance();
             VOManager.syncRunTask(() -> {
-                VOMain.this.launch.launch(VOMain.this);
+                DeluxeVoidWorld.this.launch.launch(DeluxeVoidWorld.this);
                 inventory = new ArrayList<>();
                 message = new ArrayList<>();
             });
@@ -175,7 +175,7 @@ public class VOMain extends JavaPlugin {
     public void getReloadPlugin() {
         if (Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.CHECK_UPDATE")).contains("true")) {
             VOUpdater.shutdown();
-            VOMain.getScheduler().scheduleSyncDelayedTask(VOUpdater::setEnabled, 20L);
+            DeluxeVoidWorld.getScheduler().scheduleSyncDelayedTask(VOUpdater::setEnabled, 20L);
         } else {
             VOUpdater.shutdown();
         }

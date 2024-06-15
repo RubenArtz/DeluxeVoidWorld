@@ -4,7 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
 import ruben_artz.world.database.utils.CacheMethod;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class MysqlMethod implements CacheMethod {
     private final HikariConfig hikariConfig = new HikariConfig();
 
     @Override
-    public void init(VOMain plugin, Cache cacheInstance) {
+    public void init(DeluxeVoidWorld plugin, Cache cacheInstance) {
         String host = plugin.getConfig().getString("ADMIN-CONFIG.DATABASE.HOST");
         String username = plugin.getConfig().getString("ADMIN-CONFIG.DATABASE.USER");
         String password = plugin.getConfig().getString("ADMIN-CONFIG.DATABASE.PASSWORD");
@@ -52,7 +52,7 @@ public class MysqlMethod implements CacheMethod {
         }
     }
 
-    private String setParameters(VOMain plugin) {
+    private String setParameters(DeluxeVoidWorld plugin) {
         List<String> parameterList = plugin.getConfig().getStringList("ADMIN-CONFIG.DATABASE.PARAMETERS");
 
         StringBuilder stringBuilder = new StringBuilder();

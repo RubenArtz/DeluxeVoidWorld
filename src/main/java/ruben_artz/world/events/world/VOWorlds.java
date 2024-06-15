@@ -7,13 +7,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import ruben_artz.world.features.addColor;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 import java.util.Objects;
 
 public class VOWorlds implements Listener {
-    public final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    public final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     @SuppressWarnings("ConstantConditions")
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -87,7 +87,7 @@ public class VOWorlds implements Listener {
                 tempCommand = VOManager.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
                 tempCommand = VOManager.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
-                VOMain.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand)));
+                DeluxeVoidWorld.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand)));
             }
         } else if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "PLAYER")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
@@ -95,7 +95,7 @@ public class VOWorlds implements Listener {
                 tempCommand = VOManager.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
                 tempCommand = VOManager.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
-                VOMain.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(player, addColor.setColors(finalCommand)));
+                DeluxeVoidWorld.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(player, addColor.setColors(finalCommand)));
             }
         }
     }

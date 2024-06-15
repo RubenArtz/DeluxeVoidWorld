@@ -7,10 +7,10 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ruben_artz.world.events.chat.VOEditing;
 import ruben_artz.world.menu.VOHome;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 public class VOInventoryClose implements Listener {
-    private final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     /*
     Cancel the task of the items to be updated

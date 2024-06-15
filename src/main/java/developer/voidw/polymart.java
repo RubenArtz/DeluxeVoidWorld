@@ -2,10 +2,10 @@ package developer.voidw;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 public class polymart {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void setLicense() {
         if (strings.isTrue()) {

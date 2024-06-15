@@ -10,12 +10,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import ruben_artz.world.events.world.antibot.preventAttacks;
 import ruben_artz.world.features.addColor;
 import ruben_artz.world.launcher.Launcher;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 import ruben_artz.world.world.VOUpdater;
 
 public class VOJoin implements Listener {
-    private final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void verifyPlayer(PlayerJoinEvent event) {

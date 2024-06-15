@@ -1,8 +1,8 @@
-package ruben_artz.world.main;
+package ruben_artz.world.world;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import ruben_artz.world.world.VOManager;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LoadWorld {
-    private final static VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private final static DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void setTime() {
         VOManager.syncTaskLater(200, () -> VOManager.syncRunTaskTimer(200, () -> {

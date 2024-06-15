@@ -4,10 +4,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 
 public class VOLeave implements Listener {
-    public final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    public final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     @EventHandler
     public void onPlayerQuitEffects(PlayerQuitEvent event) {

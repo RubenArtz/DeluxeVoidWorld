@@ -15,13 +15,13 @@ import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.menu.VOHome;
 import ruben_artz.world.menu.VOIcon;
 import ruben_artz.world.world.VOArrays;
-import ruben_artz.world.main.VOMain;
+import ruben_artz.world.main.DeluxeVoidWorld;
 import ruben_artz.world.world.VOManager;
 
 import java.util.Objects;
 
 public class VOInventoryClickHome implements Listener {
-    private static final VOMain plugin = VOMain.getPlugin(VOMain.class);
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     /*
      * Event when clicking on normal items
@@ -42,10 +42,10 @@ public class VOInventoryClickHome implements Listener {
                         if (slot == plugin.getMenuHome().getInt("MAIN.ADD_WORLD.SLOT")) {
                             plugin.getChat().add(player.getUniqueId());
                             player.closeInventory();
-                            VOEditing.announce = VOMain.getScheduler().runTaskTimerAsynchronously(() -> {
+                            VOEditing.announce = DeluxeVoidWorld.getScheduler().runTaskTimerAsynchronously(() -> {
                                 for (String Titlelist : plugin.getFileTranslations().getStringList("MESSAGE_CREATE_WORLD")) {
                                     String[] Title = Titlelist.split(";");
-                                    VOMain.getScheduler().runTaskAsynchronously(() ->
+                                    DeluxeVoidWorld.getScheduler().runTaskAsynchronously(() ->
                                             sendTitles.sendTitle(player, Integer.parseInt(Title[0]), Integer.parseInt(Title[1]), Integer.parseInt(Title[2]), Title[3], Title[4]));
                                 }
                             }, 0L, 50L);
@@ -55,10 +55,10 @@ public class VOInventoryClickHome implements Listener {
                             Bukkit.dispatchCommand(player, "dew reload");
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.CREATE_WORLD.SLOT")) {
                             player.closeInventory();
-                            VOEditing.create = VOMain.getScheduler().runTaskTimerAsynchronously(() -> {
+                            VOEditing.create = DeluxeVoidWorld.getScheduler().runTaskTimerAsynchronously(() -> {
                                 for (String title : plugin.getFileTranslations().getStringList("MESSAGE_CREATE_WORLD_EMPTY")) {
                                     String[] list = title.split(";");
-                                    VOMain.getScheduler().runTaskAsynchronously(() ->
+                                    DeluxeVoidWorld.getScheduler().runTaskAsynchronously(() ->
                                             sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]));
                                 }
                             }, 0L, 50L);
