@@ -464,7 +464,7 @@ public class ProjectUtils {
         world.setAutoSave(autoSave);
         worldBorder.setCenter(0, 0);
         worldBorder.setSize(borderSize);
-        if (isVersion_1_16_To_1_20()) {
+        if (isVersion_1_16_To_1_21()) {
             world.setGameRuleValue(GameRule.DO_DAYLIGHT_CYCLE.getName(), "false");
             world.setGameRuleValue(GameRule.MOB_GRIEFING.getName(), "false");
             world.setGameRuleValue(GameRule.DO_FIRE_TICK.getName(), "false");
@@ -523,11 +523,11 @@ public class ProjectUtils {
 
     // Gets the map coordinates
     public static String setLocation(String custom) {
-        return custom + "," + 0 + "," + 80 + "," + 0 + "," + 0.0 + "," + 0.0;
+        return custom + "," + 0 + "," + 82 + "," + 0 + "," + 0.0 + "," + 0.0;
     }
 
     public static String setLocation(String custom, String type) {
-        return custom + "," + 0 + "," + 80 + "," + 0 + "," + 0.0 + "," + 0.0 + "," + type;
+        return custom + "," + 0 + "," + 82 + "," + 0 + "," + 0.0 + "," + 0.0 + "," + type;
     }
 
     // Return map coordinates
@@ -638,7 +638,7 @@ public class ProjectUtils {
     /*
      * It will check if they are using versions 1.10-1.19.
      */
-    public static boolean isVersion_1_10_To_1_20() {
+    public static boolean isVersion_1_10_To_1_21() {
         return Bukkit.getVersion().contains("1.10")
                 || (Bukkit.getVersion().contains("1.11"))
                 || (Bukkit.getVersion().contains("1.12"))
@@ -649,15 +649,17 @@ public class ProjectUtils {
                 || (Bukkit.getVersion().contains("1.17"))
                 || (Bukkit.getVersion().contains("1.18"))
                 || (Bukkit.getVersion().contains("1.19"))
-                || (Bukkit.getVersion().contains("1.20"));
+                || (Bukkit.getVersion().contains("1.20"))
+                || (Bukkit.getVersion().contains("1.21"));
     }
 
-    public static boolean isVersion_1_16_To_1_20() {
+    public static boolean isVersion_1_16_To_1_21() {
         return (Bukkit.getVersion().contains("1.16"))
                 || (Bukkit.getVersion().contains("1.17"))
                 || (Bukkit.getVersion().contains("1.18"))
                 || (Bukkit.getVersion().contains("1.19"))
-                || (Bukkit.getVersion().contains("1.20"));
+                || (Bukkit.getVersion().contains("1.20"))
+                || (Bukkit.getVersion().contains("1.21"));
     }
 
     public static boolean isMySQL() {
