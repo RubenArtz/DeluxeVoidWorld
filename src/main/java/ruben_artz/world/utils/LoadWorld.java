@@ -13,7 +13,7 @@ public class LoadWorld {
     private final static DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void setTime() {
-        ProjectUtils.syncTaskLater(200, () -> ProjectUtils.syncRunTaskTimer(200, () -> {
+        ProjectUtils.runTaskLater(200, () -> ProjectUtils.runTaskTimer(200, () -> {
             for (String key : Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false)) {
                 final String[] name = Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + key + ".SPAWN")).split(",");
 
@@ -33,7 +33,7 @@ public class LoadWorld {
     }
 
     public static void setWorlds() {
-        ProjectUtils.syncTaskLater(5, () -> {
+        ProjectUtils.runTaskLater(5, () -> {
             for (World worlds : Bukkit.getServer().getWorlds()) {
                 final String worldName = worlds.getName();
                 if (plugin.getWorlds().getString("WORLDS." + worldName + ".ALWAYS-DAY") == null) {
@@ -75,7 +75,7 @@ public class LoadWorld {
     }
 
     public static void ifConfigWorld() {
-        ProjectUtils.syncTaskLater(5, () -> {
+        ProjectUtils.runTaskLater(5, () -> {
             for (String keys : plugin.getConfig().getStringList("ON_VOID_TP.DO_NOT_TOUCH_WORLDS")) {
                 String[] name = keys.split(",");
                 if (plugin.getGenerated().getString(("WORLDS." + name[0] + ".ENVIROMENT")) == null) {
@@ -106,7 +106,7 @@ public class LoadWorld {
     }
 
     public static void loadWorld() {
-        ProjectUtils.syncTaskLater(10, () -> {
+        ProjectUtils.runTaskLater(10, () -> {
             if (plugin.getGenerated().contains("WORLDS")) {
                 for (String key : Objects.requireNonNull(plugin.getGenerated().getConfigurationSection("WORLDS")).getKeys(false)) {
                     String source = Bukkit.getWorldContainer().getPath();

@@ -32,7 +32,7 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getChat().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
+                    ProjectUtils.runTask(() -> Home.getInventory(player, 1));
                 } else {
                     Home.getInventory(player, 1);
                 }
@@ -44,7 +44,7 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getChat_get().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
+                    ProjectUtils.runTask(() -> Home.getInventory(player, 1));
                 } else {
                     Home.getInventory(player, 1);
                 }
@@ -57,7 +57,7 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getCreate_world().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
+                    ProjectUtils.runTask(() -> Home.getInventory(player, 1));
                 } else {
                     Home.getInventory(player, 1);
                 }
@@ -77,9 +77,9 @@ public class VOEditing implements Listener {
             event.setCancelled(true);
             plugin.addMessage(new VOString(player.getName(), message));
             if (event.isAsynchronous()) {
-                ProjectUtils.syncRunTask(() -> Create.openInventory(player));
+                ProjectUtils.runTask(() -> Create.openInventory(player));
             } else {
-                ProjectUtils.syncRunTask(() -> Create.openInventory(player));
+                ProjectUtils.runTask(() -> Create.openInventory(player));
             }
             create.cancel();
             sendTitles.clearTitle(player);
@@ -107,7 +107,7 @@ public class VOEditing implements Listener {
 
             plugin.files.saveFile("worlds.yml");
             if (event.isAsynchronous()) {
-                ProjectUtils.syncRunTask(() -> {
+                ProjectUtils.runTask(() -> {
                     Home.getInventory(player, 1);
                     ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
                 });
@@ -133,7 +133,7 @@ public class VOEditing implements Listener {
                     plugin.getWorlds().set("WORLDS." +player.getWorld().getName()+ ".VOID-POSITION", Integer.parseInt(event.getMessage()));
                     plugin.files.saveFile("worlds.yml");
                     if (event.isAsynchronous()) {
-                        ProjectUtils.syncRunTask(() -> Home.getInventory(player, 1));
+                        ProjectUtils.runTask(() -> Home.getInventory(player, 1));
                     } else {
                         Home.getInventory(player, 1);
                     }

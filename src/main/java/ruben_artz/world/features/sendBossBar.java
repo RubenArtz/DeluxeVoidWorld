@@ -28,7 +28,7 @@ public class sendBossBar {
         audience.showBossBar(bossColor);
 
         for (int i = 1; i <= 6; i++) {
-            ProjectUtils.syncDelayedTask(20 * i, () -> {
+            ProjectUtils.runTaskLater(20 * i, () -> {
                 if (bossColor.progress() >= 0.2f) {
                     bossColor.progress(bossColor.progress() - 0.2f);
                 } else {

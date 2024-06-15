@@ -39,7 +39,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM")), player);
                                 Launcher.getCache().setUpdate(player.getUniqueId(), "TELEPORT", false);
                             }
-                            ProjectUtils.syncDelayedTask(3L, () -> Player.getInventory(player));
+                            ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
                         } else {
                             if (plugin.getBoolean().getBoolean("MAIN.PLAYER.SOUNDS.PERMISSION.ENABLED")) {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);
@@ -56,7 +56,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM")), player);
                                 Launcher.getCache().setUpdate(player.getUniqueId(), "JUMP", false);
                             }
-                           ProjectUtils.syncDelayedTask(3L, () -> Player.getInventory(player));
+                           ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
                         } else {
                             if (plugin.getBoolean().getBoolean("MAIN.PLAYER.SOUNDS.PERMISSION.ENABLED")) {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);
@@ -73,7 +73,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM")), player);
                                 Launcher.getCache().setUpdate(player.getUniqueId(), "LIGHTNING", false);
                             }
-                           ProjectUtils.syncDelayedTask(3L, () -> Player.getInventory(player));
+                           ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
                         } else {
                             if (plugin.getBoolean().getBoolean("MAIN.PLAYER.SOUNDS.PERMISSION.ENABLED")) {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);
@@ -90,7 +90,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM")), player);
                                 Launcher.getCache().setUpdate(player.getUniqueId(), "PARTICLES", false);
                             }
-                            ProjectUtils.syncDelayedTask(3L, () -> Player.getInventory(player));
+                            ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
                         } else {
                             if (plugin.getBoolean().getBoolean("MAIN.PLAYER.SOUNDS.PERMISSION.ENABLED")) {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);

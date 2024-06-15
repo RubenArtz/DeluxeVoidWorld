@@ -3,6 +3,7 @@ package ruben_artz.world.utils;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSkull;
 import com.cryptomorin.xseries.XSound;
+import com.github.Anon8281.universalScheduler.bukkitScheduler.BukkitScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -405,7 +407,7 @@ public class ProjectUtils {
      * Create an empty world from the player's gui
      */
     public static void createWorldsDeluxe(Player player, String name, String type) {
-        syncRunTask(() -> {
+        runTask(() -> {
             if (Bukkit.getWorld(name) == null) {
                 // Adding the world name in config.yml
                 ArrayList<String> worlds = (ArrayList<String>) plugin.getConfig().getStringList("ON_VOID_TP.DO_NOT_TOUCH_WORLDS");
@@ -462,7 +464,7 @@ public class ProjectUtils {
         world.setAutoSave(autoSave);
         worldBorder.setCenter(0, 0);
         worldBorder.setSize(borderSize);
-        if (isVersion_1_16_To_1_19()) {
+        if (isVersion_1_16_To_1_20()) {
             world.setGameRuleValue(GameRule.DO_DAYLIGHT_CYCLE.getName(), "false");
             world.setGameRuleValue(GameRule.MOB_GRIEFING.getName(), "false");
             world.setGameRuleValue(GameRule.DO_FIRE_TICK.getName(), "false");
@@ -481,7 +483,7 @@ public class ProjectUtils {
                 0)
         );
         teleportPlayer(player , name);
-        syncTaskLater(70, () -> {
+        runTaskLater(70, () -> {
             Optional<ManagedWorld> optional = ultraRegionsAPI.getWorlds().find(player.getWorld());
             if (optional.isPresent()) {
                 optional.get().setDifficulty(Difficulty.PEACEFUL);
@@ -495,7 +497,7 @@ public class ProjectUtils {
     }
 
     private static void teleportPlayer(Player player, String name) {
-        syncTaskLater(60L, () -> {
+        runTaskLater(60L, () -> {
             Location location = returnLocation(Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + name + ".SPAWN")));
             PaperLib.teleportAsync(player, location).thenAccept(result -> {
                 if (result) {
@@ -601,7 +603,7 @@ public class ProjectUtils {
             PotionEffect potionEffectAdd = new PotionEffect(PotionEffectType.BLINDNESS, 10 * 20, 5, false, false);
             player.addPotionEffect(potionEffectAdd);
         } else if (type.equalsIgnoreCase("REMOVE")) {
-            syncTaskLater(plugin.getConfig().getInt("ON_VOID_TP.SETTINGS.BACKGROUND_EFFECT.TIME-REMOVE"), () -> player.removePotionEffect(PotionEffectType.BLINDNESS));
+            runTaskLater(plugin.getConfig().getInt("ON_VOID_TP.SETTINGS.BACKGROUND_EFFECT.TIME-REMOVE"), () -> player.removePotionEffect(PotionEffectType.BLINDNESS));
         }
     }
 
@@ -636,7 +638,7 @@ public class ProjectUtils {
     /*
      * It will check if they are using versions 1.10-1.19.
      */
-    public static boolean isVersion_1_10_To_1_19() {
+    public static boolean isVersion_1_10_To_1_20() {
         return Bukkit.getVersion().contains("1.10")
                 || (Bukkit.getVersion().contains("1.11"))
                 || (Bukkit.getVersion().contains("1.12"))
@@ -650,7 +652,7 @@ public class ProjectUtils {
                 || (Bukkit.getVersion().contains("1.20"));
     }
 
-    public static boolean isVersion_1_16_To_1_19() {
+    public static boolean isVersion_1_16_To_1_20() {
         return (Bukkit.getVersion().contains("1.16"))
                 || (Bukkit.getVersion().contains("1.17"))
                 || (Bukkit.getVersion().contains("1.18"))
@@ -662,32 +664,33 @@ public class ProjectUtils {
         return Objects.equals(plugin.getConfig().getString("ADMIN-CONFIG.DATABASE.ENABLED"), "true");
     }
 
-    public static void syncRunTask(Runnable runnable) {
+    public static void runTask(Runnable runnable) {
         DeluxeVoidWorld.getScheduler().runTask(runnable);
     }
 
-    public static void syncTaskLater(long delay, Runnable runnable) {
+    public static void runTaskLater(long delay, Runnable runnable) {
         DeluxeVoidWorld.getScheduler().runTaskLater(runnable, delay);
     }
 
-    public static void synTaskAsynchronously(Runnable runnable) {
+    public static void runTaskAsynchronously(Runnable runnable) {
         DeluxeVoidWorld.getScheduler().runTaskAsynchronously(runnable);
     }
 
-    public static MyScheduledTask syncRepeatingTask(long time, Runnable runnable) {
+    public static MyScheduledTask runTaskTimer(long time, Runnable runnable) {
         return DeluxeVoidWorld.getScheduler().runTaskTimer(runnable, 0L, time);
     }
 
-    public static MyScheduledTask syncRunTaskTimer(long time, Runnable runnable) {
-        return DeluxeVoidWorld.getScheduler().runTaskTimer(runnable, 0, time);
-    }
+    public static void runTaskTimerTick(final Runnable runnable) {
+        BukkitScheduler bukkitScheduler = new BukkitScheduler(plugin);
+        AtomicLong repeater = new AtomicLong(5);
 
-    public static void syncDelayedTask(int delay, Runnable runnable) {
-        DeluxeVoidWorld.getScheduler().runTaskLater(runnable, delay);
-    }
+        bukkitScheduler.runTaskTimer(() -> {
 
-    public static void syncDelayedTask(long time, Runnable runnable) {
-        DeluxeVoidWorld.getScheduler().runTaskLater(runnable, time);
+            runnable.run();
+            if (repeater.decrementAndGet() <= 0) {
+                bukkitScheduler.cancelTasks(plugin);
+            }
+        }, 0L, 7L);
     }
 
     public static void executeSound(@Nonnull String path, final Player player) {

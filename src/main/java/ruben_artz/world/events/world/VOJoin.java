@@ -20,7 +20,7 @@ public class VOJoin implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void verifyPlayer(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ProjectUtils.synTaskAsynchronously(() -> {
+        ProjectUtils.runTaskAsynchronously(() -> {
             /*
              * Add data if the player does not exist!
              */
@@ -40,7 +40,7 @@ public class VOJoin implements Listener {
     public void onAuthor(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if ("Ruben_Artz".equals(player.getName())) {
-            ProjectUtils.syncRunTask(() -> {
+            ProjectUtils.runTask(() -> {
                 Updater.getUpdater();
                 player.sendMessage(addColor.setColors("&8« » =========== &e✯ &9&lDeluxe Void World &e✯ &8=========== « »"));
                 player.sendMessage(addColor.setColors("&f"));

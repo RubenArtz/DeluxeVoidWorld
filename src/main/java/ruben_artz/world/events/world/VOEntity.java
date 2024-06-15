@@ -20,7 +20,7 @@ public class VOEntity implements Listener {
         }
         if (plugin.getDamage().contains(event.getEntity().getUniqueId())) {
             event.setCancelled(true);
-            ProjectUtils.syncTaskLater(200, () -> plugin.getDamage().clear());
+            ProjectUtils.runTaskLater(200, () -> plugin.getDamage().clear());
         }
     }
 }

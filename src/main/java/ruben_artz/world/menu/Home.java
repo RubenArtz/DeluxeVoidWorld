@@ -31,12 +31,12 @@ public class Home {
     This method creates the inventory
      */
     public static void getInventory(Player player, int currentPage) {
-        ProjectUtils.syncRunTask(() -> {
+        ProjectUtils.runTask(() -> {
             inventory = Bukkit.createInventory(null, 54, title);
            /*
            This method updates the item, lore and name
            */
-            task = ProjectUtils.syncRunTaskTimer(20, () -> {
+            task = ProjectUtils.runTaskTimer(20, () -> {
                 /*
                  * Adding crystals
                  */

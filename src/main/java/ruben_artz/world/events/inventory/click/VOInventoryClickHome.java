@@ -62,7 +62,7 @@ public class VOInventoryClickHome implements Listener {
                                             sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]));
                                 }
                             }, 0L, 50L);
-                            ProjectUtils.syncTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
+                            ProjectUtils.runTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.NEXT.SLOT") && event.getCurrentItem().getType().equals(XMaterial.valueOf(plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL")).parseMaterial())) {
                             int currentPage = inventory.getPage();
                             int newPage = currentPage + 1;
@@ -140,7 +140,7 @@ public class VOInventoryClickHome implements Listener {
                                         if (player.getWorld().equals(world1)) {
                                             plugin.chat_get.add(player.getUniqueId());
                                             player.closeInventory();
-                                            VOEditing.getBlockX = ProjectUtils.syncRepeatingTask(50L, () -> ProjectUtils.synTaskAsynchronously(() -> {
+                                            VOEditing.getBlockX = ProjectUtils.runTaskTimer(50L, () -> ProjectUtils.runTaskAsynchronously(() -> {
                                                 for (String Titlelist : plugin.getFileTranslations().getStringList("MESSAGE_EDIT_BLOCK_Y")) {
                                                     String[] Title = Titlelist.split(";");
                                                     sendTitles.sendTitle(player, Integer.parseInt(Title[0]), Integer.parseInt(Title[1]), Integer.parseInt(Title[2]), Title[3], Title[4]);

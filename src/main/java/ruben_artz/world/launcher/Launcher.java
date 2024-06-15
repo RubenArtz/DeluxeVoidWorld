@@ -120,7 +120,7 @@ public class Launcher implements Launch {
     }
 
     private void getMetrics() {
-        ProjectUtils.syncTaskLater(60, () -> {
+        ProjectUtils.runTaskLater(60, () -> {
             final Metrics metrics = new Metrics(plugin, 9736);
             for (String key : Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false)) {
                 if (plugin.getWorlds().getString("WORLDS."+key+".TP-WHEN-FALLING") == null) {
@@ -138,7 +138,7 @@ public class Launcher implements Launch {
     }
 
     private void getNumbers() {
-        ProjectUtils.syncTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
+        ProjectUtils.runTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
     }
 
     public static int getNumberWorlds() {

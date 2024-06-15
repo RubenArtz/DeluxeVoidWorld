@@ -15,7 +15,7 @@ public class UpdateConfig {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void update() {
-        ProjectUtils.syncRunTask(() -> {
+        ProjectUtils.runTask(() -> {
             /*
             Update config of "config.yml"
              */
@@ -58,7 +58,7 @@ public class UpdateConfig {
                     throw new RuntimeException(e);
                 }
             }
-            ProjectUtils.syncTaskLater(10L, () -> {
+            ProjectUtils.runTaskLater(10L, () -> {
                 /*
                 Update config of "lang.file"
                  */
@@ -77,7 +77,7 @@ public class UpdateConfig {
             /*
             Update config of "menus.file"
              */
-            ProjectUtils.syncTaskLater(15L, () -> {
+            ProjectUtils.runTaskLater(15L, () -> {
                 if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.7")) {
                     File f = new File(plugin.getDataFolder(), "/menus/");
                     File[] files = f.listFiles();

@@ -103,11 +103,11 @@ public class DeluxeVoidWorld extends JavaPlugin {
         plugin = this;
         try {
             this.launch = Class.forName("ruben_artz.world.launcher.Launcher").asSubclass(Launch.class).newInstance();
-            ProjectUtils.syncRunTask(() -> {
-                DeluxeVoidWorld.this.launch.launch(DeluxeVoidWorld.this);
-                inventory = new ArrayList<>();
-                message = new ArrayList<>();
-            });
+
+            DeluxeVoidWorld.this.launch.launch(DeluxeVoidWorld.this);
+
+            inventory = new ArrayList<>();
+            message = new ArrayList<>();
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -173,6 +173,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
     }
+
     public void getReloadPlugin() {
         if (Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.CHECK_UPDATE")).contains("true")) {
             Updater.shutdown();
@@ -184,7 +185,6 @@ public class DeluxeVoidWorld extends JavaPlugin {
         Launcher.getInstance().registerEvents();
         LoadAllFiles();
     }
-
 
     public void sendConsole(String s) {
         Bukkit.getConsoleSender().sendMessage(addColor.setColors(s));
@@ -198,9 +198,11 @@ public class DeluxeVoidWorld extends JavaPlugin {
         }
         return null;
     }
+
     public void addInventory(playerPageInfo number) {
         getInventory().add(number);
     }
+
     public void removeInventory(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             if (getInventory().get(i).getPlayer().getName().equals(name)) {
@@ -208,8 +210,9 @@ public class DeluxeVoidWorld extends JavaPlugin {
             }
         }
     }
+
     public void getMessages(){
-        ProjectUtils.syncTaskLater(16L, () -> {
+        ProjectUtils.runTaskLater(16L, () -> {
             sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + version);
             sendConsole("&8--------------------------------------------------------------------------------------");
             sendConsole("&7         Developed by &c"+authors);
