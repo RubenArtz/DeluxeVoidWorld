@@ -204,12 +204,10 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
 
     public void removeInventory(String name) {
-        for (int i = 0; i < getInventory().size(); i++) {
-            if (getInventory().get(i).getPlayer().getName().equals(name)) {
-                getInventory().clear();
-            }
-        }
+        // Remove the specific inventory entry
+        getInventory().removeIf(inv -> inv.getPlayer().getName().equals(name));
     }
+
 
     public void getMessages(){
         ProjectUtils.runTaskLater(16L, () -> {
