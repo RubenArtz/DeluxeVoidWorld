@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ruben_artz'
-version = '4.5.20'
+version = '4.6.21'
 
 registerOutputTask('Ruben_Artz', 'D:\\Ruben_Artz\\STN Studios\\Development\\plugins')
 
@@ -68,18 +68,18 @@ dependencies {
     implementation 'net.kyori:adventure-text-minimessage:4.17.0'
     implementation 'net.kyori:adventure-platform-bukkit:4.3.3'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
+
     /*
     Keep up to date
     Url: https://github.com/Anon8281/UniversalScheduler
      */
-    implementation 'com.github.Anon8281:UniversalScheduler:0.1.6'
+    slim 'com.github.Anon8281:UniversalScheduler:0.1.6'
     implementation "io.papermc:paperlib:1.0.7"
     /*
     Keep up to date
     Url: https://github.com/TechnicallyCoded/FoliaLib
      */
-    implementation "com.tcoded:FoliaLib:0.3.1"
-
+    slim "com.tcoded:FoliaLib:0.3.1"
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:2.1.214'
     slim 'org.slf4j:slf4j-simple:2.0.3'
@@ -104,9 +104,7 @@ shadowJar {
     relocate("io.github.slimjar", "ruben_artz.world.libs.slimjar")
     relocate("net.kyori", "ruben_artz.world.libs.kyori")
     relocate("org.bstats", "ruben_artz.world.libs.bstats")
-    relocate('com.github.Anon8281.universalScheduler', 'ruben_artz.world.libs.universalScheduler')
     relocate('io.papermc.lib', 'ruben_artz.world.libs.paperlib')
-    relocate('com.tcoded.folialib', 'ruben_artz.world.libs.folialib')
 }
 
 slimJar {
@@ -114,6 +112,8 @@ slimJar {
     relocate("com.zaxxer.hikari", "ruben_artz.world.libs.hikari")
     relocate("org.h2", "ruben_artz.world.libs.h2")
     relocate("okhttp3", "ruben_artz.world.libs.okhttp3")
+    relocate('com.github.Anon8281.universalScheduler', 'ruben_artz.world.libs.universalScheduler')
+    relocate('com.tcoded.folialib', 'ruben_artz.world.libs.folialib')
 }
 
 tasks.withType(JavaCompile).configureEach {
