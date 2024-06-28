@@ -1,8 +1,10 @@
 package ruben_artz.world.utils;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.cryptomorin.xseries.XSkull;
 import com.cryptomorin.xseries.XSound;
+import com.cryptomorin.xseries.profiles.builder.XSkull;
+import com.cryptomorin.xseries.profiles.objects.ProfileInputType;
+import com.cryptomorin.xseries.profiles.objects.Profileable;
 import com.github.Anon8281.universalScheduler.bukkitScheduler.BukkitScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import com.onarandombox.MultiverseCore.MultiverseCore;
@@ -221,7 +223,7 @@ public class ProjectUtils {
         lore.replaceAll(s -> addColor.setColors(setPlaceholders(s)));
         if (skullMeta != null) skullMeta.setLore(lore);
 
-        if (item != null && skullMeta != null) item.setItemMeta(XSkull.of(skullMeta).profile(XSkull.SkullInputType.TEXTURE_HASH, texture).apply());
+        if (item != null && skullMeta != null) item.setItemMeta(XSkull.of(skullMeta).profile(Profileable.of(ProfileInputType.TEXTURE_HASH, texture)).apply());
 
         inventory.setItem(slot, item);
     }
