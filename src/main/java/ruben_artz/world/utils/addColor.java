@@ -1,4 +1,4 @@
-package ruben_artz.world.features;
+package ruben_artz.world.utils;
 
 import com.google.common.collect.ImmutableMap;
 import net.kyori.adventure.audience.Audience;
@@ -8,16 +8,12 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.ProjectUtils;
 
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
-import java.util.stream.Collectors;
 
 public class addColor {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
-    private static final LegacyComponentSerializer unusualHexSerializer = LegacyComponentSerializer.builder().hexColors().useUnusualXRepeatedCharacterHexFormat().build();
 
     public static void sendMessage(Player player, String message) {
         Audience audience = plugin.getAudiences(player);
@@ -32,14 +28,9 @@ public class addColor {
     }
 
     public static String setColors(String input) {
-        if ((input == null) || (input.isEmpty())) return input;
-        final Component component = LegacyComponentSerializer.legacyAmpersand().deserialize(input);
-        return unusualHexSerializer.serialize(component);
-    }
+        Component component = addColors(input);
 
-    public static List<String> setColors(List<String> input) {
-        if ((input == null) || (input.isEmpty())) return input;
-        return input.stream().map(addColor::setColors).collect(Collectors.toList());
+        return LegacyComponentSerializer.legacySection().serialize(component);
     }
 
     private static final ImmutableMap<String, String> colorReplacements = new ImmutableMap.Builder<String, String>()
@@ -75,27 +66,5 @@ public class addColor {
             msg = msg.replaceAll(Matcher.quoteReplacement(((char)0x00b7)+legacy), Matcher.quoteReplacement(mini));
         }
         return msg;
-    }
-
-    public enum ColorCode {
-        COLOR_RESET("\u001B[0m"),
-        COLOR_BLACK("\u001B[30m"),
-        COLOR_RED("\u001B[31m"),
-        COLOR_GREEN("\u001B[32m"),
-        COLOR_YELLOW("\u001B[33m"),
-        COLOR_BLUE("\u001B[34m"),
-        COLOR_PURPLE("\u001B[35m"),
-        COLOR_CYAN("\u001B[36m"),
-        COLOR_WHITE("\u001B[37m");
-
-        public final String code;
-
-        ColorCode(String code) {
-            this.code = code;
-        }
-
-        public static String colorizeConsole(ColorCode color, Object message) {
-            return color.code + message + ColorCode.COLOR_RESET.code;
-        }
     }
 }

@@ -147,8 +147,8 @@ public class ProjectUtils {
             message = replacePlaceholder(message, "{Uuid}", player.getUniqueId().toString());
             message = replacePlaceholder(message, "{Address}", Objects.requireNonNull(player.getAddress()).toString());
             final String finalMessage = message;
-            DeluxeVoidWorld.getFoliaLib().getImpl().runAtLocation(player.getLocation(), wrappedTask ->
-                    sendActionbar.sendActionBar(player, finalMessage));
+
+            sendActionbar.sendActionBar(player, finalMessage);
         }
     }
 

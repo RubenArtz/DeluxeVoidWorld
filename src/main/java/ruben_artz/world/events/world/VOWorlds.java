@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import ruben_artz.world.features.addColor;
+import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
 
@@ -87,7 +87,7 @@ public class VOWorlds implements Listener {
                 tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
                 tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
-                DeluxeVoidWorld.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand)));
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand));
             }
         } else if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "PLAYER")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
@@ -95,7 +95,7 @@ public class VOWorlds implements Listener {
                 tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
                 tempCommand = ProjectUtils.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
-                DeluxeVoidWorld.getFoliaLib().getImpl().runNextTick((task) -> Bukkit.dispatchCommand(player, addColor.setColors(finalCommand)));
+                Bukkit.dispatchCommand(player, addColor.setColors(finalCommand));
             }
         }
     }

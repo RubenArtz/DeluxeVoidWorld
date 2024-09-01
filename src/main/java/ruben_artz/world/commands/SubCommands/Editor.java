@@ -2,7 +2,7 @@ package ruben_artz.world.commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ruben_artz.world.features.addColor;
+import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 import ruben_artz.world.menu.Home;

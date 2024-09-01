@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import ruben_artz.world.events.chat.VOEditing;
-import ruben_artz.world.features.addColor;
+import ruben_artz.world.utils.addColor;
 import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.menu.Home;
 import ruben_artz.world.menu.Icon;

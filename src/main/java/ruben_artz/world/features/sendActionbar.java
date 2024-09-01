@@ -4,6 +4,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
 

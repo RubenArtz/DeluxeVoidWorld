@@ -8,7 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import ruben_artz.world.events.world.antibot.preventAttacks;
-import ruben_artz.world.features.addColor;
+import ruben_artz.world.utils.addColor;
 import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;

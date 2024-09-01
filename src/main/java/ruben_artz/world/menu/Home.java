@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import ruben_artz.world.features.addColor;
+import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.menu.utils.playerPageInfo;
 import ruben_artz.world.utils.ProjectUtils;
@@ -129,9 +129,9 @@ public class Home {
                 It is in the world
                  */
                 if (player.getWorld().getName().equalsIgnoreCase(name[0])) {
-                    s = ProjectUtils.replacePlaceholder(s, "{Current World}", addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_YES")));
+                    s = ProjectUtils.replacePlaceholder(s, "{Current World}", plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_YES"));
                 } else {
-                    s = ProjectUtils.replacePlaceholder(s, "{Current World}", addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_NO")));
+                    s = ProjectUtils.replacePlaceholder(s, "{Current World}", plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_NO"));
                 }
 
                 /*

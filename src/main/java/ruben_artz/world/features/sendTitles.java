@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.addColor;
 
 import java.time.Duration;
 import java.util.Objects;

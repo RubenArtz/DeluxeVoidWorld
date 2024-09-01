@@ -2,7 +2,6 @@ package ruben_artz.world;
 
 import com.github.Anon8281.universalScheduler.UniversalScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
-import com.tcoded.folialib.FoliaLib;
 import developer.voidw.activate;
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.github.slimjar.resolver.data.Repository;
@@ -17,7 +16,7 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import ruben_artz.world.configuration.configurationGenerator;
 import ruben_artz.world.events.chat.VOString;
-import ruben_artz.world.features.addColor;
+import ruben_artz.world.utils.addColor;
 import ruben_artz.world.launcher.Launch;
 import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.utils.SlimJarLogger;
@@ -44,7 +43,6 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
 
     @Getter private static TaskScheduler scheduler;
-    @Getter private static FoliaLib foliaLib;
 
     /*
     normal
@@ -97,7 +95,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
     public void onEnable() {
 
         scheduler = UniversalScheduler.getScheduler(this);
-        foliaLib = new FoliaLib(this);
+
         PaperLib.suggestPaper(this);
 
         plugin = this;
@@ -123,6 +121,10 @@ public class DeluxeVoidWorld extends JavaPlugin {
 
     public Audience getAudiences(Player player) {
         return Launcher.getInstance().audiences.player(player);
+    }
+
+    public Audience getAudiences() {
+        return Launcher.getInstance().audiences.console();
     }
 
     public ChunkGenerator getDefaultWorldGenerator(@Nullable String worldName, String uid) {
@@ -187,7 +189,9 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
 
     public void sendConsole(String s) {
-        Bukkit.getConsoleSender().sendMessage(addColor.setColors(s));
+        Audience audience = plugin.getAudiences();
+
+        audience.sendMessage(addColor.addColors(s));
     }
 
     public playerPageInfo getInventory(String name) {

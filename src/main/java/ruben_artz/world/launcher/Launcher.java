@@ -2,6 +2,7 @@ package ruben_artz.world.launcher;
 
 import developer.voidw.strings;
 import lombok.Getter;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
@@ -47,6 +48,9 @@ public class Launcher implements Launch {
     @Override
     public void launch(DeluxeVoidWorld plugin) {
         launcher = this;
+
+        audiences = BukkitAudiences.create(plugin);
+
         plugin.LoadAllFiles();
         UpdateConfig.update();
         setRateLimit();
@@ -88,7 +92,9 @@ public class Launcher implements Launch {
     }
 
     private void setRateLimit() {
-        strings.setFalse(plugin.getConfig().getString("ADMIN-CONFIG.RATE_LIMIT"));
+        Audience audience = plugin.getAudiences();
+
+        strings.setFalse(plugin.getConfig().getString("ADMIN-CONFIG.RATE_LIMIT"), audience);
     }
 
     @SuppressWarnings("InstantiationOfUtilityClass")
@@ -111,7 +117,6 @@ public class Launcher implements Launch {
         if (ProjectUtils.isPluginEnabled("SlimeWorldManager")) {
             new Slime();
         }
-        audiences = BukkitAudiences.create(plugin);
     }
 
     private void getCommands() {
