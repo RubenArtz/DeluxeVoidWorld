@@ -8,7 +8,7 @@ import org.bukkit.generator.ChunkGenerator;
 
 import java.util.*;
 
-@SuppressWarnings({"NullableProblems", "SpellCheckingInspection", "deprecation"})
+@SuppressWarnings({"NullableProblems", "deprecation"})
 public class Generator extends ChunkGenerator {
 
     public Location getFixedSpawnLocation(World world, Random random) {
