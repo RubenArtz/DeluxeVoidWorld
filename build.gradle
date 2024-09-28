@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ruben_artz'
-version = '4.9.21'
+version = '5.0.21'
 
 registerOutputTask('Ruben_Artz', 'D:\\Ruben_Artz\\STN Studios\\Development\\plugins')
 
@@ -78,7 +78,7 @@ dependencies {
     Keep up to date
     Url: https://github.com/CryptoMorin/XSeries/releases
      */
-    slim 'com.github.cryptomorin:XSeries:11.2.1'
+    slim 'com.github.cryptomorin:XSeries:11.3.0'
     slim 'com.squareup.okhttp3:okhttp:4.12.0'
     slim 'junit:junit:4.13.1'
     slim 'com.googlecode.json-simple:json-simple:1.1.1'
@@ -92,19 +92,19 @@ java {
 shadowJar {
     archiveFileName.set("Deluxe Void World.jar")
 
-    relocate("io.github.slimjar", "ruben_artz.world.libs.slimjar")
-    relocate("net.kyori", "ruben_artz.world.libs.kyori")
-    relocate("org.bstats", "ruben_artz.world.libs.bstats")
-    relocate('io.papermc.lib', 'ruben_artz.world.libs.paperlib')
+    relocate("io.github.slimjar", "ruben_artz.world.libraries.slimjar")
+    relocate("net.kyori", "ruben_artz.world.libraries.kyori")
+    relocate("org.bstats", "ruben_artz.world.libraries.bstats")
+    relocate('io.papermc.lib', 'ruben_artz.world.libraries.paperlib')
 }
 
 slimJar {
-    relocate("com.cryptomorin.xseries", "ruben_artz.world.libs.xseries")
-    relocate("com.zaxxer.hikari", "ruben_artz.world.libs.hikari")
-    relocate("org.h2", "ruben_artz.world.libs.h2")
-    relocate("okhttp3", "ruben_artz.world.libs.okhttp3")
-    relocate('com.github.Anon8281.universalScheduler', 'ruben_artz.world.libs.universalScheduler')
-    relocate('com.tcoded.folialib', 'ruben_artz.world.libs.folialib')
+    relocate("com.cryptomorin.xseries", "ruben_artz.world.libraries.xseries")
+    relocate("com.zaxxer.hikari", "ruben_artz.world.libraries.hikari")
+    relocate("org.h2", "ruben_artz.world.libraries.h2")
+    relocate("okhttp3", "ruben_artz.world.libraries.okhttp3")
+    relocate('com.github.Anon8281.universalScheduler', 'ruben_artz.world.libraries.universalScheduler')
+    relocate('com.tcoded.folialib', 'ruben_artz.world.libraries.folialib')
 }
 
 tasks.withType(JavaCompile).configureEach {
