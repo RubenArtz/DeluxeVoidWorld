@@ -10,7 +10,7 @@ public class FireworkDamage implements Listener {
     @EventHandler
     public void onPlayerDamage(EntityDamageEvent event) {
         for (Entity entities : event.getEntity().getNearbyEntities(5.0, 5.0, 5.0)) {
-            if ((entities.getType() == EntityType.FIREWORK) && (FireworkManager.getFireworks().contains(entities))) {
+            if ((entities.getType() == EntityType.valueOf("FIREWORK")) && (FireworkManager.getFireworks().contains(entities))) {
                 event.setCancelled(true);
             }
         }

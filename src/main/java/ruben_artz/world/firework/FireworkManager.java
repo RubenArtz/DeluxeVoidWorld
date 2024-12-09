@@ -26,18 +26,15 @@ public class FireworkManager {
         FireworkManager.fireworks.add(firework);
     }
 
-    public static void removeFirework(final Entity firework)
-    {
-        if (FireworkManager.fireworks.contains(firework))
-        {
+    public static void removeFirework(final Entity firework) {
+        if (FireworkManager.fireworks.contains(firework)) {
             FireworkManager.fireworks.remove(firework);
         }
     }
 
-    public static void launchFirework(final Location location, final ArrayList<Color> colors)
-    {
+    public static void launchFirework(final Location location, final ArrayList<Color> colors) {
         String types = DeluxeVoidWorld.getInstance().getConfig().getString("ON_VOID_TP.SETTINGS.FIREWORK.TYPE");
-        Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
+        Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.valueOf("FIREWORK"));
         FireworkMeta fireworkMeta = firework.getFireworkMeta();
         fireworkMeta.addEffects(FireworkEffect.builder().with(FireworkEffect.Type.valueOf(types)).withColor(colors).trail(false).flicker(false).build());
         fireworkMeta.setPower(0);
