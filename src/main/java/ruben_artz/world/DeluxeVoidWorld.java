@@ -77,7 +77,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
         getLogger().info("Verifying the dependencies...");
 
         try {
-            Path downloadPath = Paths.get(Bukkit.getWorldContainer().getPath() + "/plugins/STN Studios" + File.separator + "Deluxe Void World");
+            Path downloadPath = Paths.get(Bukkit.getWorldContainer().getPath() + File.separator + "plugins" + File.separator + "STN Studios" + File.separator + "Deluxe Void World");
             ApplicationBuilder.appending("DeluxeVoidWorld")
                     .logger(new SlimJarLogger(this))
                     .downloadDirectoryPath(downloadPath)
@@ -222,7 +222,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
             sendConsole(plugin.getPrefix() + "&aServer: &c"+Bukkit.getVersion());
             sendConsole(plugin.getPrefix() + "&aLoading necessary files...");
             sendConsole("&f");
-            sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a"+Launcher.getNumberWorlds()+"&f'");
+            sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a" + Launcher.getNumberWorlds() + "&f'");
             sendConsole("&f");
             sendConsole("&fDeluxeVoidWorld &aStarting plugin...");
             sendConsole("&f");
