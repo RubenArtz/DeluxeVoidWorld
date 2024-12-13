@@ -5,9 +5,9 @@ plugins {
 }
 
 group = "ruben_artz"
-version = "5.1.21"
+version = "5.2.21"
 
-registerOutputTask("Ruben_Artz", "D:\\Ruben_Artz\\STN Studios\\Development\\plugins")
+registerOutputTask("Ruben_Artz", "D:/Ruben_Artz/STN Studios/Development/plugins")
 
 repositories {
     mavenCentral()
@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly ("org.spigotmc:spigot-api:1.21.3-R0.1-SNAPSHOT")
+    compileOnly ("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
 
     compileOnly ("org.projectlombok:lombok:1.18.24")
     compileOnly ("com.mojang:authlib:1.5.25")
