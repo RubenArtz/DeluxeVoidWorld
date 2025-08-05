@@ -8,12 +8,12 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import ruben_artz.world.utils.addColor;
-import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.menu.Create;
 import ruben_artz.world.menu.Home;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 import java.util.List;
 import java.util.Objects;
@@ -93,12 +93,12 @@ public class VOEditing implements Listener {
         if (plugin.getChat().contains(player.getUniqueId())) {
             event.setCancelled(true);
             final String worldName = event.getMessage();
-            plugin.getWorlds().set("WORLDS." +worldName+ ".ALWAYS-DAY", Boolean.TRUE);
-            plugin.getWorlds().set("WORLDS." +worldName+ ".TP-WHEN-FALLING", Boolean.TRUE);
-            plugin.getWorlds().set("WORLDS." +worldName+ ".VOID-POSITION", -5);
-            plugin.getWorlds().set("WORLDS." +worldName+ ".WORLD", "&a"+worldName);
-            plugin.getWorlds().set("WORLDS." +worldName+ ".MATERIAL", "STONE");
-            plugin.getWorlds().set("WORLDS." +worldName + ".SPAWN", ProjectUtils.setLocation(worldName));
+            plugin.getWorlds().set("WORLDS." + worldName + ".ALWAYS-DAY", Boolean.TRUE);
+            plugin.getWorlds().set("WORLDS." + worldName + ".TP-WHEN-FALLING", Boolean.TRUE);
+            plugin.getWorlds().set("WORLDS." + worldName + ".VOID-POSITION", -5);
+            plugin.getWorlds().set("WORLDS." + worldName + ".WORLD", "&a" + worldName);
+            plugin.getWorlds().set("WORLDS." + worldName + ".MATERIAL", "STONE");
+            plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", ProjectUtils.setLocation(worldName));
             plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");
 
             final List<String> listCommands = plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST");
@@ -130,7 +130,7 @@ public class VOEditing implements Listener {
             try {
                 int number = Integer.parseInt(event.getMessage());
                 if (number < 51) {
-                    plugin.getWorlds().set("WORLDS." +player.getWorld().getName()+ ".VOID-POSITION", Integer.parseInt(event.getMessage()));
+                    plugin.getWorlds().set("WORLDS." + player.getWorld().getName() + ".VOID-POSITION", Integer.parseInt(event.getMessage()));
                     plugin.files.saveFile("worlds.yml");
                     if (event.isAsynchronous()) {
                         ProjectUtils.runTask(() -> Home.getInventory(player, 1));

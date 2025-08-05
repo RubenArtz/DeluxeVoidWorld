@@ -5,9 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.events.chat.VOEditing;
 import ruben_artz.world.menu.Home;
-import ruben_artz.world.DeluxeVoidWorld;
 
 public class VOInventoryClose implements Listener {
     private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);

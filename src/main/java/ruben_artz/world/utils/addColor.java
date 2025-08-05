@@ -14,25 +14,6 @@ import java.util.regex.Matcher;
 
 public class addColor {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
-
-    public static void sendMessage(Player player, String message) {
-        Audience audience = plugin.getAudiences(player);
-        audience.sendMessage(addColors(player, message));
-    }
-
-    public static @NotNull Component addColors(Player player, String input) {
-        return ProjectUtils.setPlaceholders(player, MiniMessage.miniMessage().deserialize(color(input)));
-    }
-    public static @NotNull Component addColors(String input) {
-        return MiniMessage.miniMessage().deserialize(color(input));
-    }
-
-    public static String setColors(String input) {
-        Component component = addColors(input);
-
-        return LegacyComponentSerializer.legacySection().serialize(component);
-    }
-
     private static final ImmutableMap<String, String> colorReplacements = new ImmutableMap.Builder<String, String>()
             .put("0", "<black>")
             .put("1", "<dark_blue>")
@@ -58,12 +39,31 @@ public class addColor {
             .put("r", "<reset>")
             .build();
 
+    public static void sendMessage(Player player, String message) {
+        Audience audience = plugin.getAudiences(player);
+        audience.sendMessage(addColors(player, message));
+    }
+
+    public static @NotNull Component addColors(Player player, String input) {
+        return ProjectUtils.setPlaceholders(player, MiniMessage.miniMessage().deserialize(color(input)));
+    }
+
+    public static @NotNull Component addColors(String input) {
+        return MiniMessage.miniMessage().deserialize(color(input));
+    }
+
+    public static String setColors(String input) {
+        Component component = addColors(input);
+
+        return LegacyComponentSerializer.legacySection().serialize(component);
+    }
+
     private static String color(String msg) {
-        for(Map.Entry<String, String> entry : colorReplacements.entrySet()) {
+        for (Map.Entry<String, String> entry : colorReplacements.entrySet()) {
             String legacy = entry.getKey();
             String mini = entry.getValue();
-            msg = msg.replaceAll(Matcher.quoteReplacement("&"+legacy), Matcher.quoteReplacement(mini));
-            msg = msg.replaceAll(Matcher.quoteReplacement(((char)0x00b7)+legacy), Matcher.quoteReplacement(mini));
+            msg = msg.replaceAll(Matcher.quoteReplacement("&" + legacy), Matcher.quoteReplacement(mini));
+            msg = msg.replaceAll(Matcher.quoteReplacement(((char) 0x00b7) + legacy), Matcher.quoteReplacement(mini));
         }
         return msg;
     }

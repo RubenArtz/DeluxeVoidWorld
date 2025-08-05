@@ -4,8 +4,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.menu.Player;
 import ruben_artz.world.utils.ProjectUtils;
 
@@ -26,7 +26,7 @@ public class VOInventoryClickPlayer implements Listener {
                 event.setCancelled(true);
             } else {
                 if (event.getCurrentItem().hasItemMeta()) {
-                    org.bukkit.entity.Player player = (org.bukkit.entity.Player)event.getWhoClicked();
+                    org.bukkit.entity.Player player = (org.bukkit.entity.Player) event.getWhoClicked();
                     event.setCancelled(true);
                     if (event.getSlot() == plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.TELEPORTATION.BOOLEAN")) {
                         if (player.hasPermission("DeluxeVoidWorld.Toggle.Teleportation")) {
@@ -45,7 +45,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);
                             }
                         }
-                    }  else if (event.getSlot() == plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.JUMP.BOOLEAN")) {
+                    } else if (event.getSlot() == plugin.getBoolean().getInt("MAIN.BOOLEAN.SLOTS.JUMP.BOOLEAN")) {
                         if (player.hasPermission("DeluxeVoidWorld.Toggle.Jumping")) {
                             if (plugin.getIgnoreJumping().contains(player.getUniqueId())) {
                                 plugin.getIgnoreJumping().remove(player.getUniqueId());
@@ -56,7 +56,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM")), player);
                                 Launcher.getCache().setUpdate(player.getUniqueId(), "JUMP", false);
                             }
-                           ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
+                            ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
                         } else {
                             if (plugin.getBoolean().getBoolean("MAIN.PLAYER.SOUNDS.PERMISSION.ENABLED")) {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);
@@ -73,7 +73,7 @@ public class VOInventoryClickPlayer implements Listener {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED-ITEM")), player);
                                 Launcher.getCache().setUpdate(player.getUniqueId(), "LIGHTNING", false);
                             }
-                           ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
+                            ProjectUtils.runTaskLater(3L, () -> Player.getInventory(player));
                         } else {
                             if (plugin.getBoolean().getBoolean("MAIN.PLAYER.SOUNDS.PERMISSION.ENABLED")) {
                                 ProjectUtils.executeSound(Objects.requireNonNull(plugin.getBoolean().getString("MAIN.PLAYER.SOUNDS.PERMISSION.NO-PERMISSION")), player);

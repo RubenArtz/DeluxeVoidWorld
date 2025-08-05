@@ -4,10 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
+import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 
 import java.util.Objects;
 
@@ -36,9 +36,9 @@ public class Teleport extends SubCommand {
             }
         } else {
             if (sender instanceof Player) {
-                ((Player)sender).teleport(world.getSpawnLocation());
-                ((Player)sender).setAllowFlight(true);
-                ((Player)sender).setFlying(true);
+                ((Player) sender).teleport(world.getSpawnLocation());
+                ((Player) sender).setAllowFlight(true);
+                ((Player) sender).setFlying(true);
                 sender.sendMessage(addColor.setColors(ProjectUtils.setPlaceholders((Player) sender, plugin.getFileTranslations().getString("MESSAGE_TP_WORLD").replace("{World}", bossbar))));
             } else {
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_NO_WORLD_COMMAND")));

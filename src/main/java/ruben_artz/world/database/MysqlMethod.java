@@ -3,22 +3,22 @@ package ruben_artz.world.database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
-import ruben_artz.world.database.utils.CacheMethod;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.database.utils.CacheMethod;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 public class MysqlMethod implements CacheMethod {
+    private static HikariDataSource ds;
+    private final HikariConfig hikariConfig = new HikariConfig();
+
     @Override
     public Connection getConnection() throws SQLException {
         if (ds == null) return null;
         return ds.getConnection();
     }
-
-    private static HikariDataSource ds;
-    private final HikariConfig hikariConfig = new HikariConfig();
 
     @Override
     public void init(DeluxeVoidWorld plugin, Cache cacheInstance) {

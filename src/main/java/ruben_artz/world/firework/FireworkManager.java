@@ -16,13 +16,11 @@ import java.util.ArrayList;
 public class FireworkManager {
     private static final ArrayList<Entity> fireworks = new ArrayList<>();
 
-    public static ArrayList<Entity> getFireworks()
-    {
+    public static ArrayList<Entity> getFireworks() {
         return FireworkManager.fireworks;
     }
 
-    public static void addFirework(final Entity firework)
-    {
+    public static void addFirework(final Entity firework) {
         FireworkManager.fireworks.add(firework);
     }
 
@@ -40,10 +38,8 @@ public class FireworkManager {
         fireworkMeta.setPower(0);
         firework.setFireworkMeta(fireworkMeta);
         FireworkManager.addFirework(firework);
-        new BukkitRunnable()
-        {
-            public void run()
-            {
+        new BukkitRunnable() {
+            public void run() {
                 firework.detonate();
             }
         }.runTaskLater(DeluxeVoidWorld.getInstance(), 2L);

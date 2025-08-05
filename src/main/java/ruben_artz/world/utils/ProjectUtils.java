@@ -31,10 +31,13 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
-import ruben_artz.world.features.*;
+import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.features.sendActionbar;
+import ruben_artz.world.features.sendBossBar;
+import ruben_artz.world.features.sendParticles;
+import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.firework.ColorUtils;
 import ruben_artz.world.firework.FireworkManager;
-import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.menu.Home;
 
 import javax.annotation.Nonnull;
@@ -223,7 +226,8 @@ public class ProjectUtils {
         lore.replaceAll(s -> addColor.setColors(setPlaceholders(s)));
         if (skullMeta != null) skullMeta.setLore(lore);
 
-        if (item != null && skullMeta != null) item.setItemMeta(XSkull.of(skullMeta).profile(Profileable.of(ProfileInputType.TEXTURE_HASH, texture)).apply());
+        if (item != null && skullMeta != null)
+            item.setItemMeta(XSkull.of(skullMeta).profile(Profileable.of(ProfileInputType.TEXTURE_HASH, texture)).apply());
 
         inventory.setItem(slot, item);
     }
@@ -242,6 +246,7 @@ public class ProjectUtils {
 
         inventory.setItem(slot, item);
     }
+
     public static void setItem(final int slot, final Inventory inventory, final String material, final String name, final List<String> lore, int amount) {
         final XMaterial mat = XMaterial.valueOf(material);
         ItemStack item = mat.parseItem();
@@ -396,9 +401,10 @@ public class ProjectUtils {
         MVWorldManager worldManager = null;
         if (core != null) worldManager = core.getMVWorldManager();
         if (Bukkit.getWorld(name) == null) {
-            if (worldManager != null) worldManager.addWorld(name, World.Environment.valueOf(type), null, WorldType.FLAT, false, "DeluxeVoidWorld");
+            if (worldManager != null)
+                worldManager.addWorld(name, World.Environment.valueOf(type), null, WorldType.FLAT, false, "DeluxeVoidWorld");
             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
-            teleportPlayer(player , name);
+            teleportPlayer(player, name);
         } else {
             Home.getInventory(player, 1);
             addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_MAP_ALREADY_EXISTS"));
@@ -437,7 +443,7 @@ public class ProjectUtils {
                  */
                 createEmptyWorld(name, type, "FLAT", "PEACEFUL", true, true, false, false, 2147483647, false, 300);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
-                teleportPlayer(player , name);
+                teleportPlayer(player, name);
             } else {
                 Home.getInventory(player, 1);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_MAP_ALREADY_EXISTS"));
@@ -484,7 +490,7 @@ public class ProjectUtils {
                 false, "DeluxeVoidWorld",
                 0)
         );
-        teleportPlayer(player , name);
+        teleportPlayer(player, name);
         runTaskLater(70, () -> {
             Optional<ManagedWorld> optional = ultraRegionsAPI.getWorlds().find(player.getWorld());
             if (optional.isPresent()) {
@@ -559,7 +565,8 @@ public class ProjectUtils {
                 final double n = ((double[]) invoke.getClass().getField("recentTps").get(invoke))[0];
                 return (n < 20.0) ? decimalFormat.format(n) : "*20.00";
             }
-        } catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException ex) {
+        } catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException |
+                 InvocationTargetException | NoSuchMethodException | ClassNotFoundException ex) {
             return "N/A";
         }
     }
@@ -600,7 +607,7 @@ public class ProjectUtils {
     /*
      * Add obscure effect
      */
-    public static void sendBackGround(String type,Player player) {
+    public static void sendBackGround(String type, Player player) {
         if (type.equalsIgnoreCase("ADD")) {
             PotionEffect potionEffectAdd = new PotionEffect(PotionEffectType.BLINDNESS, 10 * 20, 5, false, false);
             player.addPotionEffect(potionEffectAdd);
@@ -617,22 +624,22 @@ public class ProjectUtils {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String format = decimalFormat.format(number);
         int integer = 0;
-        if (format.indexOf(".") == format.length()-2 && format.charAt(format.length()-1) == '0' && format.length() >= 3) {
-            format = format.substring(0, format.length()-2);
+        if (format.indexOf(".") == format.length() - 2 && format.charAt(format.length() - 1) == '0' && format.length() >= 3) {
+            format = format.substring(0, format.length() - 2);
         }
         String mn = format.contains(".") ? format.substring(0, format.indexOf(".")) : format;
-        for (int i = mn.length()-1; i > 0; i--) {
+        for (int i = mn.length() - 1; i > 0; i--) {
             integer++;
             if (integer % 3 != 0) continue;
-            mn = mn.substring(0, i)+comma+mn.substring(i);
+            mn = mn.substring(0, i) + comma + mn.substring(i);
         }
         if (format.contains(".")) {
-            format = mn+format.substring(format.indexOf("."));
+            format = mn + format.substring(format.indexOf("."));
         } else {
             format = mn;
         }
-        if (format.charAt(format.length()-1) == ',') {
-            format = format.substring(0, format.length()+1);
+        if (format.charAt(format.length() - 1) == ',') {
+            format = format.substring(0, format.length() + 1);
         }
         return format;
     }

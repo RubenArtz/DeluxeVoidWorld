@@ -2,10 +2,10 @@ package ruben_artz.world.menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
-import ruben_artz.world.utils.addColor;
-import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 public class Player {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
@@ -15,7 +15,7 @@ public class Player {
         Inventory inv = Bukkit.createInventory(null, 54, title);
         //                      GLASS
         if (plugin.getBoolean().getBoolean("MAIN.FILL_EMPTY")) {
-            for (int o=45;o<=53;o++) {
+            for (int o = 45; o <= 53; o++) {
                 ProjectUtils.setGlass(o, inv);
             }
         }

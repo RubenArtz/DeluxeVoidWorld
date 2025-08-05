@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class sendActionbar {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
+
     public static void sendActionBar(Player player, String message) {
         Audience audience = plugin.getAudiences(player);
 

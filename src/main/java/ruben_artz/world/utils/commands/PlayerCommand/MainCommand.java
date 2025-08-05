@@ -5,8 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.utils.addColor;
 
 public class MainCommand implements CommandExecutor {
     private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);

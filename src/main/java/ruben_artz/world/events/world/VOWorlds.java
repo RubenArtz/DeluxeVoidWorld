@@ -6,9 +6,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
 

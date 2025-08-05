@@ -2,9 +2,9 @@ package ruben_artz.world.database;
 
 import org.h2.jdbc.JdbcConnection;
 import org.h2.message.DbException;
+import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.database.utils.CacheMethod;
 import ruben_artz.world.database.utils.UnClosableConnection;
-import ruben_artz.world.DeluxeVoidWorld;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class H2Method implements CacheMethod {
     @Override
     public Connection getConnection() {
         try {
-            if(conn.isClosed()) {
+            if (conn.isClosed()) {
                 plugin.getLogger().warning("H2 connection is dead, making a new one");
                 init(plugin, cacheInstance);
             }
@@ -49,13 +49,13 @@ public class H2Method implements CacheMethod {
         }
 
         File file = new File(plugin.getDataFolder(), "cache.trace.db");
-        if(file.exists()) {
+        if (file.exists()) {
             plugin.getLogger().info("Deleting junk trace file");
             try {
-                if(!file.delete()) {
+                if (!file.delete()) {
                     plugin.getLogger().warning("Failed to delete junk trace file!");
                 }
-            } catch(SecurityException e) {
+            } catch (SecurityException e) {
                 plugin.getLogger().log(Level.WARNING, "Failed to delete junk trace file: ", e);
             }
         }
@@ -65,7 +65,7 @@ public class H2Method implements CacheMethod {
             //conn = DriverManager.getConnection(url);
             conn = new JdbcConnection(url, new Properties(), null, null, false);
 
-            plugin.sendConsole(plugin.prefix+plugin.getFileTranslations().getString("MESSAGE_USING_SQLITE"));
+            plugin.sendConsole(plugin.prefix + plugin.getFileTranslations().getString("MESSAGE_USING_SQLITE"));
         } catch (SQLException e) {
             plugin.getLogger().severe("Unnable to create cache file! The plugin will not work correctly!");
         }

@@ -56,17 +56,17 @@ public class LoadWorld {
                 for (String keys : plugin.getConfig().getStringList("ON_VOID_TP.DO_NOT_TOUCH_WORLDS")) {
                     final String[] name = keys.split(",");
                     if (plugin.getGenerated().getString(("WORLDS." + name[0] + ".ENVIROMENT")) == null) {
-                        plugin.getGenerated().set("WORLDS."+name[0]+".ENVIROMENT", name[6]);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".WORLD-TYPE", "FLAT");
-                        plugin.getGenerated().set("WORLDS."+name[0]+".DIFFICULTY", "NORMAL");
-                        plugin.getGenerated().set("WORLDS."+name[0]+".SPAWN-FLAGS", true);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".PVP", true);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".STORM", false);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".THUNDERING", false);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".WEATHER-DURATION", 2147483647);
-                        plugin.getGenerated().set("WORLDS."+name[0]+ ".BORDER-SIZE", 300);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".AUTO-SAVE", false);
-                        plugin.getGenerated().set("WORLDS."+name[0]+".SPAWN", ProjectUtils.setLocation(name[0]));
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".ENVIROMENT", name[6]);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".WORLD-TYPE", "FLAT");
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".DIFFICULTY", "NORMAL");
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".SPAWN-FLAGS", true);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".PVP", true);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".STORM", false);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".THUNDERING", false);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".WEATHER-DURATION", 2147483647);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".BORDER-SIZE", 300);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".AUTO-SAVE", false);
+                        plugin.getGenerated().set("WORLDS." + name[0] + ".SPAWN", ProjectUtils.setLocation(name[0]));
                         plugin.files.saveFile("generated.yml");
                     }
                 }
@@ -125,7 +125,7 @@ public class LoadWorld {
                                         plugin.getGenerated().getBoolean("WORLDS." + key + ".THUNDERING", false),
                                         plugin.getGenerated().getInt("WORLDS." + key + ".WEATHER-DURATION", 2147483647),
                                         plugin.getGenerated().getBoolean("WORLDS." + key + ".AUTO-SAVE", true),
-                                        plugin.getGenerated().getInt("WORLDS."+key+".BORDER-SIZE", 100));
+                                        plugin.getGenerated().getInt("WORLDS." + key + ".BORDER-SIZE", 100));
                             }
                         }
                     }

@@ -2,8 +2,8 @@ package ruben_artz.world.commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 
 public class Help extends SubCommand {
     public Help() {

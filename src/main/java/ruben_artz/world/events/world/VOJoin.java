@@ -7,12 +7,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import ruben_artz.world.events.world.antibot.preventAttacks;
-import ruben_artz.world.utils.addColor;
-import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.DeluxeVoidWorld;
+import ruben_artz.world.events.world.antibot.preventAttacks;
+import ruben_artz.world.launcher.Launcher;
 import ruben_artz.world.utils.ProjectUtils;
 import ruben_artz.world.utils.Updater;
+import ruben_artz.world.utils.addColor;
 
 public class VOJoin implements Listener {
     private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);

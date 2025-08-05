@@ -3,9 +3,9 @@ package ruben_artz.world.menu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
 
@@ -25,7 +25,7 @@ public class Icon {
 
         int slot = 0;
         for (String key : Objects.requireNonNull(plugin.getIcons().getConfigurationSection("MATERIALS")).getKeys(false)) {
-            ProjectUtils.setItem(slot, inv, plugin.getIcons().getString("MATERIALS." + key + ".ITEM"), "&b"+ plugin.getIcons().getString("MATERIALS." + key + ".ITEM"), plugin.getFileTranslations().getStringList("MESSAGE_LORE_ICONS"));
+            ProjectUtils.setItem(slot, inv, plugin.getIcons().getString("MATERIALS." + key + ".ITEM"), "&b" + plugin.getIcons().getString("MATERIALS." + key + ".ITEM"), plugin.getFileTranslations().getStringList("MESSAGE_LORE_ICONS"));
             slot++;
             if (slot == 45) {
                 break;

@@ -9,14 +9,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.events.chat.VOEditing;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.menu.Home;
 import ruben_artz.world.menu.Icon;
 import ruben_artz.world.menu.utils.playerPageInfo;
-import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
 

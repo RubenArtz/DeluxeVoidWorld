@@ -5,9 +5,9 @@
 name: 'DeluxeVoidWorld'
 main: 'ruben_artz.world.DeluxeVoidWorld'
 version: '${version}'
-authors: ['Ruben_Artz', 'STN Studios']
+authors: [ 'Ruben_Artz', 'STN Studios' ]
 load: 'STARTUP'
-softdepend: ['PlaceholderAPI', 'SlimeWorldManager', 'Multiverse-Core', 'BotSentry', 'UltraRegions']
+softdepend: [ 'PlaceholderAPI', 'SlimeWorldManager', 'Multiverse-Core', 'BotSentry', 'UltraRegions' ]
 website: 'https://www.spigotmc.org/resources/86993/'
 api-version: '1.16'
 description: 'Incredible plugin to send your players when they fall into the void!'
@@ -16,7 +16,7 @@ folia-supported: true
 commands:
   deluxevoidworld:
     description: 'Command where all the main commands of the plugin are executed.'
-    aliases: ['dew', 'deluxevoid']
+    aliases: [ 'dew', 'deluxevoid' ]
   empty:
     description: 'Command to open the player''s inventory'
-    aliases: ['void']
+    aliases: [ 'void' ]

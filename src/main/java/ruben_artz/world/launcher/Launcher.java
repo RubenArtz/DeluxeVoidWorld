@@ -9,8 +9,8 @@ import org.bstats.charts.SimplePie;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
+import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.commands.RegisterCommand;
-import ruben_artz.world.utils.commands.PlayerCommand.MainCommand;
 import ruben_artz.world.configuration.UpdateConfig;
 import ruben_artz.world.database.Cache;
 import ruben_artz.world.events.chat.VOEditing;
@@ -23,10 +23,10 @@ import ruben_artz.world.events.world.*;
 import ruben_artz.world.firework.FireworkDamage;
 import ruben_artz.world.firework.FireworkExplode;
 import ruben_artz.world.utils.LoadWorld;
-import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
 import ruben_artz.world.utils.Slime;
 import ruben_artz.world.utils.Updater;
+import ruben_artz.world.utils.commands.PlayerCommand.MainCommand;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -36,14 +36,20 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class Launcher implements Launch {
-    public DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
+    public static int numberWorlds;
+    @Getter
+    public static Cache cache;
     private static Launcher launcher;
+    public DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
+    public BukkitAudiences audiences;
+
     public static Launcher getInstance() {
         return launcher;
     }
-    public static int numberWorlds;
-    public BukkitAudiences audiences;
-    @Getter public static Cache cache;
+
+    public static int getNumberWorlds() {
+        return Bukkit.getWorlds().size();
+    }
 
     @Override
     public void launch(DeluxeVoidWorld plugin) {
@@ -73,11 +79,11 @@ public class Launcher implements Launch {
             for (String key : Objects.requireNonNull(plugin.getGenerated().getConfigurationSection("WORLDS")).getKeys(false)) {
                 String[] name = Objects.requireNonNull(plugin.getGenerated().getString("WORLDS." + key + ".SPAWN")).split(",");
                 ProjectUtils.saveWorlds(name[0]);
-                Bukkit.getLogger().log(Level.INFO, "[DeluxeVoidWorld] Saving world "+name[0]+"...");
+                Bukkit.getLogger().log(Level.INFO, "[DeluxeVoidWorld] Saving world " + name[0] + "...");
             }
         }
 
-        if(getCache() != null) {
+        if (getCache() != null) {
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(() -> getCache().getMethod().shutdown());
 
@@ -87,7 +93,8 @@ public class Launcher implements Launch {
                     executorService.shutdownNow();
                     plugin.getLogger().warning("Cache took too long to shut down. Skipping it.");
                 }
-            }catch(InterruptedException ignored){}
+            } catch (InterruptedException ignored) {
+            }
         }
     }
 
@@ -128,8 +135,8 @@ public class Launcher implements Launch {
         ProjectUtils.runTaskLater(60, () -> {
             final Metrics metrics = new Metrics(plugin, 9736);
             for (String key : Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false)) {
-                if (plugin.getWorlds().getString("WORLDS."+key+".TP-WHEN-FALLING") == null) {
-                    metrics.addCustomChart(new SimplePie("active_teleports", () -> plugin.getWorlds().getString("WORLDS."+key+".TP-WHEN-FALLING")));
+                if (plugin.getWorlds().getString("WORLDS." + key + ".TP-WHEN-FALLING") == null) {
+                    metrics.addCustomChart(new SimplePie("active_teleports", () -> plugin.getWorlds().getString("WORLDS." + key + ".TP-WHEN-FALLING")));
                 }
             }
             metrics.addCustomChart(new SimplePie("language", () -> plugin.getConfig().getString("ADMIN-CONFIG.LANGUAGE")));
@@ -138,15 +145,11 @@ public class Launcher implements Launch {
         });
     }
 
-    private void  setConnection() {
+    private void setConnection() {
         cache = new Cache();
     }
 
     private void getNumbers() {
         ProjectUtils.runTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
-    }
-
-    public static int getNumberWorlds() {
-        return Bukkit.getWorlds().size();
     }
 }

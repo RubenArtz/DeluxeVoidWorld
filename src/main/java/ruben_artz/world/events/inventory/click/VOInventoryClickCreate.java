@@ -5,10 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.events.chat.VOString;
 import ruben_artz.world.menu.Create;
 import ruben_artz.world.menu.Home;
-import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
 import ruben_artz.world.utils.Slime;
 
@@ -39,7 +39,7 @@ public class VOInventoryClickCreate implements Listener {
                             player.closeInventory();
                             plugin.removeMessages();
                         } else if (ProjectUtils.isPluginEnabled("Multiverse-Core")) {
-                            ProjectUtils.createWorldWithMultiverse(player, message.getName(),"NORMAL");
+                            ProjectUtils.createWorldWithMultiverse(player, message.getName(), "NORMAL");
                             player.closeInventory();
                             plugin.removeMessages();
                         } else if (ProjectUtils.isPluginEnabled("UltraRegions")) {
@@ -57,7 +57,7 @@ public class VOInventoryClickCreate implements Listener {
                             player.closeInventory();
                             plugin.removeMessages();
                         } else if (ProjectUtils.isPluginEnabled("Multiverse-Core")) {
-                            ProjectUtils.createWorldWithMultiverse(player, message.getName(),"NETHER");
+                            ProjectUtils.createWorldWithMultiverse(player, message.getName(), "NETHER");
                             player.closeInventory();
                             plugin.removeMessages();
                         } else if (ProjectUtils.isPluginEnabled("UltraRegions")) {
@@ -71,7 +71,7 @@ public class VOInventoryClickCreate implements Listener {
                         }
                     } else if (slot == plugin.getInventoryCrating().getInt("MAIN.THE_END.SLOT")) {
                         if (ProjectUtils.isPluginEnabled("SlimeWorldManager")) {
-                            ProjectUtils.createWorldWithMultiverse(player, message.getName(),"THE_END");
+                            ProjectUtils.createWorldWithMultiverse(player, message.getName(), "THE_END");
                             player.closeInventory();
                             plugin.removeMessages();
                         } else if (ProjectUtils.isPluginEnabled("Multiverse-Core")) {

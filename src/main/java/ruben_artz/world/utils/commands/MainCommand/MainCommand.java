@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +23,8 @@ import java.util.List;
 public class MainCommand implements CommandExecutor, TabCompleter {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
-    @Getter private final String permission;
+    @Getter
+    private final String permission;
     private final int reqArgs;
     private final List<SubCommand> subCommands = new ArrayList<>();
 
@@ -70,7 +71,8 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         List<String> completions = new ArrayList<>();
         List<String> commands = new ArrayList<>();
@@ -101,7 +103,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     commands.add(world.getName());
                 }
                 StringUtil.copyPartialMatches(partialCommand, commands, completions);
-            }  else if (args[0].equalsIgnoreCase("toggleworld")) {
+            } else if (args[0].equalsIgnoreCase("toggleworld")) {
                 for (World world : Bukkit.getWorlds()) {
                     commands.add(world.getName());
                 }
@@ -117,8 +119,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                         commands.add(world.getName());
                     }
                     StringUtil.copyPartialMatches(partialCommand, commands, completions);
-                }
-                else if (args[0].equalsIgnoreCase("tpme")) {
+                } else if (args[0].equalsIgnoreCase("tpme")) {
                     for (World world : Bukkit.getWorlds()) {
                         commands.add(world.getName());
                     }
@@ -132,5 +133,6 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         return completions;
     }
 
-    private void onCommand(CommandSender sender, String[] array) {}
+    private void onCommand(CommandSender sender, String[] array) {
+    }
 }

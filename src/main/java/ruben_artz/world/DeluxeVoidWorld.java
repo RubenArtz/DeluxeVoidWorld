@@ -16,14 +16,10 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import ruben_artz.world.configuration.configurationGenerator;
 import ruben_artz.world.events.chat.VOString;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.launcher.Launch;
 import ruben_artz.world.launcher.Launcher;
-import ruben_artz.world.utils.SlimJarLogger;
 import ruben_artz.world.menu.utils.playerPageInfo;
-import ruben_artz.world.utils.Generator;
-import ruben_artz.world.utils.ProjectUtils;
-import ruben_artz.world.utils.Updater;
+import ruben_artz.world.utils.*;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -38,38 +34,53 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class DeluxeVoidWorld extends JavaPlugin {
     private static DeluxeVoidWorld plugin;
-    public static DeluxeVoidWorld getInstance() {
-        return plugin;
-    }
-
-    @Getter private static TaskScheduler scheduler;
-
+    @Getter
+    private static TaskScheduler scheduler;
     /*
     normal
      */
-    @Getter public configurationGenerator files;
-    @Getter public String latestversion;
-    @Getter private ArrayList<VOString> message;
-    @Getter public ArrayList<playerPageInfo> inventory;
-    @Getter public String table = "deluxe_void_v1";
-    @Getter public List<UUID> chat = new ArrayList<>();
-    @Getter public List<UUID> damage = new ArrayList<>();
-    @Getter public List<UUID> chat_get = new ArrayList<>();
-    @Getter public List<UUID> create_world = new ArrayList<>();
-    @Getter public String version = getDescription().getVersion();
-    @Getter public String prefix = "&8[&9Deluxe Void World&8]&f ";
-    @Getter public HashMap<String, String> world = new HashMap<>();
-    @Getter public List<String> authors = getDescription().getAuthors();
-
+    @Getter
+    public configurationGenerator files;
+    @Getter
+    public String latestversion;
+    @Getter
+    public ArrayList<playerPageInfo> inventory;
+    @Getter
+    public String table = "deluxe_void_v1";
+    @Getter
+    public List<UUID> chat = new ArrayList<>();
+    @Getter
+    public List<UUID> damage = new ArrayList<>();
+    @Getter
+    public List<UUID> chat_get = new ArrayList<>();
+    @Getter
+    public List<UUID> create_world = new ArrayList<>();
+    @Getter
+    public String version = getDescription().getVersion();
+    @Getter
+    public String prefix = "&8[&9Deluxe Void World&8]&f ";
+    @Getter
+    public HashMap<String, String> world = new HashMap<>();
+    @Getter
+    public List<String> authors = getDescription().getAuthors();
     /*
     ignore
      */
-    @Getter public Set<UUID> IgnoreJumping = new HashSet<>();
-    @Getter public Set<UUID> IgnoreLightning = new HashSet<>();
-    @Getter public Set<UUID> IgnoreParticles = new HashSet<>();
-    @Getter public Set<UUID> IgnoreTeleportation = new HashSet<>();
-
+    @Getter
+    public Set<UUID> IgnoreJumping = new HashSet<>();
+    @Getter
+    public Set<UUID> IgnoreLightning = new HashSet<>();
+    @Getter
+    public Set<UUID> IgnoreParticles = new HashSet<>();
+    @Getter
+    public Set<UUID> IgnoreTeleportation = new HashSet<>();
+    @Getter
+    private ArrayList<VOString> message;
     private Launch launch;
+
+    public static DeluxeVoidWorld getInstance() {
+        return plugin;
+    }
 
     @Override
     public void onLoad() {
@@ -110,6 +121,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public void onDisable() {
         if (this.launch != null) {
@@ -138,27 +150,35 @@ public class DeluxeVoidWorld extends JavaPlugin {
     public configurationGenerator getFileTranslations() {
         return getFiles();
     }
+
     public FileConfiguration getIcons() {
         return getFiles().getFile("menus/icons.yml");
     }
+
     public FileConfiguration getGenerated() {
         return getFiles().getFile("generated.yml");
     }
+
     public FileConfiguration getWorlds() {
         return getFiles().getFile("worlds.yml");
     }
+
     public FileConfiguration getMenuHome() {
         return getFiles().getFile("menus/home.yml");
     }
+
     public FileConfiguration getBoolean() {
         return getFiles().getFile("menus/boolean.yml");
     }
+
     public FileConfiguration getLagVersion() {
         return getFiles().getFile("lang/version.yml");
     }
+
     public FileConfiguration getMenuVersion() {
         return getFiles().getFile("menus/version.yml");
     }
+
     public FileConfiguration getInventoryCrating() {
         return getFiles().getFile("menus/create.yml");
     }
@@ -166,6 +186,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
     public void addMessage(VOString message) {
         this.getMessage().add(message);
     }
+
     public void removeMessages() {
         this.getMessage().clear();
     }
@@ -213,13 +234,13 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
 
 
-    public void getMessages(){
+    public void getMessages() {
         ProjectUtils.runTaskLater(16L, () -> {
             sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + version);
             sendConsole("&8--------------------------------------------------------------------------------------");
-            sendConsole("&7         Developed by &c"+authors);
-            sendConsole(plugin.getPrefix() + "&aVersion: &c" + version+" &ais loading... &8(&6Current&8)");
-            sendConsole(plugin.getPrefix() + "&aServer: &c"+Bukkit.getVersion());
+            sendConsole("&7         Developed by &c" + authors);
+            sendConsole(plugin.getPrefix() + "&aVersion: &c" + version + " &ais loading... &8(&6Current&8)");
+            sendConsole(plugin.getPrefix() + "&aServer: &c" + Bukkit.getVersion());
             sendConsole(plugin.getPrefix() + "&aLoading necessary files...");
             sendConsole("&f");
             sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a" + Launcher.getNumberWorlds() + "&f'");

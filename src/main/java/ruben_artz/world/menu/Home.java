@@ -9,23 +9,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.menu.utils.playerPageInfo;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Home {
-    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
-    public static MyScheduledTask task;
-
-    @Getter public static Inventory inventory;
-
     public static final List<ItemStack> itemStacks = new ArrayList<>();
+    private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
     public static final String title = addColor.setColors(plugin.getMenuHome().getString("MAIN.TITLE"));
+    public static MyScheduledTask task;
+    @Getter
+    public static Inventory inventory;
 
     /*
     This method creates the inventory
@@ -71,7 +70,7 @@ public class Home {
                     lore.replaceAll(s -> s
                             .replace("{Current Page}", String.valueOf(currentPage))
                             .replace("{Max Pages}", String.valueOf(ProjectUtils.getInventoryPages())));
-                    ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.NEXT.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL"), plugin.getMenuHome().getString("MAIN.NEXT.NAME"), lore, currentPage+1);
+                    ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.NEXT.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL"), plugin.getMenuHome().getString("MAIN.NEXT.NAME"), lore, currentPage + 1);
                 }
                 /*
                 Return to page
@@ -81,7 +80,7 @@ public class Home {
                     lore.replaceAll(s -> s
                             .replace("{Current Page}", String.valueOf(currentPage))
                             .replace("{Max Pages}", String.valueOf(ProjectUtils.getInventoryPages())));
-                    ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.RETURN.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.RETURN.MATERIAL"), plugin.getMenuHome().getString("MAIN.RETURN.NAME"), lore, currentPage-1);
+                    ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.RETURN.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.RETURN.MATERIAL"), plugin.getMenuHome().getString("MAIN.RETURN.NAME"), lore, currentPage - 1);
                 }
             });
             player.openInventory(inventory);

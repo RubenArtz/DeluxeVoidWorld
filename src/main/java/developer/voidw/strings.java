@@ -1,7 +1,10 @@
 package developer.voidw;
 
+import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
-import okhttp3.*;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -27,6 +30,7 @@ public class strings {
     /*
     If true, the license is not activated
      */
+    @Getter
     private static boolean isTrue = true;
 
     /*
@@ -34,9 +38,6 @@ public class strings {
      */
     public static void setFalse(String license, Audience audience) {
         if (!strings.isLicenseValid(license, audience)) strings.isTrue = false;
-    }
-    public static boolean isTrue() {
-        return isTrue;
     }
 
     private static boolean isLicenseValid(String licenseKey, Audience audience) {

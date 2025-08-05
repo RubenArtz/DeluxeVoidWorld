@@ -30,7 +30,7 @@ public class Slime {
         SlimeLoader slimeLoader = slime.getLoader("file");
         propertyMap.setString(SlimeProperties.WORLD_TYPE, "flat");
         propertyMap.setInt(SlimeProperties.SPAWN_X, 0);
-        propertyMap.setInt(SlimeProperties. SPAWN_Y, 80);
+        propertyMap.setInt(SlimeProperties.SPAWN_Y, 80);
         propertyMap.setInt(SlimeProperties.SPAWN_Z, 0);
         propertyMap.setBoolean(SlimeProperties.ALLOW_ANIMALS, false);
         propertyMap.setBoolean(SlimeProperties.ALLOW_MONSTERS, false);
@@ -45,18 +45,18 @@ public class Slime {
                 slime.createEmptyWorld(slimeLoader, world, false, propertyMap);
                 File configFile = new File(plugin.getServer().getWorldContainer().getAbsolutePath() + "/plugins/SlimeWorldManager/worlds.yml");
                 FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
-                config.set("worlds."+world+".source", "file");
-                config.set("worlds."+world+".spawn", "0, 80, 0");
-                config.set("worlds."+world+".difficulty", "easy");
-                config.set("worlds."+world+".allowMonsters", false);
-                config.set("worlds."+world+".allowAnimals", false);
-                config.set("worlds."+world+".environment", type);
-                config.set("worlds."+world+".worldType", "DEFAULT");
-                config.set("worlds."+world+".loadOnStartup", true);
-                config.set("worlds."+world+".readOnly", false);
+                config.set("worlds." + world + ".source", "file");
+                config.set("worlds." + world + ".spawn", "0, 80, 0");
+                config.set("worlds." + world + ".difficulty", "easy");
+                config.set("worlds." + world + ".allowMonsters", false);
+                config.set("worlds." + world + ".allowAnimals", false);
+                config.set("worlds." + world + ".environment", type);
+                config.set("worlds." + world + ".worldType", "DEFAULT");
+                config.set("worlds." + world + ".loadOnStartup", true);
+                config.set("worlds." + world + ".readOnly", false);
                 config.save(configFile);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm reload");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm load "+world);
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm load " + world);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
 
                 ProjectUtils.runTaskLater(60L, () -> {

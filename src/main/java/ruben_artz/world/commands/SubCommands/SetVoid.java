@@ -2,10 +2,10 @@ package ruben_artz.world.commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ruben_artz.world.utils.addColor;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.addColor;
+import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 
 public class SetVoid extends SubCommand {
     private final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
@@ -17,7 +17,7 @@ public class SetVoid extends SubCommand {
     @Override
     public void onCommands(CommandSender sender, String[] args) {
         if (sender instanceof Player) {
-            plugin.getWorlds().set("WORLDS." + ((Player) sender).getWorld().getName()+".SPAWN", ProjectUtils.setLocation(((Player) sender).getLocation()));
+            plugin.getWorlds().set("WORLDS." + ((Player) sender).getWorld().getName() + ".SPAWN", ProjectUtils.setLocation(((Player) sender).getLocation()));
             plugin.files.saveFile("worlds.yml");
             for (String message : plugin.getFileTranslations().getStringList("MESSAGE_ADD_WORLD")) {
                 message = ProjectUtils.replacePlaceholder(message, "{World}", ((Player) sender).getWorld().getName());

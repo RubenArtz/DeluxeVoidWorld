@@ -25,6 +25,7 @@ public class Updater {
     public static void launch() {
         updater = DeluxeVoidWorld.getScheduler().runTaskTimerAsynchronously(Updater::getUpdater, 0L, 20L * 18000);
     }
+
     public static void shutdown() {
         updater.cancel();
     }
@@ -37,11 +38,12 @@ public class Updater {
             connection.setReadTimeout(time_out);
             plugin.latestversion = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
             if ((plugin.latestversion.length() <= 7) && (!plugin.getVersion().equals(plugin.latestversion))) {
-                plugin.sendConsole( "&8--------------------------------------------------------------------------------------");
-                plugin.sendConsole( plugin.getPrefix()+"&fYou have an old version of the &eDeluxe Void World &fplugin.");
-                plugin.sendConsole( plugin.getPrefix()+"&fPlease download the latest &e"+plugin.getLatestversion()+" &fversion.");
-                plugin.sendConsole( "&8--------------------------------------------------------------------------------------");
+                plugin.sendConsole("&8--------------------------------------------------------------------------------------");
+                plugin.sendConsole(plugin.getPrefix() + "&fYou have an old version of the &eDeluxe Void World &fplugin.");
+                plugin.sendConsole(plugin.getPrefix() + "&fPlease download the latest &e" + plugin.getLatestversion() + " &fversion.");
+                plugin.sendConsole("&8--------------------------------------------------------------------------------------");
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 }

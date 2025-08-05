@@ -5,9 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.menu.Home;
 import ruben_artz.world.menu.Icon;
-import ruben_artz.world.DeluxeVoidWorld;
 
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ public class VOInventoryClickIcon implements Listener {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     /*
-    * Event when clicking on the icon inventory.
+     * Event when clicking on the icon inventory.
      */
     @EventHandler
     public void getInventory(InventoryClickEvent event) {
@@ -31,7 +31,7 @@ public class VOInventoryClickIcon implements Listener {
                     for (String world : Objects.requireNonNull(plugin.getIcons().getConfigurationSection("MATERIALS")).getKeys(false)) {
                         if (event.getInventory().equals(player.getOpenInventory().getTopInventory())) {
                             if (event.getSlot() == slot) {
-                                plugin.getWorlds().set("WORLDS."+player.getWorld().getName()+".MATERIAL", plugin.getIcons().getString("MATERIALS."+world+".ITEM"));
+                                plugin.getWorlds().set("WORLDS." + player.getWorld().getName() + ".MATERIAL", plugin.getIcons().getString("MATERIALS." + world + ".ITEM"));
                                 plugin.files.saveFile("worlds.yml");
                                 Home.getInventory(player, 1);
                             } else {
