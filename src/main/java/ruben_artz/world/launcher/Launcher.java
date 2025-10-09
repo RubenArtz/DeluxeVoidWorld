@@ -19,13 +19,11 @@ import ruben_artz.world.events.inventory.click.VOInventoryClickCreate;
 import ruben_artz.world.events.inventory.click.VOInventoryClickHome;
 import ruben_artz.world.events.inventory.click.VOInventoryClickIcon;
 import ruben_artz.world.events.inventory.click.VOInventoryClickPlayer;
+import ruben_artz.world.events.updateEvent;
 import ruben_artz.world.events.world.*;
 import ruben_artz.world.firework.FireworkDamage;
 import ruben_artz.world.firework.FireworkExplode;
-import ruben_artz.world.utils.LoadWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
-import ruben_artz.world.utils.Slime;
-import ruben_artz.world.utils.Updater;
+import ruben_artz.world.utils.*;
 import ruben_artz.world.utils.commands.PlayerCommand.MainCommand;
 
 import java.util.Arrays;
@@ -67,7 +65,6 @@ public class Launcher implements Launch {
         LoadWorld.ifConfigWorld();
         getMetrics();
         setConnection();
-        Updater.setEnabled();
         LoadWorld.loadWorld();
         LoadWorld.setTime();
         plugin.getMessages();
@@ -96,6 +93,8 @@ public class Launcher implements Launch {
             } catch (InterruptedException ignored) {
             }
         }
+
+        NotificationManager.shutdown();
     }
 
     private void setRateLimit() {
@@ -107,7 +106,8 @@ public class Launcher implements Launch {
     @SuppressWarnings("InstantiationOfUtilityClass")
     public void registerEvents() {
         PluginManager event = plugin.getServer().getPluginManager();
-        Arrays.asList(new VOWorlds(),
+        Arrays.asList(new updateEvent(),
+                        new VOWorlds(),
                         new VOEditing(),
                         new FireworkDamage(),
                         new FireworkExplode(),
@@ -124,6 +124,8 @@ public class Launcher implements Launch {
         if (CrossPlatformUtils.isPluginEnabled("SlimeWorldManager")) {
             new Slime();
         }
+
+        NotificationManager.launch();
     }
 
     private void getCommands() {

@@ -11,8 +11,7 @@
 #    ~~~~           \/__/         \/__/       \/__/
 
 ADMIN-CONFIG:
-  # Polymart buyers only...
-  RATE_LIMIT: 'ENTER THE LICENSE IF PURCHASED FROM POLYMART'
+  RATE_LIMIT: 'ENTER THE LICENSE IF PURCHASED FROM POLYMART OR BUILTBYBIT.'
   DATABASE:
     ENABLED: false
     HOST: 'localhost'
@@ -27,7 +26,6 @@ ADMIN-CONFIG:
       - 'useUnicode=true'
       - 'characterEncoding=utf8'
       - 'autoReconnect=true'
-  CHECK_UPDATE: true
   LANGUAGE: 'en_US'
   TYPE_START: 'FIRST-START'
   AUTOMATICALLY-DETECT-NEW-WORLDS: true

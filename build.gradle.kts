@@ -46,7 +46,7 @@ repositories {
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
 
-    compileOnly("org.projectlombok:lombok:1.18.24")
+    compileOnly("org.projectlombok:lombok:1.18.42")
     compileOnly("com.mojang:authlib:1.5.25")
     compileOnly("com.grinderwolf:slimeworldmanager-api:2.2.1")
     compileOnly("com.onarandombox.multiversecore:Multiverse-Core:4.3.1")
@@ -58,7 +58,7 @@ dependencies {
     compileOnly("org.jetbrains:annotations:23.0.0")
 
     compileOnly(fileTree(mapOf("dir" to "libs", "includes" to listOf("*.jar"))))
-    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
 
     implementation("io.github.slimjar:slimjar:1.0.0")
     implementation("net.kyori:adventure-text-minimessage:4.25.0")

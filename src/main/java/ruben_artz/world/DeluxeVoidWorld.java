@@ -29,7 +29,6 @@ import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-@SuppressWarnings("deprecation")
 public class DeluxeVoidWorld extends JavaPlugin {
     private static DeluxeVoidWorld plugin;
     @Getter
@@ -196,12 +195,6 @@ public class DeluxeVoidWorld extends JavaPlugin {
     }
 
     public void getReloadPlugin() {
-        if (Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.CHECK_UPDATE")).contains("true")) {
-            Updater.shutdown();
-            DeluxeVoidWorld.getScheduler().scheduleSyncDelayedTask(Updater::setEnabled, 20L);
-        } else {
-            Updater.shutdown();
-        }
         HandlerList.unregisterAll(this);
         Launcher.getInstance().registerEvents();
         LoadAllFiles();
