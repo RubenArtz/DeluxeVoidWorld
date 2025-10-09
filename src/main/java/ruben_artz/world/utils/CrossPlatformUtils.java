@@ -43,16 +43,15 @@ import ruben_artz.world.menu.Home;
 import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ProjectUtils {
+public class CrossPlatformUtils {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
+
+    public static final String DEFAULT_UUID = "3a730223-120a-4b66-8e1f-3e5a5125875c";
 
     public static String setPlaceholders(Player player, String text) {
         if (isPluginEnabled("PlaceholderAPI")) {
@@ -116,7 +115,7 @@ public class ProjectUtils {
 
     public static void getSound(Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.SOUNDS.ENABLED")) {
-            ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
+            CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
         }
     }
 
@@ -199,9 +198,9 @@ public class ProjectUtils {
         message = message.replace("{getTPS}", String.valueOf(getTPS()))
                 .replace("{Max Players}", String.valueOf(Bukkit.getMaxPlayers()))
                 .replace("{Online Players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                .replace("{Java Ram}", ProjectUtils.addCommas((int) mbUsed) + " MB")
-                .replace("{Java Max Ram}", ProjectUtils.addCommas((int) mbMaximum) + " MB")
-                .replace("{Java Free Ram}", ProjectUtils.addCommas((int) mbFree) + " MB");
+                .replace("{Java Ram}", CrossPlatformUtils.addCommas((int) mbUsed) + " MB")
+                .replace("{Java Max Ram}", CrossPlatformUtils.addCommas((int) mbMaximum) + " MB")
+                .replace("{Java Free Ram}", CrossPlatformUtils.addCommas((int) mbFree) + " MB");
         return message;
     }
 
@@ -226,8 +225,13 @@ public class ProjectUtils {
         lore.replaceAll(s -> addColor.setColors(setPlaceholders(s)));
         if (skullMeta != null) skullMeta.setLore(lore);
 
-        if (item != null && skullMeta != null)
-            item.setItemMeta(XSkull.of(skullMeta).profile(Profileable.of(ProfileInputType.TEXTURE_HASH, texture)).apply());
+        if (item != null && skullMeta != null) {
+            try {
+                item.setItemMeta(XSkull.of(skullMeta).profile(Profileable.of(ProfileInputType.TEXTURE_HASH, texture)).apply());
+            } catch (Exception exception) {
+                item.setItemMeta(XSkull.of(skullMeta).profile(Profileable.of(UUID.fromString(DEFAULT_UUID))).apply());
+            }
+        }
 
         inventory.setItem(slot, item);
     }
@@ -265,7 +269,7 @@ public class ProjectUtils {
     }
 
     public static void getMessagesArgs(Player player) {
-        ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
+        CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
         String box = plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND_BOX");
         player.sendMessage(addColor.setColors("&8&m--------------------------------------------------"));
         sendTextComponent(player, plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND").replace("{Version}", plugin.getVersion())
@@ -283,7 +287,7 @@ public class ProjectUtils {
     }
 
     public static void getHelpCommandGame(Player sender) {
-        ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
+        CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
         sender.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
         sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP")));
         sender.sendMessage(addColor.setColors("&f"));
@@ -345,9 +349,9 @@ public class ProjectUtils {
     }
 
     public static void getJumpEffects(Player player) {
-        ProjectUtils.getJump(player);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> ProjectUtils.getJump(player), 10L);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> ProjectUtils.getJump(player), 20L);
+        CrossPlatformUtils.getJump(player);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> CrossPlatformUtils.getJump(player), 10L);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> CrossPlatformUtils.getJump(player), 20L);
     }
 
     // Use the Lightning option

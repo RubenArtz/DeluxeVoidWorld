@@ -4,7 +4,6 @@ import com.github.Anon8281.universalScheduler.UniversalScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import developer.voidw.activate;
 import io.github.slimjar.app.builder.ApplicationBuilder;
-import io.github.slimjar.resolver.data.Repository;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
@@ -25,7 +24,6 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
@@ -89,11 +87,11 @@ public class DeluxeVoidWorld extends JavaPlugin {
 
         try {
             Path downloadPath = Paths.get(Bukkit.getWorldContainer().getPath() + File.separator + "plugins" + File.separator + "STN Studios" + File.separator + "Deluxe Void World");
+
             ApplicationBuilder.appending("DeluxeVoidWorld")
                     .logger(new SlimJarLogger(this))
                     .downloadDirectoryPath(downloadPath)
                     .mirrorSelector((a, b) -> a)
-                    .internalRepositories(Collections.singleton(new Repository(new URL("https://repo1.maven.org/maven2/"))))
                     .build();
 
             getLogger().info("Dependencies successfully loaded!");
@@ -235,7 +233,7 @@ public class DeluxeVoidWorld extends JavaPlugin {
 
 
     public void getMessages() {
-        ProjectUtils.runTaskLater(16L, () -> {
+        CrossPlatformUtils.runTaskLater(16L, () -> {
             sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + version);
             sendConsole("&8--------------------------------------------------------------------------------------");
             sendConsole("&7         Developed by &c" + authors);

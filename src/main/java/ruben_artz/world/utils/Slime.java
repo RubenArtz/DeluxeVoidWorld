@@ -59,8 +59,8 @@ public class Slime {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "swm load " + world);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_TP_NEW_MAP"));
 
-                ProjectUtils.runTaskLater(60L, () -> {
-                    Location location = ProjectUtils.returnLocation(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN"));
+                CrossPlatformUtils.runTaskLater(60L, () -> {
+                    Location location = CrossPlatformUtils.returnLocation(plugin.getWorlds().getString("WORLDS." + world + ".SPAWN"));
                     player.teleport(location);
                     player.setAllowFlight(true);
                     player.setFlying(true);

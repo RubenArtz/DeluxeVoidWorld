@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.events.world.antibot.preventAttacks;
 import ruben_artz.world.launcher.Launcher;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 import ruben_artz.world.utils.Updater;
 import ruben_artz.world.utils.addColor;
 
@@ -20,7 +20,7 @@ public class VOJoin implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void verifyPlayer(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ProjectUtils.runTaskAsynchronously(() -> {
+        CrossPlatformUtils.runTaskAsynchronously(() -> {
             /*
              * Add data if the player does not exist!
              */
@@ -40,11 +40,11 @@ public class VOJoin implements Listener {
     public void onAuthor(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if ("Ruben_Artz".equals(player.getName())) {
-            ProjectUtils.runTask(() -> {
+            CrossPlatformUtils.runTask(() -> {
                 Updater.getUpdater();
                 player.sendMessage(addColor.setColors("&8« » =========== &e✯ &9&lDeluxe Void World &e✯ &8=========== « »"));
                 player.sendMessage(addColor.setColors("&f"));
-                ProjectUtils.sendTextComponent(player,
+                CrossPlatformUtils.sendTextComponent(player,
                         "&fVersion: &av" + plugin.getVersion(),
                         ClickEvent.Action.OPEN_URL,
                         "https://api.spigotmc.org/legacy/update.php?resource=86993",

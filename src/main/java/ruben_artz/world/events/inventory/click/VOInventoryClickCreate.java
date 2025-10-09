@@ -9,7 +9,7 @@ import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.events.chat.VOString;
 import ruben_artz.world.menu.Create;
 import ruben_artz.world.menu.Home;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 import ruben_artz.world.utils.Slime;
 
 import java.util.ArrayList;
@@ -34,56 +34,56 @@ public class VOInventoryClickCreate implements Listener {
                     VOString message = messages.get(0);
                     int slot = event.getSlot();
                     if (slot == plugin.getInventoryCrating().getInt("MAIN.NORMAL.SLOT")) {
-                        if (ProjectUtils.isPluginEnabled("SlimeWorldManager")) {
+                        if (CrossPlatformUtils.isPluginEnabled("SlimeWorldManager")) {
                             Slime.createWorldWithSlime(player, message.getName(), "NORMAL");
                             player.closeInventory();
                             plugin.removeMessages();
-                        } else if (ProjectUtils.isPluginEnabled("Multiverse-Core")) {
-                            ProjectUtils.createWorldWithMultiverse(player, message.getName(), "NORMAL");
+                        } else if (CrossPlatformUtils.isPluginEnabled("Multiverse-Core")) {
+                            CrossPlatformUtils.createWorldWithMultiverse(player, message.getName(), "NORMAL");
                             player.closeInventory();
                             plugin.removeMessages();
-                        } else if (ProjectUtils.isPluginEnabled("UltraRegions")) {
-                            ProjectUtils.createUltraWorld(player, message.getName(), "NORMAL");
+                        } else if (CrossPlatformUtils.isPluginEnabled("UltraRegions")) {
+                            CrossPlatformUtils.createUltraWorld(player, message.getName(), "NORMAL");
                             player.closeInventory();
                             plugin.removeMessages();
                         } else {
-                            ProjectUtils.createWorldsDeluxe(player, message.getName(), "NORMAL");
+                            CrossPlatformUtils.createWorldsDeluxe(player, message.getName(), "NORMAL");
                             player.closeInventory();
                             plugin.removeMessages();
                         }
                     } else if (slot == plugin.getInventoryCrating().getInt("MAIN.NETHER.SLOT")) {
-                        if (ProjectUtils.isPluginEnabled("SlimeWorldManager")) {
+                        if (CrossPlatformUtils.isPluginEnabled("SlimeWorldManager")) {
                             Slime.createWorldWithSlime(player, message.getName(), "NETHER");
                             player.closeInventory();
                             plugin.removeMessages();
-                        } else if (ProjectUtils.isPluginEnabled("Multiverse-Core")) {
-                            ProjectUtils.createWorldWithMultiverse(player, message.getName(), "NETHER");
+                        } else if (CrossPlatformUtils.isPluginEnabled("Multiverse-Core")) {
+                            CrossPlatformUtils.createWorldWithMultiverse(player, message.getName(), "NETHER");
                             player.closeInventory();
                             plugin.removeMessages();
-                        } else if (ProjectUtils.isPluginEnabled("UltraRegions")) {
-                            ProjectUtils.createUltraWorld(player, message.getName(), "NETHER");
+                        } else if (CrossPlatformUtils.isPluginEnabled("UltraRegions")) {
+                            CrossPlatformUtils.createUltraWorld(player, message.getName(), "NETHER");
                             player.closeInventory();
                             plugin.removeMessages();
                         } else {
-                            ProjectUtils.createWorldsDeluxe(player, message.getName(), "NETHER");
+                            CrossPlatformUtils.createWorldsDeluxe(player, message.getName(), "NETHER");
                             player.closeInventory();
                             plugin.removeMessages();
                         }
                     } else if (slot == plugin.getInventoryCrating().getInt("MAIN.THE_END.SLOT")) {
-                        if (ProjectUtils.isPluginEnabled("SlimeWorldManager")) {
-                            ProjectUtils.createWorldWithMultiverse(player, message.getName(), "THE_END");
+                        if (CrossPlatformUtils.isPluginEnabled("SlimeWorldManager")) {
+                            CrossPlatformUtils.createWorldWithMultiverse(player, message.getName(), "THE_END");
                             player.closeInventory();
                             plugin.removeMessages();
-                        } else if (ProjectUtils.isPluginEnabled("Multiverse-Core")) {
-                            ProjectUtils.createWorldsDeluxe(player, message.getName(), "THE_END");
+                        } else if (CrossPlatformUtils.isPluginEnabled("Multiverse-Core")) {
+                            CrossPlatformUtils.createWorldsDeluxe(player, message.getName(), "THE_END");
                             player.closeInventory();
                             plugin.removeMessages();
-                        } else if (ProjectUtils.isPluginEnabled("UltraRegions")) {
-                            ProjectUtils.createUltraWorld(player, message.getName(), "THE_END");
+                        } else if (CrossPlatformUtils.isPluginEnabled("UltraRegions")) {
+                            CrossPlatformUtils.createUltraWorld(player, message.getName(), "THE_END");
                             player.closeInventory();
                             plugin.removeMessages();
                         } else {
-                            ProjectUtils.createWorldsDeluxe(player, message.getName(), "THE_END");
+                            CrossPlatformUtils.createWorldsDeluxe(player, message.getName(), "THE_END");
                             player.closeInventory();
                             plugin.removeMessages();
                         }

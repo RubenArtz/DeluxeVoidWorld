@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.database.utils.CacheMethod;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,7 +34,7 @@ public class Cache {
     CacheMethod method;
 
     public Cache() {
-        if (ProjectUtils.isMySQL()) {
+        if (CrossPlatformUtils.isMySQL()) {
             method = new MysqlMethod();
         } else {
             method = new H2Method();
@@ -47,7 +47,7 @@ public class Cache {
 
     private void createTable() {
 
-        try (Connection connection = method.getConnection(); PreparedStatement ps = connection.prepareStatement(ProjectUtils.isMySQL() ? CREATE_TABLE_MYSQL : CREATE_TABLE_H2)) {
+        try (Connection connection = method.getConnection(); PreparedStatement ps = connection.prepareStatement(CrossPlatformUtils.isMySQL() ? CREATE_TABLE_MYSQL : CREATE_TABLE_H2)) {
             try {
 
                 ps.executeUpdate();

@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 import ruben_artz.world.utils.addColor;
 import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 
@@ -29,7 +29,7 @@ public class Toggle extends SubCommand {
         World world = Bukkit.getWorld(args[1]);
         if (world == null) {
             if (sender instanceof Player) {
-                ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.SOUND_THERE_IS_NO_WORLD")), (Player) sender);
+                CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.SOUND_THERE_IS_NO_WORLD")), (Player) sender);
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_UNKNOWN_WORLD_COMMAND").replace("{World}", bossbar)));
             } else {
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_UNKNOWN_WORLD_COMMAND").replace("{World}", bossbar)));
@@ -39,14 +39,14 @@ public class Toggle extends SubCommand {
                 plugin.getWorlds().set("WORLDS." + bossbar + ".TP-WHEN-FALLING", true);
                 plugin.files.saveFile("worlds.yml");
                 if (sender instanceof Player) {
-                    ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), (Player) sender);
+                    CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), (Player) sender);
                 }
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_ACTIVATED_WORLD")).replace("{World}", bossbar));
             } else {
                 plugin.getWorlds().set("WORLDS." + bossbar + ".TP-WHEN-FALLING", false);
                 plugin.files.saveFile("worlds.yml");
                 if (sender instanceof Player) {
-                    ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), (Player) sender);
+                    CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), (Player) sender);
                 }
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_DISABLED_WORLD")).replace("{World}", bossbar));
             }

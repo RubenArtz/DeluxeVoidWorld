@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "ruben_artz"
-version = "5.2.21"
+version = "5.3.21"
 
 registerOutputTask("Ruben_Artz", "D:/Ruben_Artz/STN Studios/Development/plugins")
 
@@ -33,7 +33,8 @@ repositories {
         url = uri("https://repo.glaremasters.me/repository/concuncan/")
     }
     maven {
-        url = uri("https://repo.alessiodp.com/releases/")
+        name = "rubenmatiasReleases"
+        url = uri("https://repo.stn-studios.dev/releases")
     }
     maven {
         url = uri("https://jitpack.io")
@@ -59,9 +60,9 @@ dependencies {
     compileOnly(fileTree(mapOf("dir" to "libs", "includes" to listOf("*.jar"))))
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 
-    implementation("io.github.slimjar:slimjar:1.2.7")
-    implementation("net.kyori:adventure-text-minimessage:4.17.0")
-    implementation("net.kyori:adventure-platform-bukkit:4.3.4")
+    implementation("io.github.slimjar:slimjar:1.0.0")
+    implementation("net.kyori:adventure-text-minimessage:4.25.0")
+    implementation("net.kyori:adventure-platform-bukkit:4.4.1")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("io.papermc:paperlib:1.0.7")
 
@@ -77,7 +78,7 @@ dependencies {
     Keep up to date
     Url: https://github.com/CryptoMorin/XSeries/releases
      */
-    slim("com.github.cryptomorin:XSeries:12.0.0")
+    slim("com.github.cryptomorin:XSeries:13.5.1")
     slim("com.squareup.okhttp3:okhttp:4.12.0")
     slim("junit:junit:4.13.1")
     slim("com.googlecode.json-simple:json-simple:1.1.1")

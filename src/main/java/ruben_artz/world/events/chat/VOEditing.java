@@ -12,7 +12,7 @@ import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.menu.Create;
 import ruben_artz.world.menu.Home;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 import ruben_artz.world.utils.addColor;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getChat().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    ProjectUtils.runTask(() -> Home.getInventory(player, 1));
+                    CrossPlatformUtils.runTask(() -> Home.getInventory(player, 1));
                 } else {
                     Home.getInventory(player, 1);
                 }
@@ -44,7 +44,7 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getChat_get().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    ProjectUtils.runTask(() -> Home.getInventory(player, 1));
+                    CrossPlatformUtils.runTask(() -> Home.getInventory(player, 1));
                 } else {
                     Home.getInventory(player, 1);
                 }
@@ -57,7 +57,7 @@ public class VOEditing implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
             if (plugin.getCreate_world().contains(player.getUniqueId())) {
                 if (event.isAsynchronous()) {
-                    ProjectUtils.runTask(() -> Home.getInventory(player, 1));
+                    CrossPlatformUtils.runTask(() -> Home.getInventory(player, 1));
                 } else {
                     Home.getInventory(player, 1);
                 }
@@ -77,9 +77,9 @@ public class VOEditing implements Listener {
             event.setCancelled(true);
             plugin.addMessage(new VOString(player.getName(), message));
             if (event.isAsynchronous()) {
-                ProjectUtils.runTask(() -> Create.openInventory(player));
+                CrossPlatformUtils.runTask(() -> Create.openInventory(player));
             } else {
-                ProjectUtils.runTask(() -> Create.openInventory(player));
+                CrossPlatformUtils.runTask(() -> Create.openInventory(player));
             }
             create.cancel();
             sendTitles.clearTitle(player);
@@ -98,7 +98,7 @@ public class VOEditing implements Listener {
             plugin.getWorlds().set("WORLDS." + worldName + ".VOID-POSITION", -5);
             plugin.getWorlds().set("WORLDS." + worldName + ".WORLD", "&a" + worldName);
             plugin.getWorlds().set("WORLDS." + worldName + ".MATERIAL", "STONE");
-            plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", ProjectUtils.setLocation(worldName));
+            plugin.getWorlds().set("WORLDS." + worldName + ".SPAWN", CrossPlatformUtils.setLocation(worldName));
             plugin.getWorlds().set("WORLDS." + worldName + ".COMMANDS.TYPE", "CONSOLE");
 
             final List<String> listCommands = plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST");
@@ -107,13 +107,13 @@ public class VOEditing implements Listener {
 
             plugin.files.saveFile("worlds.yml");
             if (event.isAsynchronous()) {
-                ProjectUtils.runTask(() -> {
+                CrossPlatformUtils.runTask(() -> {
                     Home.getInventory(player, 1);
-                    ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
+                    CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
                 });
             } else {
                 Home.getInventory(player, 1);
-                ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
+                CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CREATE_WORLD_MENU")), player);
             }
             plugin.getChat().clear();
             announce.cancel();
@@ -133,7 +133,7 @@ public class VOEditing implements Listener {
                     plugin.getWorlds().set("WORLDS." + player.getWorld().getName() + ".VOID-POSITION", Integer.parseInt(event.getMessage()));
                     plugin.files.saveFile("worlds.yml");
                     if (event.isAsynchronous()) {
-                        ProjectUtils.runTask(() -> Home.getInventory(player, 1));
+                        CrossPlatformUtils.runTask(() -> Home.getInventory(player, 1));
                     } else {
                         Home.getInventory(player, 1);
                     }
@@ -141,11 +141,11 @@ public class VOEditing implements Listener {
                     plugin.chat_get.clear();
                     sendTitles.clearTitle(player);
                 } else {
-                    ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_LESS_ZERO")), player);
+                    CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_LESS_ZERO")), player);
                     addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_LESS_ZERO"));
                 }
             } catch (NumberFormatException e) {
-                ProjectUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_NO_WORDS")), player);
+                CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CHANGE_Y_NO_WORDS")), player);
                 addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_NO_WORDS").replace("{Word}", event.getMessage()));
             }
         }

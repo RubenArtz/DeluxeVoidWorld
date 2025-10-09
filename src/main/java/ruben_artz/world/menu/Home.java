@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.menu.utils.playerPageInfo;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 import ruben_artz.world.utils.addColor;
 
 import java.util.ArrayList;
@@ -30,33 +30,33 @@ public class Home {
     This method creates the inventory
      */
     public static void getInventory(Player player, int currentPage) {
-        ProjectUtils.runTask(() -> {
+        CrossPlatformUtils.runTask(() -> {
             inventory = Bukkit.createInventory(null, 54, title);
            /*
            This method updates the item, lore and name
            */
-            task = ProjectUtils.runTaskTimer(20, () -> {
+            task = CrossPlatformUtils.runTaskTimer(20, () -> {
                 /*
                  * Adding crystals
                  */
                 for (int glass = 45; glass <= 53; glass++) {
-                    ProjectUtils.setGlass(glass, inventory);
+                    CrossPlatformUtils.setGlass(glass, inventory);
                 }
                 /*
                  * Adding items
                  */
-                ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.ADD_WORLD.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.ADD_WORLD.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.ADD_WORLD.NAME"), plugin.getMenuHome().getStringList("MAIN.ADD_WORLD.LORE"));
-                ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.CLOSE.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.CLOSE.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.CLOSE.NAME"), plugin.getMenuHome().getStringList("MAIN.CLOSE.LORE"));
-                ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.RELOAD.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.RELOAD.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.RELOAD.NAME"), plugin.getMenuHome().getStringList("MAIN.RELOAD.LORE"));
-                ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.CREATE_WORLD.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.CREATE_WORLD.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.CREATE_WORLD.NAME"), plugin.getMenuHome().getStringList("MAIN.CREATE_WORLD.LORE"));
+                CrossPlatformUtils.setItem(plugin.getMenuHome().getInt("MAIN.ADD_WORLD.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.ADD_WORLD.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.ADD_WORLD.NAME"), plugin.getMenuHome().getStringList("MAIN.ADD_WORLD.LORE"));
+                CrossPlatformUtils.setItem(plugin.getMenuHome().getInt("MAIN.CLOSE.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.CLOSE.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.CLOSE.NAME"), plugin.getMenuHome().getStringList("MAIN.CLOSE.LORE"));
+                CrossPlatformUtils.setItem(plugin.getMenuHome().getInt("MAIN.RELOAD.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.RELOAD.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.RELOAD.NAME"), plugin.getMenuHome().getStringList("MAIN.RELOAD.LORE"));
+                CrossPlatformUtils.setItem(plugin.getMenuHome().getInt("MAIN.CREATE_WORLD.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.CREATE_WORLD.MATERIAL", "BEDROCK"), plugin.getMenuHome().getString("MAIN.CREATE_WORLD.NAME"), plugin.getMenuHome().getStringList("MAIN.CREATE_WORLD.LORE"));
 
                 /*
                  * Add more pages
                  */
-                int totalPages = ProjectUtils.getInventoryPages();
+                int totalPages = CrossPlatformUtils.getInventoryPages();
                 int slot = 0;
                 setBooks(player);
-                for (int i = 45 * (currentPage - 1); i < ProjectUtils.getWorldPathSize(); i++) {
+                for (int i = 45 * (currentPage - 1); i < CrossPlatformUtils.getWorldPathSize(); i++) {
                     inventory.setItem(slot++, itemStacks.get(i));
                     if (slot > 44) {
                         break;
@@ -69,8 +69,8 @@ public class Home {
                     List<String> lore = plugin.getMenuHome().getStringList("MAIN.NEXT.LORE");
                     lore.replaceAll(s -> s
                             .replace("{Current Page}", String.valueOf(currentPage))
-                            .replace("{Max Pages}", String.valueOf(ProjectUtils.getInventoryPages())));
-                    ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.NEXT.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL"), plugin.getMenuHome().getString("MAIN.NEXT.NAME"), lore, currentPage + 1);
+                            .replace("{Max Pages}", String.valueOf(CrossPlatformUtils.getInventoryPages())));
+                    CrossPlatformUtils.setItem(plugin.getMenuHome().getInt("MAIN.NEXT.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL"), plugin.getMenuHome().getString("MAIN.NEXT.NAME"), lore, currentPage + 1);
                 }
                 /*
                 Return to page
@@ -79,8 +79,8 @@ public class Home {
                     List<String> lore = plugin.getMenuHome().getStringList("MAIN.RETURN.LORE");
                     lore.replaceAll(s -> s
                             .replace("{Current Page}", String.valueOf(currentPage))
-                            .replace("{Max Pages}", String.valueOf(ProjectUtils.getInventoryPages())));
-                    ProjectUtils.setItem(plugin.getMenuHome().getInt("MAIN.RETURN.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.RETURN.MATERIAL"), plugin.getMenuHome().getString("MAIN.RETURN.NAME"), lore, currentPage - 1);
+                            .replace("{Max Pages}", String.valueOf(CrossPlatformUtils.getInventoryPages())));
+                    CrossPlatformUtils.setItem(plugin.getMenuHome().getInt("MAIN.RETURN.SLOT"), inventory, plugin.getMenuHome().getString("MAIN.RETURN.MATERIAL"), plugin.getMenuHome().getString("MAIN.RETURN.NAME"), lore, currentPage - 1);
                 }
             });
             player.openInventory(inventory);
@@ -106,12 +106,12 @@ public class Home {
                 if (world.getPlayers().isEmpty()) {
                     itemName = "0";
                 } else {
-                    itemName = ProjectUtils.addCommas(world.getPlayers().size());
+                    itemName = CrossPlatformUtils.addCommas(world.getPlayers().size());
                 }
             }
 
             if (itemMeta != null) itemMeta.setDisplayName(
-                    addColor.setColors(ProjectUtils.setPlaceholders(plugin.getWorlds().getString("WORLDS." + key + ".WORLD")) + " &7| &e( " + itemName + " Player's )"));
+                    addColor.setColors(CrossPlatformUtils.setPlaceholders(plugin.getWorlds().getString("WORLDS." + key + ".WORLD")) + " &7| &e( " + itemName + " Player's )"));
 
             final List<String> loreList = plugin.getMenuHome().getStringList("MAIN.ALPHANUMERIC_ITEM.LORE");
             loreList.replaceAll((s) -> {
@@ -119,36 +119,36 @@ public class Home {
                 Verify teleportation
                  */
                 if (Objects.equals(plugin.getWorlds().getString("WORLDS." + key + ".TP-WHEN-FALLING"), "true")) {
-                    s = ProjectUtils.replacePlaceholder(s, "{Status}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.ENABLED"));
+                    s = CrossPlatformUtils.replacePlaceholder(s, "{Status}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.ENABLED"));
                 } else {
-                    s = ProjectUtils.replacePlaceholder(s, "{Status}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.DISABLED"));
+                    s = CrossPlatformUtils.replacePlaceholder(s, "{Status}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.DISABLED"));
                 }
 
                 /*
                 It is in the world
                  */
                 if (player.getWorld().getName().equalsIgnoreCase(name[0])) {
-                    s = ProjectUtils.replacePlaceholder(s, "{Current World}", plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_YES"));
+                    s = CrossPlatformUtils.replacePlaceholder(s, "{Current World}", plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_YES"));
                 } else {
-                    s = ProjectUtils.replacePlaceholder(s, "{Current World}", plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_NO"));
+                    s = CrossPlatformUtils.replacePlaceholder(s, "{Current World}", plugin.getFileTranslations().getString("MESSAGE_PLACEHOLDER_WORLD_NO"));
                 }
 
                 /*
                 Always daytime?
                  */
                 if (Objects.equals(plugin.getWorlds().getString("WORLDS." + key + ".ALWAYS-DAY"), "true")) {
-                    s = ProjectUtils.replacePlaceholder(s, "{Status Day}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.ENABLED"));
+                    s = CrossPlatformUtils.replacePlaceholder(s, "{Status Day}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.ENABLED"));
                 } else {
-                    s = ProjectUtils.replacePlaceholder(s, "{Status Day}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.DISABLED"));
+                    s = CrossPlatformUtils.replacePlaceholder(s, "{Status Day}", plugin.getConfig().getString("ADMIN-CONFIG.PLACEHOLDER.DISABLED"));
                 }
 
-                s = ProjectUtils.replacePlaceholder(s, "{Position}", plugin.getWorlds().getString("WORLDS." + key + ".VOID-POSITION"));
-                s = ProjectUtils.replacePlaceholder(s, "{X}", name[1]);
-                s = ProjectUtils.replacePlaceholder(s, "{Y}", name[2]);
-                s = ProjectUtils.replacePlaceholder(s, "{Z}", name[3]);
-                s = ProjectUtils.replacePlaceholder(s, "{Yaw}", name[4]);
-                s = ProjectUtils.replacePlaceholder(s, "{Pitch}", name[5]);
-                return addColor.setColors(ProjectUtils.setPlaceholders(s));
+                s = CrossPlatformUtils.replacePlaceholder(s, "{Position}", plugin.getWorlds().getString("WORLDS." + key + ".VOID-POSITION"));
+                s = CrossPlatformUtils.replacePlaceholder(s, "{X}", name[1]);
+                s = CrossPlatformUtils.replacePlaceholder(s, "{Y}", name[2]);
+                s = CrossPlatformUtils.replacePlaceholder(s, "{Z}", name[3]);
+                s = CrossPlatformUtils.replacePlaceholder(s, "{Yaw}", name[4]);
+                s = CrossPlatformUtils.replacePlaceholder(s, "{Pitch}", name[5]);
+                return addColor.setColors(CrossPlatformUtils.setPlaceholders(s));
             });
 
             if (itemMeta != null) itemMeta.setLore(loreList);

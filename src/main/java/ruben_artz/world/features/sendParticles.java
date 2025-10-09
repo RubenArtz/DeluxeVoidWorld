@@ -6,13 +6,13 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.ProjectUtils;
+import ruben_artz.world.utils.CrossPlatformUtils;
 
 public class sendParticles {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void sendParticle(Player player) {
-        if (ProjectUtils.isVersion_1_10_To_1_21()) {
+        if (CrossPlatformUtils.isVersion_1_10_To_1_21()) {
             if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.PARTICLES.ENABLED")) {
 
                 for (String particles : plugin.getConfig().getStringList("ON_VOID_TP.SETTINGS.PARTICLES.LIST")) {
@@ -20,8 +20,20 @@ public class sendParticles {
                     player.spawnParticle(Particle.valueOf(particle[0]), player.getLocation(), Integer.parseInt(particle[1]), Float.parseFloat(particle[2]), Float.parseFloat(particle[3]), Float.parseFloat(particle[4]), Float.parseFloat(particle[5]), null);
                 }
 
-                ProjectUtils.runTaskLater(20L, () -> ProjectUtils.runTaskTimerTick(() ->
-                        Particles.circle(3, 100, ParticleDisplay.of(XParticle.of(XParticle.DRAGON_BREATH.get())).withLocation(player.getLocation()))));
+                CrossPlatformUtils.runTaskLater(20L, () -> CrossPlatformUtils.runTaskTimerTick(() -> {
+                    Particle xParticle = XParticle.DRAGON_BREATH.get();
+
+                    if (xParticle != null) {
+                        try {
+                            Particles.circle(
+                                    3,
+                                    100,
+                                    ParticleDisplay.of(XParticle.of(xParticle))
+                                            .withLocation(player.getLocation())
+                            );
+                        } catch (Exception ignored) {}
+                    }
+                }));
             }
         }
     }
