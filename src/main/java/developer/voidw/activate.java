@@ -7,7 +7,7 @@ public class activate {
         /*
         Si es true, la licencia no se utiliza
          */
-        boolean isSpigot = true;
+        boolean isSpigot = false;
 
         if (!isSpigot) {
             polymart.setLicense();

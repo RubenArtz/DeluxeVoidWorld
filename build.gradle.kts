@@ -81,7 +81,7 @@ dependencies {
     slim("com.github.cryptomorin:XSeries:13.5.1")
     slim("com.squareup.okhttp3:okhttp:4.12.0")
     slim("junit:junit:4.13.1")
-    slim("com.googlecode.json-simple:json-simple:1.1.1")
+    slim("com.google.code.gson:gson:2.13.1")
 }
 
 tasks.shadowJar {

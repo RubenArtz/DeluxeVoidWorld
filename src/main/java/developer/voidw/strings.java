@@ -1,13 +1,12 @@
 package developer.voidw;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import ruben_artz.world.utils.addColor;
 
 import java.io.IOException;
@@ -27,42 +26,34 @@ public class strings {
         put("REQUEST_LIMIT", "Your license exceeded the limit of requests, contact the developer.");
     }};
 
-    /*
-    If true, the license is not activated
-     */
     @Getter
     private static boolean isTrue = true;
 
-    /*
-    Check if the license is valid
-     */
     public static void setFalse(String license, Audience audience) {
         if (!strings.isLicenseValid(license, audience)) strings.isTrue = false;
     }
 
     private static boolean isLicenseValid(String licenseKey, Audience audience) {
         String SECRET_KEY = "O9RKhWeXgo3ggmKapl2q4fLUrBOSLFZl";
-        String url = "https://dashboard.stn-studios.dev/api.php?secret=" + SECRET_KEY + "&type=license&key=" + licenseKey + "&product=Deluxe Void World&version=1.0.0";
+        String url = "https://dashboard.stn-studios.dev/api.php?secret=" + SECRET_KEY
+                + "&type=license&key=" + licenseKey
+                + "&product=Deluxe Void World&version=1.0.0";
 
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        Request request = new Request.Builder().url(url).build();
 
-        try {
-            Response response = client.newCall(request).execute();
+        try (Response response = client.newCall(request).execute()) {
             String jsonData = response.body() != null ? response.body().string() : null;
 
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(jsonData);
-
-            if (jsonData == null || jsonData.trim().isEmpty() || jsonObject == null) {
+            if (jsonData == null || jsonData.trim().isEmpty()) {
                 audience.sendMessage(addColor.addColors("<red>Your license exceeded the limit of requests, contact the developer.</red>"));
                 return false;
             }
 
-            if (jsonObject.containsKey("message")) {
-                String message = (String) jsonObject.get("message");
+            JsonObject jsonObject = JsonParser.parseString(jsonData).getAsJsonObject();
+
+            if (jsonObject.has("message")) {
+                String message = jsonObject.get("message").getAsString();
 
                 if (INVALID_MESSAGE_MAP.containsKey(message)) {
                     audience.sendMessage(addColor.addColors("<red>" + INVALID_MESSAGE_MAP.get(message) + "</red>"));
@@ -70,9 +61,13 @@ public class strings {
                 }
             }
 
-            return jsonObject.containsKey("valid") && (Long) jsonObject.get("valid") == 1;
-        } catch (IOException | ParseException e) {
-            audience.sendMessage(addColor.addColors("<red>" + "Error: " + e.getMessage() + "</red>"));
+            return jsonObject.has("valid") && jsonObject.get("valid").getAsInt() == 1;
+
+        } catch (IOException e) {
+            audience.sendMessage(addColor.addColors("<red>Error: " + e.getMessage() + "</red>"));
+            return false;
+        } catch (Exception e) {
+            audience.sendMessage(addColor.addColors("<red>Invalid response format or parsing error.</red>"));
             return false;
         }
     }
