@@ -1,5 +1,6 @@
 package ruben_artz.world.launcher;
 
+import developer.voidw.activate;
 import developer.voidw.strings;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
@@ -67,7 +68,8 @@ public class Launcher implements Launch {
         setConnection();
         LoadWorld.loadWorld();
         LoadWorld.setTime();
-        plugin.getMessages();
+
+        welcome();
     }
 
     @Override
@@ -75,7 +77,7 @@ public class Launcher implements Launch {
         if (plugin.getGenerated().contains("WORLDS")) {
             for (String key : Objects.requireNonNull(plugin.getGenerated().getConfigurationSection("WORLDS")).getKeys(false)) {
                 String[] name = Objects.requireNonNull(plugin.getGenerated().getString("WORLDS." + key + ".SPAWN")).split(",");
-                CrossPlatformUtils.saveWorlds(name[0]);
+                UtilityFunctions.saveWorlds(name[0]);
                 Bukkit.getLogger().log(Level.INFO, "[DeluxeVoidWorld] Saving world " + name[0] + "...");
             }
         }
@@ -121,7 +123,7 @@ public class Launcher implements Launch {
                         new VOInventoryClickPlayer(),
                         new VOInventoryClickIcon())
                 .forEach(listener -> event.registerEvents(listener, plugin));
-        if (CrossPlatformUtils.isPluginEnabled("SlimeWorldManager")) {
+        if (UtilityFunctions.isPluginEnabled("SlimeWorldManager")) {
             new Slime();
         }
 
@@ -134,7 +136,7 @@ public class Launcher implements Launch {
     }
 
     private void getMetrics() {
-        CrossPlatformUtils.runTaskLater(60, () -> {
+        UtilityFunctions.runTaskLater(60, () -> {
             final Metrics metrics = new Metrics(plugin, 9736);
             for (String key : Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false)) {
                 if (plugin.getWorlds().getString("WORLDS." + key + ".TP-WHEN-FALLING") == null) {
@@ -152,6 +154,37 @@ public class Launcher implements Launch {
     }
 
     private void getNumbers() {
-        CrossPlatformUtils.runTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
+        UtilityFunctions.runTaskLater(15, () -> numberWorlds = Objects.requireNonNull(plugin.getWorlds().getConfigurationSection("WORLDS")).getKeys(false).size());
+    }
+
+    public void welcome() {
+        UtilityFunctions.runTaskLater(16L, () -> {
+            String linea1 = "___  ____ _    _  _ _  _ ____    _  _ ____ _ ___     _ _ _ ____ ____ _    ___  ";
+            String linea2 = "|  \\ |___ |    |  |  \\/  |___    |  | |  | | |  \\    | | | |  | |__/ |    |  \\ ";
+            String linea3 = "|__/ |___ |___ |__| _/\\_ |___     \\/  |__| | |__/    |_|_| |__| |  \\ |___ |__/ ";
+
+            String color1 = "#54daf4";
+            String color2 = "#545eb6";
+
+            plugin.sendConsole("<gradient:" + color1 + ":" + color2 + ">" + linea1 + "</gradient><reset>");
+            plugin.sendConsole("<gradient:" + color1 + ":" + color2 + ">" + linea2 + "</gradient><reset>");
+            plugin.sendConsole("<gradient:" + color1 + ":" + color2 + ">" + linea3 + "</gradient><reset>");
+
+            plugin.sendConsole("&f");
+            plugin.sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + plugin.version);
+            plugin.sendConsole("&8--------------------------------------------------------------------------------------");
+            plugin.sendConsole("&7         Developed by &c" + plugin.authors);
+            plugin.sendConsole(plugin.getPrefix() + "&aVersion: &c" + plugin.version + " &ais loading... &8(&6Current&8)");
+            plugin.sendConsole(plugin.getPrefix() + "&aServer: &c" + Bukkit.getVersion());
+            plugin.sendConsole(plugin.getPrefix() + "&aLoading necessary files...");
+            plugin.sendConsole("&f");
+            plugin.sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a" + Launcher.getNumberWorlds() + "&f'");
+            plugin.sendConsole("&f");
+            plugin.sendConsole("&fDeluxeVoidWorld &aStarting plugin...");
+            plugin.sendConsole("&f");
+            plugin.sendConsole("&8--------------------------------------------------------------------------------------");
+
+            activate.setPolymart();
+        });
     }
 }

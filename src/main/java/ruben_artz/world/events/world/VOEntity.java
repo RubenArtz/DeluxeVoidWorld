@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 
 public class VOEntity implements Listener {
     public final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
@@ -20,7 +20,7 @@ public class VOEntity implements Listener {
         }
         if (plugin.getDamage().contains(event.getEntity().getUniqueId())) {
             event.setCancelled(true);
-            CrossPlatformUtils.runTaskLater(200, () -> plugin.getDamage().clear());
+            UtilityFunctions.runTaskLater(200, () -> plugin.getDamage().clear());
         }
     }
 }

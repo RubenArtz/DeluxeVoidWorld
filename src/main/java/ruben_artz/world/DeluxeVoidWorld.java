@@ -2,7 +2,6 @@ package ruben_artz.world;
 
 import com.github.Anon8281.universalScheduler.UniversalScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
-import developer.voidw.activate;
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
@@ -222,25 +221,5 @@ public class DeluxeVoidWorld extends JavaPlugin {
     public void removeInventory(String name) {
         // Remove the specific inventory entry
         getInventory().removeIf(inv -> inv.getPlayer().getName().equals(name));
-    }
-
-
-    public void getMessages() {
-        CrossPlatformUtils.runTaskLater(16L, () -> {
-            sendConsole(plugin.getPrefix() + "&aSuccessfully enabled &cv" + version);
-            sendConsole("&8--------------------------------------------------------------------------------------");
-            sendConsole("&7         Developed by &c" + authors);
-            sendConsole(plugin.getPrefix() + "&aVersion: &c" + version + " &ais loading... &8(&6Current&8)");
-            sendConsole(plugin.getPrefix() + "&aServer: &c" + Bukkit.getVersion());
-            sendConsole(plugin.getPrefix() + "&aLoading necessary files...");
-            sendConsole("&f");
-            sendConsole("&9[Loader] &fMaps loaded correctly: &f'&a" + Launcher.getNumberWorlds() + "&f'");
-            sendConsole("&f");
-            sendConsole("&fDeluxeVoidWorld &aStarting plugin...");
-            sendConsole("&f");
-            sendConsole("&8--------------------------------------------------------------------------------------");
-
-            activate.setPolymart();
-        });
     }
 }

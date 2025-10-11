@@ -7,7 +7,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
@@ -41,40 +41,40 @@ public class VOWorlds implements Listener {
     }
 
     private void getNull(Player player) {
-        CrossPlatformUtils.isNull(player);
+        UtilityFunctions.isNull(player);
     }
 
     private void getTeleportation(Player player) {
         if (!plugin.getIgnoreTeleportation().contains(player.getUniqueId())) {
-            CrossPlatformUtils.getTeleportation(player);
+            UtilityFunctions.getTeleportation(player);
         }
     }
 
     private void getJump(Player player) {
         if (!plugin.getIgnoreJumping().contains(player.getUniqueId())) {
             plugin.getDamage().add(player.getUniqueId());
-            CrossPlatformUtils.getJumpEffects(player);
+            UtilityFunctions.getJumpEffects(player);
         }
     }
 
     private void getLightningEffect(Player player) {
         if (!plugin.getIgnoreLightning().contains(player.getUniqueId())) {
-            CrossPlatformUtils.getLightningEffect(player);
+            UtilityFunctions.getLightningEffect(player);
         }
     }
 
     private void getParticles(Player player) {
         if (!plugin.getIgnoreParticles().contains(player.getUniqueId())) {
-            CrossPlatformUtils.getParticles(player);
+            UtilityFunctions.getParticles(player);
         }
     }
 
     private void setEffect(String type, Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.BACKGROUND_EFFECT.ENABLED")) {
             if (type.contains("ADD")) {
-                CrossPlatformUtils.sendBackGround("ADD", player);
+                UtilityFunctions.sendBackGround("ADD", player);
             } else if (type.contains("REMOVE")) {
-                CrossPlatformUtils.sendBackGround("REMOVE", player);
+                UtilityFunctions.sendBackGround("REMOVE", player);
             }
         }
     }
@@ -83,17 +83,17 @@ public class VOWorlds implements Listener {
         final String worldName = player.getWorld().getName();
         if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "CONSOLE")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
-                String tempCommand = CrossPlatformUtils.replacePlaceholder(command, "{Player}", player.getName());
-                tempCommand = CrossPlatformUtils.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
-                tempCommand = CrossPlatformUtils.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
+                String tempCommand = UtilityFunctions.replacePlaceholder(command, "{Player}", player.getName());
+                tempCommand = UtilityFunctions.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
+                tempCommand = UtilityFunctions.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), addColor.setColors(finalCommand));
             }
         } else if (Objects.equals(plugin.getWorlds().getString("WORLDS." + worldName + ".COMMANDS.TYPE"), "PLAYER")) {
             for (String command : plugin.getWorlds().getStringList("WORLDS." + worldName + ".COMMANDS.LIST")) {
-                String tempCommand = CrossPlatformUtils.replacePlaceholder(command, "{Player}", player.getName());
-                tempCommand = CrossPlatformUtils.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
-                tempCommand = CrossPlatformUtils.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
+                String tempCommand = UtilityFunctions.replacePlaceholder(command, "{Player}", player.getName());
+                tempCommand = UtilityFunctions.replacePlaceholder(tempCommand, "{Uuid}", player.getUniqueId().toString());
+                tempCommand = UtilityFunctions.replacePlaceholder(tempCommand, "{Address}", Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress());
                 final String finalCommand = tempCommand;
                 Bukkit.dispatchCommand(player, addColor.setColors(finalCommand));
             }

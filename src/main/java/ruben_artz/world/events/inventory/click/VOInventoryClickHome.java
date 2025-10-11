@@ -15,7 +15,7 @@ import ruben_artz.world.features.sendTitles;
 import ruben_artz.world.menu.Home;
 import ruben_artz.world.menu.Icon;
 import ruben_artz.world.menu.utils.playerPageInfo;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
@@ -62,7 +62,7 @@ public class VOInventoryClickHome implements Listener {
                                             sendTitles.sendTitle(player, Integer.parseInt(list[0]), Integer.parseInt(list[1]), Integer.parseInt(list[2]), list[3], list[4]));
                                 }
                             }, 0L, 50L);
-                            CrossPlatformUtils.runTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
+                            UtilityFunctions.runTaskLater(5L, () -> plugin.getCreate_world().add(player.getUniqueId()));
                         } else if (slot == plugin.getMenuHome().getInt("MAIN.NEXT.SLOT") && event.getCurrentItem().getType().equals(XMaterial.valueOf(plugin.getMenuHome().getString("MAIN.NEXT.MATERIAL")).get())) {
                             int currentPage = inventory.getPage();
                             int newPage = currentPage + 1;
@@ -115,7 +115,7 @@ public class VOInventoryClickHome implements Listener {
                                         plugin.getWorlds().set("WORLDS." + world, null);
                                         plugin.files.saveFile("worlds.yml");
                                         plugin.initiate();
-                                        CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DELETED_WORLD_MENU")), player);
+                                        UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DELETED_WORLD_MENU")), player);
                                         addColor.sendMessage(player, plugin.getFileTranslations().getString("MESSAGE_DELETE_WORLD"));
                                         if (Home.task != null) {
                                             Home.task.cancel();
@@ -127,12 +127,12 @@ public class VOInventoryClickHome implements Listener {
                                             plugin.getWorlds().set("WORLDS." + world + ".TP-WHEN-FALLING", true);
                                             plugin.files.saveFile("worlds.yml");
                                             plugin.initiate();
-                                            CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
+                                            UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
                                         } else {
                                             plugin.getWorlds().set("WORLDS." + world + ".TP-WHEN-FALLING", false);
                                             plugin.files.saveFile("worlds.yml");
                                             plugin.initiate();
-                                            CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
+                                            UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
                                         }
                                         plugin.removeInventory(player.getName());
                                         Home.getInventory(player, 1);
@@ -140,7 +140,7 @@ public class VOInventoryClickHome implements Listener {
                                         if (player.getWorld().equals(world1)) {
                                             plugin.chat_get.add(player.getUniqueId());
                                             player.closeInventory();
-                                            VOEditing.getBlockX = CrossPlatformUtils.runTaskTimer(50L, () -> CrossPlatformUtils.runTaskAsynchronously(() -> {
+                                            VOEditing.getBlockX = UtilityFunctions.runTaskTimer(50L, () -> UtilityFunctions.runTaskAsynchronously(() -> {
                                                 for (String Titlelist : plugin.getFileTranslations().getStringList("MESSAGE_EDIT_BLOCK_Y")) {
                                                     String[] Title = Titlelist.split(";");
                                                     sendTitles.sendTitle(player, Integer.parseInt(Title[0]), Integer.parseInt(Title[1]), Integer.parseInt(Title[2]), Title[3], Title[4]);
@@ -161,10 +161,10 @@ public class VOInventoryClickHome implements Listener {
                                     } else if (event.getClick().equals(ClickType.CONTROL_DROP)) {
                                         if (!plugin.getWorlds().getBoolean("WORLDS." + world + ".ALWAYS-DAY")) {
                                             plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", true);
-                                            CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
+                                            UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.ENABLED_VOID_TP")), player);
                                         } else {
                                             plugin.getWorlds().set("WORLDS." + world + ".ALWAYS-DAY", false);
-                                            CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
+                                            UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.DISABLED_VOID_TP")), player);
                                         }
                                         plugin.files.saveFile("worlds.yml");
                                         plugin.initiate();

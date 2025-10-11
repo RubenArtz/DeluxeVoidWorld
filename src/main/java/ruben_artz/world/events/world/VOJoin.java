@@ -7,14 +7,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import ruben_artz.world.events.world.antibot.preventAttacks;
 import ruben_artz.world.launcher.Launcher;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 
 public class VOJoin implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void verifyPlayer(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        CrossPlatformUtils.runTaskAsynchronously(() -> {
+        UtilityFunctions.runTaskAsynchronously(() -> {
             /*
              * Add data if the player does not exist!
              */

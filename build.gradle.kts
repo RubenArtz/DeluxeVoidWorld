@@ -5,9 +5,11 @@ plugins {
 }
 
 group = "ruben_artz"
-version = "5.3.21"
+version = "5.4.21"
 
-registerOutputTask("Ruben_Artz", "D:/Ruben_Artz/STN Studios/Development/plugins")
+val libsBase = "ruben_artz.world.libraries."
+
+registerOutputTask("Ruben_Artz", "C:/Users/Ruben/Desktop/")
 
 repositories {
     mavenCentral()
@@ -87,19 +89,19 @@ dependencies {
 tasks.shadowJar {
     archiveFileName.set("Deluxe Void World.jar")
 
-    relocate("io.github.slimjar", "ruben_artz.world.libraries.slimjar")
-    relocate("net.kyori", "ruben_artz.world.libraries.kyori")
-    relocate("org.bstats", "ruben_artz.world.libraries.bstats")
-    relocate("io.papermc.lib", "ruben_artz.world.libraries.paperlib")
+    relocate("io.github.slimjar", "${libsBase}slimjar")
+    relocate("net.kyori", "${libsBase}kyori")
+    relocate("org.bstats", "${libsBase}bstats")
+    relocate("io.papermc.lib", "${libsBase}paperlib")
 }
 
 tasks.slimJar {
-    relocate("com.cryptomorin.xseries", "ruben_artz.world.libraries.xseries")
-    relocate("com.zaxxer.hikari", "ruben_artz.world.libraries.hikari")
-    relocate("org.h2", "ruben_artz.world.libraries.h2")
-    relocate("okhttp3", "ruben_artz.world.libraries.okhttp3")
-    relocate("com.github.Anon8281.universalScheduler", "ruben_artz.world.libraries.universalScheduler")
-    relocate("com.tcoded.folialib", "ruben_artz.world.libraries.folialib")
+    relocate("com.cryptomorin.xseries", "${libsBase}xseries")
+    relocate("com.zaxxer.hikari", "${libsBase}hikari")
+    relocate("org.h2", "${libsBase}h2")
+    relocate("okhttp3", "${libsBase}okhttp3")
+    relocate("com.github.Anon8281.universalScheduler", "${libsBase}universalScheduler")
+    relocate("com.tcoded.folialib", "${libsBase}folialib")
 }
 
 java {

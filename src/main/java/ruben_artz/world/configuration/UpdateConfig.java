@@ -1,7 +1,7 @@
 package ruben_artz.world.configuration;
 
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class UpdateConfig {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static void update() {
-        CrossPlatformUtils.runTask(() -> {
+        UtilityFunctions.runTask(() -> {
             /*
             Update config of "config.yml"
              */
@@ -58,7 +58,7 @@ public class UpdateConfig {
                     throw new RuntimeException(e);
                 }
             }
-            CrossPlatformUtils.runTaskLater(10L, () -> {
+            UtilityFunctions.runTaskLater(10L, () -> {
                 /*
                 Update config of "lang.file"
                  */
@@ -77,7 +77,7 @@ public class UpdateConfig {
             /*
             Update config of "menus.file"
              */
-            CrossPlatformUtils.runTaskLater(15L, () -> {
+            UtilityFunctions.runTaskLater(15L, () -> {
                 if (!Objects.requireNonNull(plugin.getMenuVersion().getString("version")).contains("1.7")) {
                     File f = new File(plugin.getDataFolder(), "/menus/");
                     File[] files = f.listFiles();

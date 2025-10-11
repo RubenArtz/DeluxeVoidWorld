@@ -45,7 +45,7 @@ public class addColor {
     }
 
     public static @NotNull Component addColors(Player player, String input) {
-        return CrossPlatformUtils.setPlaceholders(player, MiniMessage.miniMessage().deserialize(color(input)));
+        return UtilityFunctions.setPlaceholders(player, MiniMessage.miniMessage().deserialize(color(input)));
     }
 
     public static @NotNull Component addColors(String input) {

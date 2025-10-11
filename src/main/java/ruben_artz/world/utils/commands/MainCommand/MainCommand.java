@@ -13,7 +13,7 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 
 import java.util.ArrayList;
@@ -54,9 +54,9 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     }
                 }
                 if (sender instanceof Player) {
-                    CrossPlatformUtils.getMessagesArgs((Player) sender);
+                    UtilityFunctions.getMessagesArgs((Player) sender);
                 } else {
-                    CrossPlatformUtils.getMessagesArgsConsole(sender);
+                    UtilityFunctions.getMessagesArgsConsole(sender);
                 }
             } catch (NullPointerException exception) {
                 onCommand(sender, array);
@@ -64,9 +64,9 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             return false;
         }
         if (sender instanceof Player) {
-            CrossPlatformUtils.getMessagesArgs((Player) sender);
+            UtilityFunctions.getMessagesArgs((Player) sender);
         } else {
-            CrossPlatformUtils.getMessagesArgsConsole(sender);
+            UtilityFunctions.getMessagesArgsConsole(sender);
         }
         return false;
     }

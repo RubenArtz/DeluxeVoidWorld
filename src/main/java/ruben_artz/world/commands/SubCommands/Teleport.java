@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 
@@ -29,7 +29,7 @@ public class Teleport extends SubCommand {
         World world = Bukkit.getWorld(args[1]);
         if (world == null) {
             if (sender instanceof Player) {
-                CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.SOUND_THERE_IS_NO_WORLD")), (Player) sender);
+                UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.SOUND_THERE_IS_NO_WORLD")), (Player) sender);
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_UNKNOWN_WORLD_COMMAND").replace("{World}", bossbar)));
             } else {
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_UNKNOWN_WORLD_COMMAND").replace("{World}", bossbar)));
@@ -39,7 +39,7 @@ public class Teleport extends SubCommand {
                 ((Player) sender).teleport(world.getSpawnLocation());
                 ((Player) sender).setAllowFlight(true);
                 ((Player) sender).setFlying(true);
-                sender.sendMessage(addColor.setColors(CrossPlatformUtils.setPlaceholders((Player) sender, plugin.getFileTranslations().getString("MESSAGE_TP_WORLD").replace("{World}", bossbar))));
+                sender.sendMessage(addColor.setColors(UtilityFunctions.setPlaceholders((Player) sender, plugin.getFileTranslations().getString("MESSAGE_TP_WORLD").replace("{World}", bossbar))));
             } else {
                 sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_NO_WORLD_COMMAND")));
             }

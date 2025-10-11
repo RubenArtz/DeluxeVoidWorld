@@ -6,7 +6,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 
 import java.util.Objects;
@@ -29,7 +29,7 @@ public class sendBossBar {
         audience.showBossBar(bossColor);
 
         for (int i = 1; i <= 6; i++) {
-            CrossPlatformUtils.runTaskLater(20 * i, () -> {
+            UtilityFunctions.runTaskLater(20 * i, () -> {
                 if (bossColor.progress() >= 0.2f) {
                     bossColor.progress(bossColor.progress() - 0.2f);
                 } else {

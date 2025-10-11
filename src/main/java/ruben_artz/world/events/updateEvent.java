@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.NotificationManager;
 import ruben_artz.world.utils.addColor;
 
@@ -28,7 +28,7 @@ public class updateEvent implements Listener {
                 player.sendMessage("");
             }
 
-            CrossPlatformUtils.runTaskLater(40, () -> {
+            UtilityFunctions.runTaskLater(40, () -> {
                 try {
                     String latestVersion = NotificationManager.fetchLatestVersion();
                     if (latestVersion == null) {
@@ -36,7 +36,7 @@ public class updateEvent implements Listener {
                     }
 
                     audience.sendMessage(addColor.addColors(player,
-                            "&8« » ==== &e✯ &9&lVisible Players &e✯ &8==== « »"));
+                            "&8« » ==== &e✯ &9&lDeluxe Void World &e✯ &8==== « »"));
                     audience.sendMessage(addColor.addColors(player,
                             "&f"));
                     audience.sendMessage(addColor.addColors(player,
@@ -65,7 +65,7 @@ public class updateEvent implements Listener {
             return;
         }
 
-        CrossPlatformUtils.runTaskLater(100L, () -> checkForUpdates(audience));
+        UtilityFunctions.runTaskLater(100L, () -> checkForUpdates(audience));
     }
 
     private void checkForUpdates(Audience audience) {
@@ -78,7 +78,7 @@ public class updateEvent implements Listener {
             String currentVersion = plugin.getDescription().getVersion();
 
             if (!currentVersion.equals(latestVersion)) {
-                audience.sendMessage(addColor.addColors("&a[" + plugin.getDescription().getName() + "] &aThere is a newer plugin version available: &a&l"
+                audience.sendMessage(addColor.addColors("&a[" + plugin.getDescription().getName() + "] There is a newer plugin version available: &a&l"
                         + latestVersion + "&a, you're on: &a&l" + plugin.getDescription().getVersion()));
 
             }

@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import ruben_artz.world.DeluxeVoidWorld;
 import ruben_artz.world.events.chat.VOString;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 
 import java.util.ArrayList;
@@ -27,16 +27,16 @@ public class Create {
          * Adding crystals
          */
         for (int glass = 27; glass <= 35; glass++) {
-            CrossPlatformUtils.setGlass(glass, inventory);
+            UtilityFunctions.setGlass(glass, inventory);
         }
         /*
          * Adding items
          */
-        CrossPlatformUtils.setItem(plugin.getInventoryCrating().getInt("MAIN.NORMAL.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.NORMAL.MATERIAL", "BEDROCK"), Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.NORMAL.NAME")).replace("{World}", message.getName()), plugin.getInventoryCrating().getStringList("MAIN.NORMAL.LORE"));
-        CrossPlatformUtils.setItem(plugin.getInventoryCrating().getInt("MAIN.NETHER.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.NETHER.MATERIAL", "BEDROCK"), Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.NETHER.NAME")).replace("{World}", message.getName()), plugin.getInventoryCrating().getStringList("MAIN.NETHER.LORE"));
-        CrossPlatformUtils.setItem(plugin.getInventoryCrating().getInt("MAIN.THE_END.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.THE_END.MATERIAL", "BEDROCK"), Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.THE_END.NAME")).replace("{World}", message.getName()), plugin.getInventoryCrating().getStringList("MAIN.THE_END.LORE"));
-        CrossPlatformUtils.setItem(plugin.getInventoryCrating().getInt("MAIN.CLOSE.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.CLOSE.MATERIAL", "BEDROCK"), plugin.getInventoryCrating().getString("MAIN.CLOSE.NAME"), plugin.getInventoryCrating().getStringList("MAIN.CLOSE.LORE"));
-        CrossPlatformUtils.setItem(plugin.getInventoryCrating().getInt("MAIN.RETURN.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.RETURN.MATERIAL", "BEDROCK"), plugin.getInventoryCrating().getString("MAIN.RETURN.NAME"), plugin.getInventoryCrating().getStringList("MAIN.RETURN.LORE"));
+        UtilityFunctions.setItem(plugin.getInventoryCrating().getInt("MAIN.NORMAL.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.NORMAL.MATERIAL", "BEDROCK"), Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.NORMAL.NAME")).replace("{World}", message.getName()), plugin.getInventoryCrating().getStringList("MAIN.NORMAL.LORE"));
+        UtilityFunctions.setItem(plugin.getInventoryCrating().getInt("MAIN.NETHER.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.NETHER.MATERIAL", "BEDROCK"), Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.NETHER.NAME")).replace("{World}", message.getName()), plugin.getInventoryCrating().getStringList("MAIN.NETHER.LORE"));
+        UtilityFunctions.setItem(plugin.getInventoryCrating().getInt("MAIN.THE_END.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.THE_END.MATERIAL", "BEDROCK"), Objects.requireNonNull(plugin.getInventoryCrating().getString("MAIN.THE_END.NAME")).replace("{World}", message.getName()), plugin.getInventoryCrating().getStringList("MAIN.THE_END.LORE"));
+        UtilityFunctions.setItem(plugin.getInventoryCrating().getInt("MAIN.CLOSE.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.CLOSE.MATERIAL", "BEDROCK"), plugin.getInventoryCrating().getString("MAIN.CLOSE.NAME"), plugin.getInventoryCrating().getStringList("MAIN.CLOSE.LORE"));
+        UtilityFunctions.setItem(plugin.getInventoryCrating().getInt("MAIN.RETURN.SLOT"), inventory, plugin.getInventoryCrating().getString("MAIN.RETURN.MATERIAL", "BEDROCK"), plugin.getInventoryCrating().getString("MAIN.RETURN.NAME"), plugin.getInventoryCrating().getStringList("MAIN.RETURN.LORE"));
 
         player.openInventory(inventory);
     }

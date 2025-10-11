@@ -48,7 +48,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CrossPlatformUtils {
+public class UtilityFunctions {
     private static final DeluxeVoidWorld plugin = DeluxeVoidWorld.getPlugin(DeluxeVoidWorld.class);
 
     public static final String DEFAULT_UUID = "3a730223-120a-4b66-8e1f-3e5a5125875c";
@@ -115,7 +115,7 @@ public class CrossPlatformUtils {
 
     public static void getSound(Player player) {
         if (plugin.getConfig().getBoolean("ON_VOID_TP.SETTINGS.SOUNDS.ENABLED")) {
-            CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
+            UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ON_VOID_TP.SETTINGS.SOUNDS.SOUND")), player);
         }
     }
 
@@ -198,9 +198,9 @@ public class CrossPlatformUtils {
         message = message.replace("{getTPS}", String.valueOf(getTPS()))
                 .replace("{Max Players}", String.valueOf(Bukkit.getMaxPlayers()))
                 .replace("{Online Players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                .replace("{Java Ram}", CrossPlatformUtils.addCommas((int) mbUsed) + " MB")
-                .replace("{Java Max Ram}", CrossPlatformUtils.addCommas((int) mbMaximum) + " MB")
-                .replace("{Java Free Ram}", CrossPlatformUtils.addCommas((int) mbFree) + " MB");
+                .replace("{Java Ram}", UtilityFunctions.addCommas((int) mbUsed) + " MB")
+                .replace("{Java Max Ram}", UtilityFunctions.addCommas((int) mbMaximum) + " MB")
+                .replace("{Java Free Ram}", UtilityFunctions.addCommas((int) mbFree) + " MB");
         return message;
     }
 
@@ -269,7 +269,7 @@ public class CrossPlatformUtils {
     }
 
     public static void getMessagesArgs(Player player) {
-        CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
+        UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.CLICK_COMMAND_HELP")), player);
         String box = plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND_BOX");
         player.sendMessage(addColor.setColors("&8&m--------------------------------------------------"));
         sendTextComponent(player, plugin.getFileTranslations().getString("MESSAGE_CLICK_COMMAND").replace("{Version}", plugin.getVersion())
@@ -287,7 +287,7 @@ public class CrossPlatformUtils {
     }
 
     public static void getHelpCommandGame(Player sender) {
-        CrossPlatformUtils.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
+        UtilityFunctions.executeSound(Objects.requireNonNull(plugin.getConfig().getString("ADMIN-CONFIG.SOUNDS.MESSAGE_CLICK_HELP_COMMANDS")), sender);
         sender.sendMessage(addColor.setColors("&8« » ============== &e✯ &9&lDeluxe Void World &e✯ &8============== « »"));
         sender.sendMessage(addColor.setColors(plugin.getFileTranslations().getString("MESSAGE_USE_COMMANDS_TIP")));
         sender.sendMessage(addColor.setColors("&f"));
@@ -349,9 +349,9 @@ public class CrossPlatformUtils {
     }
 
     public static void getJumpEffects(Player player) {
-        CrossPlatformUtils.getJump(player);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> CrossPlatformUtils.getJump(player), 10L);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> CrossPlatformUtils.getJump(player), 20L);
+        UtilityFunctions.getJump(player);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> UtilityFunctions.getJump(player), 10L);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> UtilityFunctions.getJump(player), 20L);
     }
 
     // Use the Lightning option

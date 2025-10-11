@@ -3,7 +3,7 @@ package ruben_artz.world.commands.SubCommands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ruben_artz.world.DeluxeVoidWorld;
-import ruben_artz.world.utils.CrossPlatformUtils;
+import ruben_artz.world.utils.UtilityFunctions;
 import ruben_artz.world.utils.addColor;
 import ruben_artz.world.utils.commands.MainCommand.SubCommand;
 
@@ -18,7 +18,7 @@ public class Reload extends SubCommand {
     public void onCommands(CommandSender sender, String[] args) {
         plugin.getReloadPlugin();
         if (sender instanceof Player) {
-            CrossPlatformUtils.executeSound("LEVEL_UP, 1.0f, 1.0f", (Player) sender);
+            UtilityFunctions.executeSound("LEVEL_UP, 1.0f, 1.0f", (Player) sender);
         }
         for (String message : plugin.getFileTranslations().getStringList("MESSAGE_COMMAND_RELOAD")) {
             sender.sendMessage(addColor.setColors(message));
