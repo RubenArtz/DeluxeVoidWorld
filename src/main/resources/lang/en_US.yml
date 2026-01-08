@@ -1,95 +1,91 @@
-#                    ___
-#      ___          /\  \                     _____
-#     /\  \        /::\  \       ___         /::\  \
-#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
-#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
-#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
-# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
-# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
-#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
-#   \::::/__/      \::/  /        /:/  /     \::/  /
-#    ~~~~           \/__/         \/__/       \/__/
-#//                           TP MESSAGES
-MESSAGE_BOSSBAR_TP_LOBBY: '&a&lYou have been teleported to the lobby, after falling into the void!'
+#         Developed by Ruben_Artz and Artz Studio
+#
+#   ▄▄▄▄▄▄     ▄▄▄▄▄▄▄   ▄▄▄     ▄▄▄  ▄▄   ▄▄▄   ▄▄▄   ▄▄▄▄▄▄▄
+#  █▀██▀▀██   █▀██▀▀▀   ▀██▀    █▀██  ██  █▀▀██ ██▀   █▀██▀▀▀
+#    ██   ██    ██       ██       ██  ██     ▀█▄█▀      ██
+#    ██   ██    ████     ██       ██  ██      ███       ████
+#  ▄ ██   ██    ██       ██       ██  ██    ▄█▀██▄      ██
+#  ▀██▀███▀     ▀█████  ████████  ▀█████▄ ▀██▀  ▀██▄    ▀█████
+#
+
+MESSAGE_BOSSBAR_TP_LOBBY: '&a&lYou have been teleported to the lobby after falling into the void!'
 MESSAGE_TITLE_TP_LOBBY:
-  - "1;10;1234;&b&lTELEPORTED!;&f&o(( He's back in the lobby ))"
+  - "1;10;1234;&b&lTELEPORTED!;&f&o(( You are back in the lobby ))"
 MESSAGE_MESSAGES_TP_LOBBY:
   - ''
   - '&aYou have been teleported to the main lobby again.'
   - ''
 MESSAGE_ACTIONBAR_TP_LOBBY: '&b&lTELEPORTED!'
-#//                           OTHER MESSAGES
-MESSAGE_NEW_MAP: '&aWe found a new map and it has been automatically added to the inventory.'
-MESSAGE_DELETE_WORLD: '&cYou have successfully eliminated this world (now there will be no more tp on the map)'
+MESSAGE_NEW_MAP: '&aA new map was found and automatically added to the configuration.'
+MESSAGE_DELETE_WORLD: '&cYou have successfully deleted this world (void TP is now disabled for this map).'
 MESSAGE_ADD_WORLD:
   - '&f'
-  - '&aMap coordinates added correctly with the name &c"{World}"&f &acoordinates &fX: &c{X} &fY: &c{Y} &fZ: &c{Z} &fYaw: &c{YAW} &fPitch: &c{PITCH}'
+  - '&aWorld added successfully! Name: &c"{World}"&f &acoordinates: &fX: &c{X} &fY: &c{Y} &fZ: &c{Z} &fYaw: &c{YAW} &fPitch: &c{PITCH}'
   - '&f'
-MESSAGE_NO_MINECRAFT_VERSION: '&cSorry, this option only works on spigot versions 1.10-1.18 and you are using {Version}'
-MESSAGE_NO_WORLD_COMMAND: '&cYou cannot use this command because you are in the console.'
+MESSAGE_NO_MINECRAFT_VERSION: '&cSorry, this option only works on Spigot versions 1.10-1.18. You are using {Version}.'
+MESSAGE_NO_WORLD_COMMAND: '&cYou cannot use this command from the console.'
 MESSAGE_CREATE_WORLD:
-  - '1;10;1234;&bAdd World;&7Exact name of the world &b(left click to cancel)'
+  - '1;10;1234;&bAdd World;&7Enter the exact name of the world &b(Left click to cancel)'
 MESSAGE_EDIT_BLOCK_Y:
-  - '1;10;1234;&bChange coordinate;&7Write only the coordinate of (Y). &b(Left click to cancel)'
-MESSAGE_LESS_ZERO: '&cYou must put a number less than 10 for the event to work!'
-MESSAGE_NO_WORDS: "&cYou must put a number less than 10 not the word '{Word}'"
-MESSAGE_TP_WORLD: '&aYou have been teleported to the world: {World}'
+  - '1;10;1234;&bChange Coordinate;&7Type only the (Y) coordinate. &b(Left click to cancel)'
+MESSAGE_LESS_ZERO: '&cYou must enter a number less than 10 for the event to work!'
+MESSAGE_NO_WORDS: "&cYou must enter a number, not the word '{Word}'."
+MESSAGE_TP_WORLD: '&aTeleported to world: {World}'
 MESSAGE_CREATE_WORLD_EMPTY:
-  - '1;10;1234;&bCreate World;&fType the name you want.'
+  - '1;10;1234;&bCreate World;&fType the desired name.'
 MESSAGE_TP_NEW_MAP: '&eTeleporting to the new map in 3 seconds.'
 MESSAGE_MAP_ALREADY_EXISTS: '&cThis map already exists!'
-#//                           OTHER MESSAGES COMMANDS
-MESSAGE_NO_MENU_COMMAND: '&cYou cannot open the plugin menu on the console.'
-MESSAGE_UNKNOWN_WORLD_COMMAND: '&cThere is no world "{World}" try again...'
-MESSAGE_ACTIVATED_WORLD: '&aTeleportation is now allowed in the world "{World}"'
-MESSAGE_DISABLED_WORLD: '&cNow teleportation is not allowed in the world "{World}'
-MESSAGE_USE_TOGGLE: '&cUse command /dew toggle <world> to enable and disable teleportation of the world.'
+MESSAGE_NO_MENU_COMMAND: '&cYou cannot open the plugin menu from the console.'
+MESSAGE_UNKNOWN_WORLD_COMMAND: '&cThe world "{World}" does not exist, please try again.'
+MESSAGE_ACTIVATED_WORLD: '&aTeleportation is now allowed in the world "{World}".'
+MESSAGE_DISABLED_WORLD: '&cTeleportation is no longer allowed in the world "{World}".'
+MESSAGE_USE_TOGGLE: '&cUse /dew toggle <world> to enable/disable void teleportation.'
 MESSAGE_NO_PERMISSIONS: '&cYou do not have permission to execute this command.'
 MESSAGE_CLICK_COMMAND: '&cThis server is using Deluxe Void World {Version}'
-MESSAGE_CLICK_COMMAND_BOX: "&f &8▪ &fClick to see the commands."
-MESSAGE_USE_COMMAND_RELOAD: '&7Reload the plugin configurations.'
+MESSAGE_CLICK_COMMAND_BOX: "&f &8▪ &fClick to see commands."
+MESSAGE_USE_COMMAND_RELOAD: '&7Reload the plugin configuration.'
 MESSAGE_USE_COMMAND_RELOAD_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew reload{line}&f &8▪ &b/dew rl{line} {line}&eClick here to execute the command!'
-MESSAGE_USE_COMMAND_HELP: '&7See the available commands.'
+MESSAGE_USE_COMMAND_HELP: '&7View available commands.'
 MESSAGE_USE_COMMAND_HELP_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew help{line}&f &8▪ &b/dew helpme{line} {line}&eClick here to execute the command!'
-MESSAGE_USE_COMMAND_GUI: '&7Modify the map options.'
+MESSAGE_USE_COMMAND_GUI: '&7Modify map options.'
 MESSAGE_USE_COMMAND_GUI_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew editor{line}&f &8▪ &b/dew inventory{line}&f &8▪ &b/dew inv{line} {line}&eClick here to execute the command!'
-MESSAGE_USE_COMMAND_TOGGLE: '&7Enable or disable teleportation &7worlds.'
-MESSAGE_USE_COMMAND_TOGGLE_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew toggle <args>{line}&f &8▪ &b/dew toggletp <args>{line}&f &8▪ &b/dew toggleworld <args>{line} {line}&eClick here to paste the command in the chat!'
-MESSAGE_USE_COMMAND_SET_WORLD: '&7sets the map coordinates where they &7appear players.'
+MESSAGE_USE_COMMAND_TOGGLE: '&7Enable or disable teleportation in worlds.'
+MESSAGE_USE_COMMAND_TOGGLE_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew toggle <args>{line}&f &8▪ &b/dew toggletp <args>{line}&f &8▪ &b/dew toggleworld <args>{line} {line}&eClick here to paste the command in chat!'
+MESSAGE_USE_COMMAND_SET_WORLD: '&7Sets the void spawn coordinates for players.'
 MESSAGE_USE_COMMAND_SET_WORLD_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew setworldvoid{line}&f &8▪ &b/dew setspawn{line}&f &8▪ &b/dew spawn{line} {line}&eClick here to execute the command!'
-MESSAGE_USE_COMMANDS_TIP: '&9TIP&f, Place the cursor in the message and click to select.'
-MESSAGE_USE_TELEPORT: '&cUse command /dew teleport <world> to go into the world.'
-MESSAGE_USE_COMMAND_TELEPORT: '&7Teleporting to a world.'
-MESSAGE_USE_COMMAND_TELEPORT_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew teleport <args>{line}&f &8▪ &b/dew tp <args>{line}&f &8▪ &b/dew tpme <args>{line} {line}&eClick here to paste the command in the chat'
-MESSAGE_NO_PERMISSIONS_GUI: "&cWe are sorry... Apparently it doesn't have the required rank for this command, you can buy an upgrade here: &bhttps://store.server.com/"
+MESSAGE_USE_COMMANDS_TIP: '&9TIP&f: Hover over the message and click to select.'
+MESSAGE_USE_TELEPORT: '&cUse /dew teleport <world> to go to a world.'
+MESSAGE_USE_COMMAND_TELEPORT: '&7Teleport to a world.'
+MESSAGE_USE_COMMAND_TELEPORT_BOX: '&a&lSUB COMMAND SUGGESTIONS:{line} {line}&f &8▪ &b/dew teleport <args>{line}&f &8▪ &b/dew tp <args>{line}&f &8▪ &b/dew tpme <args>{line} {line}&eClick here to paste the command in chat!'
+MESSAGE_NO_PERMISSIONS_GUI: "&cSorry... You do not have the required rank for this command. Store: &bhttps://store.server.com/"
 MESSAGE_COMMAND_RELOAD:
-  - '&aReloading configurations...'
-  - '&aComplement recharged correctly!'
-#//                           OTHER MESSAGES CONSOLE
+  - '&aReloading configuration...'
+  - '&aPlugin reloaded successfully!'
 MESSAGE_LOAD_ALL_WORLDS:
-  - '&aAll maps have been loaded correctly!'
-MESSAGE_NOT_USE_ITEM: '&cYou cannot use this event in this world you must go to this world to use the keyboard.'
+  - '&aAll maps have been loaded successfully!'
+MESSAGE_NOT_USE_ITEM: '&cYou cannot use this item here. You must be in the specific world to use it.'
 MESSAGE_LORE_ICONS:
   - ''
   - '&eClick here to select this icon!'
 MESSAGE_PLACEHOLDER_WORLD_YES: '&a✔ (Currently in this world).'
 MESSAGE_PLACEHOLDER_WORLD_NO: '&c✖ (You are not in this world).'
-MESSAGE_FILE_UPDATE: '&cYour {Files} file was updated in this version!'
-MESSAGES_MYSQL_CONNECTED: '&aThe connection to MySQL has been established successfully!'
-MESSAGE_MYSQL_NOT_CONNECTED: '&cWe have not been able to connect to mysql.'
+MESSAGE_FILE_UPDATE: '&cThe file {Files} was updated in this version!'
+MESSAGES_MYSQL_CONNECTED: '&aMySQL connection established successfully!'
+MESSAGE_MYSQL_NOT_CONNECTED: '&cCould not connect to MySQL.'
 MESSAGE_USING_SQLITE: '&aUsing H2 Database for player data.'
 MESSAGE_SQLITE_ERROR_FOLDER: '&cCould not create /cache folder!'
 MESSAGE_SQLITE_ERROR_CREATE: '&cCould not create /cache/database.db file!'
 MESSAGE_SQLITE_ERROR_CONNECTION: '&cImpossible to communicate with SQLite...'
 
-#      ___           ___
-#     /\__\         /\  \         _____
-#    /:/ _/_        \:\  \       /::\  \
-#   /:/ /\__\        \:\  \     /:/\:\  \
-#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
-# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
-# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
-#  \::/_/:/  /   \:\  \        \:\  /:/  /
-#   \:\/:/  /     \:\  \        \:\/:/  /
-#    \::/  /       \:\__\        \::/  /
-#     \/__/         \/__/         \/__/
+# DO NOT TOUCH!
+version: "3"
+
+#
+#   ▄▄▄▄▄▄▄   ▄▄     ▄▄▄   ▄▄▄▄▄▄
+#  █▀██▀▀▀    ██▄   ██▀   █▀██▀▀██
+#    ██       ███▄  ██      ██   ██
+#    ████     ██ ▀█▄██      ██   ██
+#    ██       ██   ▀██    ▄ ██   ██
+#    ▀█████ ▀██▀    ██    ▀██▀███▀
+#
+# Developed by Ruben_Artz and Artz Studio

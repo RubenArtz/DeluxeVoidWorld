@@ -1,17 +1,15 @@
-#                    ___
-#      ___          /\  \                     _____
-#     /\  \        /::\  \       ___         /::\  \
-#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
-#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
-#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
-# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
-# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
-#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
-#   \::::/__/      \::/  /        /:/  /     \::/  /
-#    ~~~~           \/__/         \/__/       \/__/
+#         Developed by Ruben_Artz and Artz Studio
+#
+#   ▄▄▄▄▄▄     ▄▄▄▄▄▄▄   ▄▄▄     ▄▄▄  ▄▄   ▄▄▄   ▄▄▄   ▄▄▄▄▄▄▄
+#  █▀██▀▀██   █▀██▀▀▀   ▀██▀    █▀██  ██  █▀▀██ ██▀   █▀██▀▀▀
+#    ██   ██    ██       ██       ██  ██     ▀█▄█▀      ██
+#    ██   ██    ████     ██       ██  ██      ███       ████
+#  ▄ ██   ██    ██       ██       ██  ██    ▄█▀██▄      ██
+#  ▀██▀███▀     ▀█████  ████████  ▀█████▄ ▀██▀  ▀██▄    ▀█████
+#
 
 MAIN:
-  TITLE: '{Name World} > Icon'
+  TITLE: '{Name World} > Select Icon'
   RETURN:
     MATERIAL: 'ARROW'
     SLOT: 45
@@ -24,105 +22,29 @@ MAIN:
     SLOT: 49
     NAME: '&cClose &7(Right click)'
     LORE:
-      - '&7To in-game'
-MATERIALS:
-  '1':
-    ITEM: 'STONE'
-  '2':
-    ITEM: 'RED_DYE'
-  '3':
-    ITEM: 'DISPENSER'
-  '4':
-    ITEM: 'REDSTONE'
-  '5':
-    ITEM: 'REDSTONE_BLOCK'
-  '6':
-    ITEM: 'DIAMOND_BLOCK'
-  '7':
-    ITEM: 'LADDER'
-  '8':
-    ITEM: 'LEVER'
-  '9':
-    ITEM: 'ENDER_CHEST'
-  '10':
-    ITEM: 'CHEST'
-  '11':
-    ITEM: 'REPEATER'
-  '12':
-    ITEM: 'GRASS_BLOCK'
-  '13':
-    ITEM: 'TNT'
-  '14':
-    ITEM: 'OAK_DOOR'
-  '15':
-    ITEM: 'IRON_DOOR'
-  '16':
-    ITEM: 'PISTON'
-  '17':
-    ITEM: 'CARROT'
-  '18':
-    ITEM: 'RED_WOOL'
-  '19':
-    ITEM: 'IRON_BLOCK'
-  '20':
-    ITEM: 'GOLD_BLOCK'
-  '21':
-    ITEM: 'SADDLE'
-  '22':
-    ITEM: 'CRAFTING_TABLE'
-  '23':
-    ITEM: 'ENCHANTED_BOOK'
-  '24':
-    ITEM: 'ENCHANTING_TABLE'
-  '25':
-    ITEM: 'GLASS'
-  '26':
-    ITEM: 'POPPY'
-  '27':
-    ITEM: 'BOOKSHELF'
-  '28':
-    ITEM: 'ICE'
-  '29':
-    ITEM: 'JUKEBOX'
-  '30':
-    ITEM: 'TRIPWIRE_HOOK'
-  '31':
-    ITEM: 'BEACON'
-  '32':
-    ITEM: 'IRON_SWORD'
-  '33':
-    ITEM: 'GOLDEN_SWORD'
-  '34':
-    ITEM: 'DIAMOND_SWORD'
-  '35':
-    ITEM: 'WOODEN_SWORD'
-  '36':
-    ITEM: 'BOOK'
-  '37':
-    ITEM: 'PUMPKIN'
-  '38':
-    ITEM: 'CACTUS'
-  '39':
-    ITEM: 'APPLE'
-  '40':
-    ITEM: 'BARRIER'
-  '41':
-    ITEM: 'JUNGLE_WOOD'
-  '42':
-    ITEM: 'OAK_SIGN'
-  '43':
-    ITEM: 'ARMOR_STAND'
-  '44':
-    ITEM: 'NAME_TAG'
+      - '&7Return to game'
+  PREVIOUS_PAGE:
+    NAME: '&ePrevious Page'
+    MATERIAL: 'ARROW'
+    SLOT: 46
+    LORE:
+      - '&7Go to page &f{page}'
+  NEXT_PAGE:
+    NAME: '&eNext Page'
+    MATERIAL: 'ARROW'
+    SLOT: 51
+    LORE:
+      - '&7Go to page &f{page}'
 
-#      ___           ___
-#     /\__\         /\  \         _____
-#    /:/ _/_        \:\  \       /::\  \
-#   /:/ /\__\        \:\  \     /:/\:\  \
-#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
-# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
-# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
-#  \::/_/:/  /   \:\  \        \:\  /:/  /
-#   \:\/:/  /     \:\  \        \:\/:/  /
-#    \::/  /       \:\__\        \::/  /
-#     \/__/         \/__/         \/__/
+# DO NOT TOUCH!
+version: "3"
+
+#
+#   ▄▄▄▄▄▄▄   ▄▄     ▄▄▄   ▄▄▄▄▄▄
+#  █▀██▀▀▀    ██▄   ██▀   █▀██▀▀██
+#    ██       ███▄  ██      ██   ██
+#    ████     ██ ▀█▄██      ██   ██
+#    ██       ██   ▀██    ▄ ██   ██
+#    ▀█████ ▀██▀    ██    ▀██▀███▀
+#
+# Developed by Ruben_Artz and Artz Studio

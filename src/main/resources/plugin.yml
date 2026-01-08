@@ -1,11 +1,17 @@
-#                                                           Developed by Ruben_Artz
+#         Developed by Ruben_Artz and Artz Studio
 #
-#                                                     (PLAY.STN-STUDIOS.COM @ (C) 2018-2022)
+#   ▄▄▄▄▄▄     ▄▄▄▄▄▄▄   ▄▄▄     ▄▄▄  ▄▄   ▄▄▄   ▄▄▄   ▄▄▄▄▄▄▄
+#  █▀██▀▀██   █▀██▀▀▀   ▀██▀    █▀██  ██  █▀▀██ ██▀   █▀██▀▀▀
+#    ██   ██    ██       ██       ██  ██     ▀█▄█▀      ██
+#    ██   ██    ████     ██       ██  ██      ███       ████
+#  ▄ ██   ██    ██       ██       ██  ██    ▄█▀██▄      ██
+#  ▀██▀███▀     ▀█████  ████████  ▀█████▄ ▀██▀  ▀██▄    ▀█████
+#
 
 name: 'DeluxeVoidWorld'
-main: 'ruben_artz.world.DeluxeVoidWorld'
+main: 'artzstudio.dev.deluxevoid.DeluxeVoidWorld'
 version: '${version}'
-authors: [ 'Ruben_Artz', 'STN Studios' ]
+authors: [ 'Ruben_Artz', 'Artz Studio' ]
 load: 'STARTUP'
 softdepend: [ 'PlaceholderAPI', 'SlimeWorldManager', 'Multiverse-Core', 'BotSentry', 'UltraRegions' ]
 website: 'https://www.spigotmc.org/resources/86993/'
@@ -20,3 +26,14 @@ commands:
   empty:
     description: 'Command to open the player''s inventory'
     aliases: [ 'void' ]
+
+
+#
+#   ▄▄▄▄▄▄▄   ▄▄     ▄▄▄   ▄▄▄▄▄▄
+#  █▀██▀▀▀    ██▄   ██▀   █▀██▀▀██
+#    ██       ███▄  ██      ██   ██
+#    ████     ██ ▀█▄██      ██   ██
+#    ██       ██   ▀██    ▄ ██   ██
+#    ▀█████ ▀██▀    ██    ▀██▀███▀
+#
+# Developed by Ruben_Artz and Artz Studio

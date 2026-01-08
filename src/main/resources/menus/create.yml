@@ -1,14 +1,12 @@
-#                    ___
-#      ___          /\  \                     _____
-#     /\  \        /::\  \       ___         /::\  \
-#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
-#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
-#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
-# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
-# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
-#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
-#   \::::/__/      \::/  /        /:/  /     \::/  /
-#    ~~~~           \/__/         \/__/       \/__/
+#         Developed by Ruben_Artz and Artz Studio
+#
+#   ▄▄▄▄▄▄     ▄▄▄▄▄▄▄   ▄▄▄     ▄▄▄  ▄▄   ▄▄▄   ▄▄▄   ▄▄▄▄▄▄▄
+#  █▀██▀▀██   █▀██▀▀▀   ▀██▀    █▀██  ██  █▀▀██ ██▀   █▀██▀▀▀
+#    ██   ██    ██       ██       ██  ██     ▀█▄█▀      ██
+#    ██   ██    ████     ██       ██  ██      ███       ████
+#  ▄ ██   ██    ██       ██       ██  ██    ▄█▀██▄      ██
+#  ▀██▀███▀     ▀█████  ████████  ▀█████▄ ▀██▀  ▀██▄    ▀█████
+#
 
 MAIN:
   TITLE: 'DeluxeVoidWorld &7- &9Creator'
@@ -18,9 +16,9 @@ MAIN:
     SLOT: 10
     LORE:
       - ''
-      - '&7Create this flat world'
-      - '&7without any biomes or structures,'
-      - '&7this is the &anormal/default &7type.'
+      - '&7Creates a flat world'
+      - '&7without any biomes or structures.'
+      - '&7This is the &anormal/default &7type.'
       - ''
       - '&7Plugin API: &a{Plugin}'
       - ''
@@ -31,9 +29,9 @@ MAIN:
     SLOT: 13
     LORE:
       - ''
-      - '&7Create this flat world'
-      - '&7without any biomes or structures,'
-      - '&7this type of world is from the &cnether.'
+      - '&7Creates a flat world'
+      - '&7without any biomes or structures.'
+      - '&7This type of world uses &cNether &7blocks.'
       - ''
       - '&7Plugin API: &a{Plugin}'
       - ''
@@ -44,9 +42,9 @@ MAIN:
     SLOT: 16
     LORE:
       - ''
-      - '&7Create this flat world'
-      - '&7without any biomes or structures,'
-      - '&7this type of world is &bthe end.'
+      - '&7Creates a flat world'
+      - '&7without any biomes or structures.'
+      - '&7This type of world is &bThe End&7.'
       - ''
       - '&7Plugin API: &a{Plugin}'
       - ''
@@ -63,16 +61,17 @@ MAIN:
     SLOT: 31
     NAME: '&cClose &7(Right click)'
     LORE:
-      - '&7To in-game'
+      - '&7Return to game'
 
-#      ___           ___
-#     /\__\         /\  \         _____
-#    /:/ _/_        \:\  \       /::\  \
-#   /:/ /\__\        \:\  \     /:/\:\  \
-#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
-# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
-# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
-#  \::/_/:/  /   \:\  \        \:\  /:/  /
-#   \:\/:/  /     \:\  \        \:\/:/  /
-#    \::/  /       \:\__\        \::/  /
-#     \/__/         \/__/         \/__/
+# DO NOT TOUCH!
+version: "3"
+
+#
+#   ▄▄▄▄▄▄▄   ▄▄     ▄▄▄   ▄▄▄▄▄▄
+#  █▀██▀▀▀    ██▄   ██▀   █▀██▀▀██
+#    ██       ███▄  ██      ██   ██
+#    ████     ██ ▀█▄██      ██   ██
+#    ██       ██   ▀██    ▄ ██   ██
+#    ▀█████ ▀██▀    ██    ▀██▀███▀
+#
+# Developed by Ruben_Artz and Artz Studio

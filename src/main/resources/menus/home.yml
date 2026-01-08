@@ -1,31 +1,29 @@
-#                    ___
-#      ___          /\  \                     _____
-#     /\  \        /::\  \       ___         /::\  \
-#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
-#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
-#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
-# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
-# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
-#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
-#   \::::/__/      \::/  /        /:/  /     \::/  /
-#    ~~~~           \/__/         \/__/       \/__/
+#         Developed by Ruben_Artz and Artz Studio
+#
+#   ▄▄▄▄▄▄     ▄▄▄▄▄▄▄   ▄▄▄     ▄▄▄  ▄▄   ▄▄▄   ▄▄▄   ▄▄▄▄▄▄▄
+#  █▀██▀▀██   █▀██▀▀▀   ▀██▀    █▀██  ██  █▀▀██ ██▀   █▀██▀▀▀
+#    ██   ██    ██       ██       ██  ██     ▀█▄█▀      ██
+#    ██   ██    ████     ██       ██  ██      ███       ████
+#  ▄ ██   ██    ██       ██       ██  ██    ▄█▀██▄      ██
+#  ▀██▀███▀     ▀█████  ████████  ▀█████▄ ▀██▀  ▀██▄    ▀█████
+#
 
 MAIN:
   TITLE: 'DeluxeVoidWorld &7- &9Editor'
   ALPHANUMERIC_ITEM:
     LORE:
       - ''
-      - '&b&lLEFT CLICK &c| &fTo delete this world. (To remove the tp)'
-      - '&b&lRIGHT CLICK &c| &fEnabled and Disabled (This tp of the world)'
-      - '&b&lMIDDLE CLICK &c| &fChange the coordinate (Y) when the falls.'
-      - '&b&lNUMBER KEY &c| &fTeleportation to this world.'
-      - '&b&lSHIFT + CLICK &c| &fOption to change the icon.'
-      - '&b&lCONTROL + DROP &c| &fAlternate always in the daytime.'
+      - '&b&lLEFT CLICK &c| &fDelete this world (Removes void TP).'
+      - '&b&lRIGHT CLICK &c| &fEnable/Disable (Void TP for this world).'
+      - '&b&lMIDDLE CLICK &c| &fChange the (Y) coordinate trigger.'
+      - '&b&lNUMBER KEY &c| &fTeleport to this world.'
+      - '&b&lSHIFT + CLICK &c| &fChange the icon.'
+      - '&b&lCONTROL + DROP &c| &fToggle "Always Day".'
       - '&b&lQ &c| &fSet coordinates.'
       - ''
       - '&fVoid position: &a{Position}'
       - '&fAllow TP: {Status}'
-      - '&fAlways in the daytime?: {Status Day}'
+      - '&fAlways Day: {Status Day}'
       - '&fCurrent World: {Current World}'
       - '&fLocation TP: &7(&e{X}&7, &e{Y}&7, &e{Z}&7, &a{Yaw}&7, &a{Pitch}&7)'
       - ''
@@ -33,20 +31,20 @@ MAIN:
   ADD_WORLD:
     MATERIAL: 'PAPER'
     SLOT: 52
-    NAME: '&bAdd world &7(Right Click)'
+    NAME: '&bAdd World &7(Right Click)'
     LORE:
       - ''
-      - '&7Have you accidentally &cdeleted &7a map,'
-      - '&7or the &bworld &7is not yet &bgenerated &7in this list?'
-      - '&7Click on this &bitem &7to add the map manually,'
-      - '&7it must be a world already &acreated &7previously'
-      - '&7and it must have the same name for it to work.'
+      - '&7Did you accidentally &cdelete &7a map,'
+      - '&7or is the &bworld &7not yet &bgenerated &7in this list?'
+      - '&7Click on this &bitem &7to add the map manually.'
+      - '&7It must be an &aexisting &7world'
+      - '&7and must have the exact same name to work.'
       - ''
       - '&eClick here to add a world!'
   CREATE_WORLD:
     MATERIAL: 'REPEATER'
     SLOT: 51
-    NAME: '&bCreating a world empty &7(Right Click)'
+    NAME: '&bCreate Empty World &7(Right Click)'
     LORE:
       - ''
       - '&7Create a completely empty world!'
@@ -57,15 +55,15 @@ MAIN:
   RELOAD:
     MATERIAL: 'OAK_DOOR'
     SLOT: 46
-    NAME: '&bReload configurations &7(Right Click)'
+    NAME: '&bReload Configuration &7(Right Click)'
     LORE:
       - ''
-      - '&7Click on this item to reload'
+      - '&7Click this item to reload'
       - '&7all plugin configurations!'
       - ''
-      - '&fYour TPS: &a{getTPS}'
+      - '&fTPS: &a{getTPS}'
       - '&fPlayers: &a{Online Players}&7/&c{Max Players}'
-      - '&fUsed RAM: &a{Java Ram}&7/&c{Java Max Ram} &7(&a{Java Free Ram} &7free&7)'
+      - '&fRAM Usage: &a{Java Ram}&7/&c{Java Max Ram} &7(&a{Java Free Ram} &7free&7)'
       - ''
       - '&eClick to reload!'
   NEXT:
@@ -87,16 +85,17 @@ MAIN:
     SLOT: 49
     NAME: '&cClose &7(Right click)'
     LORE:
-      - '&7To in-game'
+      - '&7Return to game'
 
-#      ___           ___
-#     /\__\         /\  \         _____
-#    /:/ _/_        \:\  \       /::\  \
-#   /:/ /\__\        \:\  \     /:/\:\  \
-#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
-# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
-# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
-#  \::/_/:/  /   \:\  \        \:\  /:/  /
-#   \:\/:/  /     \:\  \        \:\/:/  /
-#    \::/  /       \:\__\        \::/  /
-#     \/__/         \/__/         \/__/
+# DO NOT TOUCH!
+version: "3"
+
+#
+#   ▄▄▄▄▄▄▄   ▄▄     ▄▄▄   ▄▄▄▄▄▄
+#  █▀██▀▀▀    ██▄   ██▀   █▀██▀▀██
+#    ██       ███▄  ██      ██   ██
+#    ████     ██ ▀█▄██      ██   ██
+#    ██       ██   ▀██    ▄ ██   ██
+#    ▀█████ ▀██▀    ██    ▀██▀███▀
+#
+# Developed by Ruben_Artz and Artz Studio

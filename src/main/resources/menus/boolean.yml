@@ -1,14 +1,12 @@
-#                    ___
-#      ___          /\  \                     _____
-#     /\  \        /::\  \       ___         /::\  \
-#     \:\  \      /:/\:\  \     /\__\       /:/\:\  \
-#      \:\  \    /:/  \:\  \   /:/__/      /:/  \:\__\
-#  ___  \:\__\  /:/__/ \:\__\ /::\  \     /:/__/ \:|__|
-# /\  \ |:|  |  \:\  \ /:/  / \/\:\  \__  \:\  \ /:/  /
-# \:\  \|:|  |   \:\  /:/  /   ~~\:\/\__\  \:\  /:/  /
-#  \:\__|:|__|    \:\/:/  /       \::/  /   \:\/:/  /
-#   \::::/__/      \::/  /        /:/  /     \::/  /
-#    ~~~~           \/__/         \/__/       \/__/
+#         Developed by Ruben_Artz and Artz Studio
+#
+#   ▄▄▄▄▄▄     ▄▄▄▄▄▄▄   ▄▄▄     ▄▄▄  ▄▄   ▄▄▄   ▄▄▄   ▄▄▄▄▄▄▄
+#  █▀██▀▀██   █▀██▀▀▀   ▀██▀    █▀██  ██  █▀▀██ ██▀   █▀██▀▀▀
+#    ██   ██    ██       ██       ██  ██     ▀█▄█▀      ██
+#    ██   ██    ████     ██       ██  ██      ███       ████
+#  ▄ ██   ██    ██       ██       ██  ██    ▄█▀██▄      ██
+#  ▀██▀███▀     ▀█████  ████████  ▀█████▄ ▀██▀  ▀██▄    ▀█████
+#
 
 MAIN:
   TITLE: 'Option Selector'
@@ -24,8 +22,8 @@ MAIN:
     SLOT: 2
     LORE:
       - ''
-      - '&7Change this option, when you'
-      - '&7fall into the void you will only'
+      - '&7If enabled, when you'
+      - '&7fall into the void, you will'
       - '&7be teleported to the lobby!'
       - ''
       - '&7Requires: &dNone'
@@ -37,9 +35,9 @@ MAIN:
     SLOT: 3
     LORE:
       - ''
-      - '&7Change your this option, when you'
-      - '&7fall into the void they will jump so'
-      - '&7high to get to the lobby!'
+      - '&7If enabled, when you'
+      - '&7fall into the void, you will jump'
+      - '&7high enough to get back to the lobby!'
       - ''
       - '&7Requires: &a[VIP]'
       - ''
@@ -50,9 +48,9 @@ MAIN:
     SLOT: 5
     LORE:
       - ''
-      - '&7Change this option when'
-      - '&7you fall into the void a lightning will be thrown and'
-      - '&7you will be teleported to the lobby!'
+      - '&7If enabled, when you'
+      - '&7fall into the void, lightning will strike'
+      - '&7before teleporting you to the lobby!'
       - ''
       - '&7Requires: &a[VIP]'
       - ''
@@ -63,9 +61,9 @@ MAIN:
     SLOT: 6
     LORE:
       - ''
-      - '&7Change this option'
-      - '&7when you fall into the void it will'
-      - '&7launch fires artifices with incredible particles!'
+      - '&7If enabled, when you'
+      - '&7fall into the void, it will'
+      - '&7launch fireworks and particles!'
       - ''
       - '&7Requires: &a[VIP]'
       - ''
@@ -89,13 +87,13 @@ MAIN:
     LORE_ENABLED:
       - ''
       - '&7Click here to change'
-      - '&7your teleportation option!'
+      - '&7your option status!'
       - ''
       - '&eClick to confirm!'
     LORE_DISABLED:
       - ''
       - '&7Click here to change'
-      - '&7your teleportation option!'
+      - '&7your option status!'
       - ''
       - '&eClick to confirm!'
   CLOSE:
@@ -103,17 +101,17 @@ MAIN:
     NAME: '&cClose &7(Right click)'
     SLOT: 49
     LORE:
-      - '&7To in-game'
+      - '&7Return to game'
 
+# DO NOT TOUCH!
+version: "3"
 
-#      ___           ___
-#     /\__\         /\  \         _____
-#    /:/ _/_        \:\  \       /::\  \
-#   /:/ /\__\        \:\  \     /:/\:\  \
-#  /:/ /:/ _/_   _____\:\  \   /:/  \:\__\
-# /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:|__|
-# \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /
-#  \::/_/:/  /   \:\  \        \:\  /:/  /
-#   \:\/:/  /     \:\  \        \:\/:/  /
-#    \::/  /       \:\__\        \::/  /
-#     \/__/         \/__/         \/__/
+#
+#   ▄▄▄▄▄▄▄   ▄▄     ▄▄▄   ▄▄▄▄▄▄
+#  █▀██▀▀▀    ██▄   ██▀   █▀██▀▀██
+#    ██       ███▄  ██      ██   ██
+#    ████     ██ ▀█▄██      ██   ██
+#    ██       ██   ▀██    ▄ ██   ██
+#    ▀█████ ▀██▀    ██    ▀██▀███▀
+#
+# Developed by Ruben_Artz and Artz Studio
