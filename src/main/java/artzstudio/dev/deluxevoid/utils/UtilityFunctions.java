@@ -1,3 +1,15 @@
+/*
+ *
+ *  Copyright (c) 2026 Ruben_Artz and Artz Studio. All rights reserved.
+ *
+ *  This code is proprietary software. It is strictly prohibited to
+ *  copy, modify, distribute, or use this code for any purpose
+ *  without the express written permission of the owner.
+ *
+ *  Project: Deluxe Void World
+ *
+ */
+
 package artzstudio.dev.deluxevoid.utils;
 
 import artzstudio.dev.deluxevoid.DeluxeVoidWorld;
@@ -322,9 +334,7 @@ public class UtilityFunctions {
     public static void setTeleportation(Player player) {
         Location location = returnLocation(Objects.requireNonNull(plugin.getWorlds().getString("WORLDS." + player.getWorld().getName() + ".SPAWN")));
 
-        runTask(() -> {
-            player.teleport(location);
-        }, player.getLocation());
+        runTask(() -> player.teleport(location), player.getLocation());
     }
 
     // Use the jump option

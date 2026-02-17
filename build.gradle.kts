@@ -1,3 +1,15 @@
+/*
+ *
+ *  Copyright (c) 2026 Ruben_Artz and Artz Studio. All rights reserved.
+ *
+ *  This code is proprietary software. It is strictly prohibited to
+ *  copy, modify, distribute, or use this code for any purpose
+ *  without the express written permission of the owner.
+ *
+ *  Project: Deluxe Void World
+ *
+ */
+
 plugins {
     id("java")
     alias(libs.plugins.shadow)
@@ -5,7 +17,7 @@ plugins {
 }
 
 group = "ruben_artz"
-version = "5.4.21"
+version = "5.5.21"
 
 registerOutputTask("Ruben_Artz", "F:/Ruben_Artz/Artz Studio/1.21.11/plugins")
 

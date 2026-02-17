@@ -1,9 +1,19 @@
+/*
+ *
+ *  Copyright (c) 2026 Ruben_Artz and Artz Studio. All rights reserved.
+ *
+ *  This code is proprietary software. It is strictly prohibited to
+ *  copy, modify, distribute, or use this code for any purpose
+ *  without the express written permission of the owner.
+ *
+ *  Project: Deluxe Void World
+ *
+ */
+
 package artzstudio.dev.deluxevoid.launcher;
 
 import artzstudio.dev.deluxevoid.DeluxeVoidWorld;
 import artzstudio.dev.deluxevoid.commands.RegisterCommand;
-import artzstudio.dev.deluxevoid.common.licence.activate;
-import artzstudio.dev.deluxevoid.common.licence.strings;
 import artzstudio.dev.deluxevoid.data.player.PlayerManager;
 import artzstudio.dev.deluxevoid.database.Cache;
 import artzstudio.dev.deluxevoid.events.chat.playerInteractEvent;
@@ -14,6 +24,7 @@ import artzstudio.dev.deluxevoid.events.updateEvent;
 import artzstudio.dev.deluxevoid.events.world.*;
 import artzstudio.dev.deluxevoid.firework.FireworkDamage;
 import artzstudio.dev.deluxevoid.firework.FireworkExplode;
+import artzstudio.dev.deluxevoid.license.LicenseManager;
 import artzstudio.dev.deluxevoid.menu.home.HomeListener;
 import artzstudio.dev.deluxevoid.menu.icon.IconListener;
 import artzstudio.dev.deluxevoid.session.SessionManager;
@@ -25,7 +36,6 @@ import artzstudio.dev.deluxevoid.utils.task.NotificationManager;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import lombok.Getter;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
@@ -33,12 +43,15 @@ import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Launcher implements Launch {
+
+    private static final boolean SPIGOT_BUILD = false;
     public static int numberWorlds;
 
     @Getter
@@ -64,17 +77,12 @@ public class Launcher implements Launch {
 
         plugin.initiate();
 
-        this.registerWorlds();
-
-        this.setRateLimit();
-        this.getCommands();
-        this.registerEvents();
-        this.setConnection();
-
-        this.getNumbers();
-        this.getMetrics();
-
-        this.welcome();
+        if (SPIGOT_BUILD) {
+            initGameplay("SECURE_ACCESS_SPIGOT_BYPASS");
+        } else {
+            String licenseKey = plugin.getConfigYaml().getString("ADMIN-CONFIG.RATE_LIMIT", "ENTER THE LICENSE IF PURCHASED FROM POLYMART OR BUILTBYBIT.");
+            new LicenseManager(plugin).verifyLicense(licenseKey);
+        }
     }
 
     @Override
@@ -114,10 +122,22 @@ public class Launcher implements Launch {
         NotificationManager.shutdown();
     }
 
-    private void setRateLimit() {
-        Audience audience = plugin.getAudiences();
+    public void initGameplay(String securityToken) {
+        if (securityToken == null || !securityToken.startsWith("SECURE_ACCESS")) {
+            return;
+        }
 
-        strings.setFalse(plugin.getConfigYaml().getString("ADMIN-CONFIG.RATE_LIMIT"), audience);
+        plugin.sendConsole(plugin.prefix + "&aLicense verified successfully. Initializing core...");
+
+        this.registerWorlds();
+        this.getCommands();
+        this.registerEvents();
+        this.setConnection();
+
+        this.getNumbers();
+        this.getMetrics();
+
+        this.welcome();
     }
 
     @SuppressWarnings("InstantiationOfUtilityClass")
@@ -227,8 +247,6 @@ public class Launcher implements Launch {
             plugin.sendConsole("&fDeluxeVoidWorld &aStarting plugin...");
             plugin.sendConsole("&f");
             plugin.sendConsole("&8--------------------------------------------------------------------------------------");
-
-            activate.setPolymart();
         });
     }
 }
