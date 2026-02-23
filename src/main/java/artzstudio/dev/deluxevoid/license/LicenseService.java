@@ -55,7 +55,14 @@ public class LicenseService {
                     }
 
                     try {
-                        JsonObject json = JsonParser.parseString(jsonData).getAsJsonObject();
+                        JsonObject json;
+                        try {
+                            // Gson 2.8.6+ (new)
+                            json = JsonParser.parseString(jsonData).getAsJsonObject();
+                        } catch (NoSuchMethodError e) {
+                            // Gson <2.8.6 (old, as in 1.8)
+                            json = new JsonParser().parse(jsonData).getAsJsonObject();
+                        }
 
                         boolean isValid = json.has("valid") && json.get("valid").getAsBoolean();
                         String status = json.has("status") ? json.get("status").getAsString() : "unknown";
