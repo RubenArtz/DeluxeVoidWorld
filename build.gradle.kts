@@ -17,7 +17,7 @@ plugins {
 }
 
 group = "ruben_artz"
-version = "5.6.21"
+version = "5.7.21"
 
 registerOutputTask("Ruben_Artz", "F:/Ruben_Artz/Artz Studio/1.21.11/plugins")
 

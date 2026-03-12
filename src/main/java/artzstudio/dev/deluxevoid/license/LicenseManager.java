@@ -76,7 +76,7 @@ public class LicenseManager {
 
         plugin.sendConsole(plugin.getPrefix() + "&cTo get a license please visit https://store.rubenmatias.com/");
         plugin.sendConsole(plugin.getPrefix() + "&c-> Our discord: https://artzstudio.dev/discord");
-        plugin.sendConsole(plugin.getPrefix() + "&c-> Dashboard: https://dash.artzstudio.dev/");
+        plugin.sendConsole(plugin.getPrefix() + "&c-> Dashboard: https://dash.artzstudio.dev/dashboard");
         plugin.sendConsole(plugin.getPrefix());
         plugin.sendConsole(plugin.getPrefix() + "&c############## WARNING ##############");
         plugin.sendConsole("");

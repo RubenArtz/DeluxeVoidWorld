@@ -30,7 +30,7 @@ public class LicenseService {
 
     public LicenseService() {
         this.client = new OkHttpClient();
-        this.apiUrl = "https://dash.artzstudio.dev/verify.php";
+        this.apiUrl = "https://dash.artzstudio.dev/api/verify";
     }
 
     public CompletableFuture<LicenseResult> validate(String licenseKey) {
