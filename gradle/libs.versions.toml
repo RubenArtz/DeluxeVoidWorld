@@ -16,7 +16,7 @@ adventurePlatformBukkit = "4.4.1" # https://docs.papermc.io/adventure/platform/b
 h2 = "2.1.214" # https://github.com/h2database/h2database
 hikarycp = "7.0.1" # https://github.com/brettwooldridge/HikariCP
 gson = "2.13.1" # https://github.com/google/gson
-xseries = "13.6.0" # https://github.com/CryptoMorin/XSeries
+xseries = "13.6.0+26.1" # https://github.com/CryptoMorin/XSeries
 placeholderapi = "2.11.7" # https://github.com/PlaceholderAPI/PlaceholderAPI/releases
 bstats = "3.1.0" # https://bstats.org/add-plugin
 universalScheduler = "0.1.7" # https://github.com/Anon8281/UniversalScheduler/releases
@@ -40,7 +40,7 @@ adventurePlatformBukkit = { module = "net.kyori:adventure-platform-bukkit", vers
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
 hikarycp = { module = "com.zaxxer:HikariCP", version.ref = "hikarycp" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
-xseries = { module = "com.github.cryptomorin:XSeries", version.ref = "xseries" }
+xseries = { module = "io.github.almighty-satan:XSeries", version.ref = "xseries" }
 placeholderapi = { module = "me.clip:placeholderapi", version.ref = "placeholderapi" }
 bstats = { module = "org.bstats:bstats-bukkit", version.ref = "bstats" }
 universalScheduler = { module = "com.github.Anon8281:UniversalScheduler", version.ref = "universalScheduler" }

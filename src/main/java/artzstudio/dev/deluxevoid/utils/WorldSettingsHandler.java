@@ -55,17 +55,55 @@ public class WorldSettingsHandler {
             UtilityFunctions.runTaskTimer(20L, () -> {
                 if (alwaysDayCache.isEmpty()) return;
 
-                for (World world : alwaysDayCache.keySet()) {
-                    if (world == null) continue;
+                java.util.Iterator<Map.Entry<World, Boolean>> iterator = alwaysDayCache.entrySet().iterator();
 
-                    if (world.getTime() != 8000L) {
-                        world.setTime(8000L);
+                while (iterator.hasNext()) {
+                    Map.Entry<World, Boolean> entry = iterator.next();
+                    World world = entry.getKey();
+
+                    if (world == null) {
+                        iterator.remove();
+                        continue;
                     }
 
-                    if (world.hasStorm()) {
-                        world.setStorm(false);
-                        world.setThundering(false);
-                        world.setThunderDuration(Integer.MAX_VALUE);
+                    try {
+                        if (world.getEnvironment() != World.Environment.CUSTOM) {
+                            Boolean daylightCycle = world.getGameRuleValue(org.bukkit.GameRule.DO_DAYLIGHT_CYCLE);
+
+                            if (daylightCycle != null && daylightCycle) {
+                                if (world.getTime() != 8000L) {
+                                    world.setTime(8000L);
+                                }
+                            } else {
+                                try {
+                                    if (world.getFullTime() % 24000 != 8000L) {
+                                        long baseTime = (world.getFullTime() / 24000) * 24000;
+                                        world.setFullTime(baseTime + 8000L);
+                                    }
+                                } catch (IllegalArgumentException e) {
+                                    if (e.getMessage().contains("world clock")) {
+                                        iterator.remove();
+                                        plugin.getLogger().info("Removed world '" + world.getName() + "' from always-day cache (no world clock)");
+                                    } else {
+                                        throw e;
+                                    }
+                                }
+                            }
+                        }
+                    } catch (IllegalArgumentException e) {
+                        if (e.getMessage().contains("world clock")) {
+                            iterator.remove();
+                        } else {
+                            plugin.getLogger().warning("Error setting time for world: " + world.getName() + " - " + e.getMessage());
+                        }
+                    }
+
+                    try {
+                        if (world.hasStorm()) {
+                            world.setStorm(false);
+                            world.setThundering(false);
+                        }
+                    } catch (Exception ignored) {
                     }
                 }
             });
