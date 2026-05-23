@@ -7,7 +7,7 @@ jobs:
     remoteUrl: https://github.com/RubenArtz/DeluxeVoidWorld.git
     userName: RubenArtz
     passwordSecret: GitHub
-    force: true
+    force: false
     condition: SUCCESSFUL
     optional: false
   triggers:
